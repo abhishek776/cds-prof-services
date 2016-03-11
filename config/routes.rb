@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'signup', to: 'sessions#login', as: 'login'
 
+  # User Routes
+  resources :users
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
