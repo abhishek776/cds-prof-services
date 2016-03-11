@@ -8,7 +8,8 @@ class User < ActiveRecord::Base
 
   def facebook_info_update(auth)
     self.uid = auth[:uid]
-    self.name = "#{auth[:info][:first_name]} #{auth[:info][:last_name]}"
+    self.first_name = auth[:info][:first_name]
+    self.last_name = auth[:info][:last_name]
     self.email = auth[:info][:email]
     self.save
   end

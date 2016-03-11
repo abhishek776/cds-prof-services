@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   def show
-      id = params[:id]
-      @user = User.find_by_uid(id)
+      uid = params[:id]
+      @user = User.find_by_uid(uid)
+      logger.info("I AM HERE")
+      logger.info(@user.first_name)
       render 'show'
 =begin
     if User.exists?(params[:id]) == false
