@@ -64,3 +64,32 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+Before('@facebook_test') do
+  OmniAuth.config.test_mode = true
+  Capybara.default_host = 'http://facebook.com'
+
+  OmniAuth.config.add_mock(:facebook, {
+    :uid => '12345',
+    :info => {
+      :name => 'Clark Kent',
+      :email => 'not_batman@wayneenterprises.com',
+      :first_name => 'Clark',
+      :last_name => 'Kent',
+      :image => 'http://tinyurl.com/opnc38n',
+      :urls => {:Facebook => 'https://www.facebook.com/batman'},
+      :location => 'Bat Cave, Gotham City',
+      :verified => true
+    },
+    :credentials => {
+      :token => 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
+      :expires_at => 1321747205, # when the access token expires (it always will)
+      :expires => true # this will always be true
+     },
+
+     :extra => {:gender => "Male"}
+  })
+end
+
+After('@facebook_test') do
+  OmniAuth.config.test_mode = false
+end
