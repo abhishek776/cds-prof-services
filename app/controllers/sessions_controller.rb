@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
       @new_user.update_credentials(params[:auth][:credentials])
       @new_user.facebook_info_update(params[:auth])
       session[:user_id] = @new_user.uid
-      redirect_to user_path(:id => @user.uid)
+      redirect_to user_path(:id => @new_user.uid)
     end
   end
 
