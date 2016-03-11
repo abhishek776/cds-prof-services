@@ -9,5 +9,8 @@ before_script:
 script:
   - bundle exec rake cucumber
   - bundle exec rake spec
+addons:
+  code_climate:
+    repo_token: 9c74a16ab8dafb06bd15c7889bba705f41efc016de002aba06a4e7af0d20e88c bundle exec rake
 notifications:  
   email: false
