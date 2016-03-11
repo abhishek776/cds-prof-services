@@ -50,7 +50,6 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     builder (3.2.2)
-    byebug (8.2.2)
     cane (2.6.2)
       parallel
     capybara (2.4.4)
@@ -318,7 +317,6 @@ PLATFORMS
 
 DEPENDENCIES
   autotest-rails
-  byebug
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   cucumber-rails
