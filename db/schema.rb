@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20160311011448) do
 
   create_table "dog_like_linkers", force: :cascade do |t|
@@ -61,6 +62,19 @@ ActiveRecord::Schema.define(version: 20160311011448) do
 
   create_table "sizes", force: :cascade do |t|
     t.string "value"
+=======
+ActiveRecord::Schema.define(version: 20160311012530) do
+
+  create_table "users", force: :cascade do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+>>>>>>> 18b3722298400dce35217c303b41ca4bef8fe2a3
   end
 
 end
