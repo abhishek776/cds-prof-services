@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160311011448) do
+ActiveRecord::Schema.define(version: 20160311012530) do
+
   create_table "dog_like_linkers", force: :cascade do |t|
     t.integer "dog_id"
     t.integer "like_id"
