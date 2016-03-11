@@ -1,1 +1,21 @@
-<h1>This is our homepage.</h1>
+<div class="ui large top menu fixed" id="my-menu">
+  <h2 class="item logo-font">City Dog Share</h2>
+  <div class="right menu" style="margin-right: 80px">
+    <% if current_user %>
+      <%= link_to "LOG OUT", logout_path, id: "sign_out", class: "item login" %>
+    <% else %>
+      <%= link_to "FACEBOOK LOGIN", "/auth/facebook", id: "log_in", class: "item login" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="pusher">
+  
+  <div class="ui vertical masthead aligned segment" style="border:none;height:500px;padding: 175px 0px">
+    <div class="middle">
+      <h1>CITY DOG SHARE</h1>
+      <h2>FIND DOGS YOU LOVE</h2>
+    </div>
+  </div>
+
+</div>

@@ -15,6 +15,10 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+    
+    when /Clark's profile page/
+      user_path(User.find_by_first_name("Clark"))
+    
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

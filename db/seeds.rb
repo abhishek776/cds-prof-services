@@ -5,11 +5,12 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-
-
-
-users = [ {:uid => '12345', :name => 'Wayne'},
+users = [ {:uid => '1', :last_name => 'Wayne', :first_name => 'Bruce', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
+           :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
+           {:uid => '2', :last_name => 'Wayne2', :first_name => 'Bruce2', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
+           :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
         ]
+        
 users.each do |user|
   User.create!(user)
 end
@@ -505,11 +506,27 @@ mix_list = [
   "Unknown"
 ]
 
+mix_delete_list = [
+"Australian Stumpy Tail Cattle Dog[10]",
+"Welsh Corgi, Cardigan",
+  "Welsh Corgi, Pembroke",
+    "Münsterländer, Large",
+  "Münsterländer, Small",
+    "Bleu de Gascogne, Grand",
+  "Bleu de Gascogne, Petit",
+    "Basset Griffon Vendéen, Grand",
+  "Basset Griffon Vendéen, Petit"
+]
 
+=begin
 mix_list.each do |name|
-  Mix.find_or_create_by(value: name)
+  Mix.find_or_create_by_value(name)
 end
 
+mix_delete_list.each do |name|
+  m = Mix.find_by_value(name)
+  m.destroy if m
+end
 
 energy_list = [
   "high",
@@ -521,7 +538,7 @@ energy_list = [
 ]
 
 energy_list.each do |level|
-  EnergyLevel.find_or_create_by(value: level)
+  EnergyLevel.find_or_create_by_value(level)
 end
 
 personality_list = [
@@ -536,7 +553,7 @@ personality_list = [
 ]
 
 personality_list.each do |type|
-  Personality.find_or_create_by(value: type)
+  Personality.find_or_create_by_value(type)
 end
 
 
@@ -550,7 +567,7 @@ likes_list = [
 ]
 
 likes_list.each do |item|
-  Like.find_or_create_by(value: item)
+  Like.find_or_create_by_value(item)
 end
 
 sizes_list = [
