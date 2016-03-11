@@ -15,6 +15,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'metric_fu'
   gem 'minitest'
+  gem 'semantic-ui-rails'
 end
 
 group :test do
