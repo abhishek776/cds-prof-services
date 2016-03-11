@@ -1,3 +1,177 @@
 // Place all the styles related to the Landing controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$border-color: #E6E6E6;
+$light-gray: #BFBFBF;
+$dark-gray: #404040;
+$off-white: #F7F7F7;
+$teal: #1dc499;
+$blue: #28b9f1;
+
+body {
+    background-color: $off-white;
+    margin: 0px;
+}
+
+
+h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a, div, input{
+   font-family: 'Source Sans Pro', sans-serif !important; 
+}
+
+.no-padding-vert {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+#my-menu {
+    background-color: white;
+    box-shadow: none;
+    border-top: 0px;
+    border-bottom: 1px solid $border-color;
+    // padding: 15px 150px;
+
+    h2.logo-font {
+        margin-left: 75px;
+        font-size: 25px;
+        font-weight: 300;
+        margin-bottom: 0px;
+        margin-top: 0px;
+
+        span {
+            border-bottom: 1px solid $dark-gray;
+        }
+    }
+
+    .login {
+        font-size: 16px;
+        color: $dark-gray;
+        font-weight: 300;
+        // margin: 8px 0px;
+        // padding: 0px;
+        // margin-top: 13px;
+        padding: 5px 3px;
+        margin: 20px 0px;
+        border-bottom: 1px solid white;
+        text-decoration: none;
+
+        &:hover {
+            cursor: pointer;
+            color: $teal;
+            border-bottom: 1px solid $teal;
+            background: white;
+        }
+    }
+}
+
+.pusher {
+    padding-top: 66px;
+
+    .masthead {
+        background-image: url('/dogbanner.png') !important;
+        background-size: cover !important;
+        
+        .middle {
+            height:100px;
+            width:800px;
+            margin: auto;
+            color: white;
+            h1 {
+                font-weight: 600;
+                text-align: center;
+                font-size: 60px;
+                line-height: 60px;
+                margin-bottom: 0px;
+                margin-top: 0px;
+            }
+            h2 {
+                font-size: 30px;
+                margin-top:10px;
+                font-weight: 400;
+                text-align: center;
+            }
+        }
+    }
+
+    .strip.segment {
+        padding: 50px 150px;
+        background-color: $off-white;
+
+        .login-screen {
+            width: 400px;
+            margin: auto;
+
+            h2 {
+                text-align: center;
+                color: $teal;
+                font-weight: 400;
+            }
+        }
+
+        .content {
+            padding: 0px 20px;
+        }
+
+        h3 {
+            font-size: 22px;
+            color: $teal;
+            font-weight: 400;
+        }
+
+        p {
+            color: $dark-gray;
+            font-weight: 300;
+        }
+
+        .icon-holder {
+            margin: auto;
+            font-size: 10px;
+            color: $teal;
+            height: 60px;
+            width: 60px;
+            text-align: center;
+            border: 1px solid white;
+            background-color: white;
+            border-radius: 50px;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: $teal;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        .reg-form {
+            background-color: white;
+            margin: 0px 15px;
+            border: 1px solid $light-gray;
+            padding: 20px 25px;
+            border-radius: 5px;
+
+            h3 {
+                font-size: 18px;
+                text-align: center;
+            }
+
+            p {
+                font-size: 12px;
+                text-align: center;
+            }
+
+            input, .selection, .item {
+                font-size: 12px;
+            }
+
+            .get-started {
+                background-color: $blue;
+                color: white;
+                font-weight: 400;
+            }
+
+            .ui.error.message {
+                font-size: 11px !important;
+            }
+        }
+    }
+}
