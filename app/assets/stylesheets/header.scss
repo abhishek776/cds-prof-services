@@ -14,7 +14,7 @@ $blue: #28b9f1;
 
     h2.logo-font {
         margin-left: 75px;
-        font-size: 25px;
+        font-size: 20px;
         font-weight: 300;
         margin-bottom: 0px;
         margin-top: 0px;
@@ -29,7 +29,8 @@ $blue: #28b9f1;
         color: $dark-gray;
         font-weight: 300;
         padding: 5px 3px;
-        margin: 20px 0px;
+        margin: 12px 0px;
+        margin-right: 80px;
         border-bottom: 1px solid white;
         text-decoration: none;
 
@@ -42,23 +43,35 @@ $blue: #28b9f1;
     }
     
     .right_item {
+        
+        .name-text {
+            vertical-align: top;
+            margin-top: 12px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+        
         font-size: 16px;
         color: $dark-gray;
         font-weight: 300;
-        margin: 20px 0px;
+        margin: 0px 0px;
         border-bottom: 1px solid white;
         text-decoration: none;
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 10px;
+        padding-bottom: 6px;
         
-        &:hover, &:active, &:link, &:visited {
-            background: transparent;
+        .menu-pic {
+            height: 30px;
+            width: 30px;
+            border-radius: 30px;
+            border: 3px solid $light-gray;
         }
+        
     }
     
     .menu_item {
-        padding-top: 8px !important;
-        padding-bottom: 8px !important;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
         a {
             font-weight: 300;
             font-size: 14px;
