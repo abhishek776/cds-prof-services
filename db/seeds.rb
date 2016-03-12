@@ -5,15 +5,17 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 users = [ {:uid => '1', :last_name => 'Wayne', :first_name => 'Bruce', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
            :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
            {:uid => '2', :last_name => 'Wayne2', :first_name => 'Bruce2', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
            :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
         ]
-        
+
 users.each do |user|
   User.create!(user)
 end
+
 
 mix_list = [
   "Affenpinscher",
@@ -378,7 +380,6 @@ mix_list = [
   "Portuguese Pointer",
   "Portuguese Water Dog",
   "Posavac Hound",
-  "Praský Krysarík",
   "Pudelpointer",
   "Pug",
   "Puli",
@@ -506,26 +507,14 @@ mix_list = [
   "Unknown"
 ]
 
-mix_delete_list = [
-"Australian Stumpy Tail Cattle Dog[10]",
-"Welsh Corgi, Cardigan",
-  "Welsh Corgi, Pembroke",
-    "Münsterländer, Large",
-  "Münsterländer, Small",
-    "Bleu de Gascogne, Grand",
-  "Bleu de Gascogne, Petit",
-    "Basset Griffon Vendéen, Grand",
-  "Basset Griffon Vendéen, Petit"
-]
-=begin
+
+
+
+
 mix_list.each do |name|
-  Mix.find_or_create_by_value(name)
+  Mix.find_or_create_by(value: name)
 end
 
-mix_delete_list.each do |name|
-  m = Mix.find_by_value(name)
-  m.destroy if m
-end
 
 energy_list = [
   "high",
@@ -537,7 +526,9 @@ energy_list = [
 ]
 
 energy_list.each do |level|
-  EnergyLevel.find_or_create_by_value(level)
+
+  EnergyLevel.find_or_create_by(value: level)
+
 end
 
 personality_list = [
@@ -552,7 +543,7 @@ personality_list = [
 ]
 
 personality_list.each do |type|
-  Personality.find_or_create_by_value(type)
+  Personality.find_or_create_by(value: type)
 end
 
 
@@ -566,7 +557,7 @@ likes_list = [
 ]
 
 likes_list.each do |item|
-  Like.find_or_create_by_value(item)
+  Like.find_or_create_by(value: item)
 end
 
 sizes_list = [
@@ -577,6 +568,14 @@ sizes_list = [
 ]
 
 sizes_list.each do |size|
-  Size.find_or_create_by_value(size)
+  Size.find_or_create_by(value: size)
 end
-=end
+
+dogs_list = [{:name => "Fluffy", :gender => "Female", :size_id => 1}, {:name => "Fido", :gender => "Male", :size_id => 3}, {:name => "Batman", :gender => "Female", :size_id => 2}]
+
+dogs_list.each do |dog|
+  dog = Dog.create(:name => dog[:name], :gender => dog[:gender])
+  dog.size_id = dog[:size_id]
+  dog.save 
+end
+
