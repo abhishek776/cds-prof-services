@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: 'sessions#handle_failure', as: 'auth_failure'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'signup', to: 'sessions#login', as: 'login'
+  get 'home', to: 'home#feed'
 
   # User Routes
   resources :users
