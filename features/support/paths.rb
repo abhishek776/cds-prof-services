@@ -16,7 +16,7 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
     when /^(.*)'s home feed$/
-      home_path(User.find_by_first_name($1))
+      home_path
       
     when /Clark's profile page/
       user_path(User.find_by_first_name("Clark"))

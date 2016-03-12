@@ -1,7 +1,12 @@
 class HomeController < ApplicationController
   
   def feed
-    @user = User.find(session[:user_id])
-    render 'feed'
+    if current_user == nil
+      redirect_to root_path
+    else
+      @user = current_user
+      render 'feed'
+    end
   end
+  
 end

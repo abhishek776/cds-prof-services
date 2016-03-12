@@ -15,13 +15,13 @@ class SessionsController < ApplicationController
       @user = User.find(params[:user])
       @user.update_credentials(params[:auth][:credentials])
       session[:user_id] = @user.id
-      redirect_to home_path(@user)
+      redirect_to home_path
     else
       @new_user = User.create()
       @new_user.update_credentials(params[:auth][:credentials])
       @new_user.facebook_info_update(params[:auth])
       session[:user_id] = @new_user.id
-      redirect_to home_path(@new_user)
+      redirect_to home_path
     end
   end
 
