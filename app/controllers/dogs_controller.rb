@@ -24,6 +24,12 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
+    @form_filler = DogViewHelper.new(nil, nil, false)
+    @dog = Dog.find(params[:id])
+    @pictures = @dog.pictures
+    @form_filler.dog_view_update(@dog)
+    @action = :update
+    @method = :put
   end
 
   # POST /dogs
@@ -45,6 +51,7 @@ class DogsController < ApplicationController
   def create
     @dog = Dog.new(dog_params)
     @user = User.find(session[:user_id])
+    @dog.user_id = current_user.id
     if @dog.save
       redirect_to @user
     else
@@ -85,6 +92,7 @@ class DogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
       # params.fetch(:dog, :name)
-      params.require(:dog).permit(:name, :user_id)
+      params.require(:dog).permit(:dog, :image, :name, :dob, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
     end
 end
+

@@ -1,84 +1,63 @@
 
-  <%= link_to 'Home', root_path %>
-  <%= form_for @dog do |f| %>
-  <p>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
-  </p>
-  <p>
-  <%= f.label :description %>
-   <%= f.text_field :description %>
-  <%= f.hidden_field :user_id, :value => @user.id %>
-  </p>
-   <%= f.submit %>
-  </p>
+  <%= link_to 'To all Dogs', dogs_path %>
+
   
-  <%= link_to 'Dogs', dogs_path %>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<% javascript_include_tag 'tags.js' %>
+
+<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
+<div class="ui form">  
+
+  <div class="field"><label>Name</label>
+    <%= text_field(:dog, :name) %>
+  </div>
+ 
+
+    <div class="field">
+    <%= file_field(:dog, :image) %>
+  </div>
+
+  <div class="field"><label>Birthdate</label>
+    <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>
+  </div>
+
+  <div class="field"><label>Gender</label>
+    <%= select :dog, :gender, ["Male", "Female"] %>
+  </div>
+ 
+
+  <div class="field"><label>Motto</label>
+    <%= text_field(:dog, :motto) %>
+  </div>
+
+
+  <div class="field"><label>Description</label>
+    <%= text_area(:dog, :description) %>
+  </div>
+
+  <div class="field"><label>Health Notes</label>
+    <%= text_area(:dog, :health, :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %>
+  </div>
+
+  <div class="field"><label>Is Your Dog Spayed/Neutered?</label>
+    <%= label :fixed, "Yes", :value => "true"  %>
+    <%= radio_button :dog, :fixed, true, :checked => true %>
+    <%= label :fixed, "No", :value => "false" %>
+    <%= radio_button :dog, :fixed, false  %>
+  </div>
+
+  <div class="field"><label>General Availability</label>
+    <%=text_area(:dog, :availability, :placeholder => "Tell us when you would like a sitter") %>
+  </div>
+
+
+ <!--IMAGE UPLOADING -->
+
   <% end %>
-  
-<!--<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">-->
-<!--<% javascript_include_tag 'tags.js' %>-->
 
-<!--<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>-->
-<!--<div class="ui form">  -->
-
-<!--  <div class="field"><label>Name</label>-->
-<!--    <%= text_field(:dog, :name) %>-->
-<!--  </div>-->
- 
-
-<!--    <div class="field">-->
-<!--    <%= file_field(:dog, :image) %>-->
-<!--  </div>-->
-
-<!--  <div class="field"><label>Birthdate</label>-->
-<!--    <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>-->
-<!--  </div>-->
-
-<!--  <div class="field"><label>Gender</label>-->
-<!--    <%= select :dog, :gender, ["Male", "Female"] %>-->
-<!--  </div>-->
- 
-
-<!--  <div class="field"><label>Motto</label>-->
-<!--    <%= text_field(:dog, :motto) %>-->
-<!--  </div>-->
-
-
-<!--  <div class="field"><label>Description</label>-->
-<!--    <%= text_area(:dog, :description) %>-->
-<!--  </div>-->
-
-<!--  <div class="field"><label>Health Notes</label>-->
-<!--    <%= text_area(:dog, :health, :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %>-->
-<!--  </div>-->
-
-<!--  <div class="field"><label>Is Your Dog Spayed/Neutered?</label>-->
-<!--    <%= label :fixed, "Yes", :value => "true"  %>-->
-<!--    <%= radio_button :dog, :fixed, true, :checked => true %>-->
-<!--    <%= label :fixed, "No", :value => "false" %>-->
-<!--    <%= radio_button :dog, :fixed, false  %>-->
-<!--  </div>-->
-
-<!--  <div class="field"><label>General Availability</label>-->
-<!--    <%=text_area(:dog, :availability, :placeholder => "Tell us when you would like a sitter") %>-->
-<!--  </div>-->
-
-
-
-<!-- IMAGE UPLOADING -->
-
-
-<!--  <% end %>-->
-
-<!--<div class="field"><label>-->
-
-
-<!--  <div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
-
-
-<!--  <%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
-
-<!--  </div>-->
-
-<!--</div>-->
+<div class="field"><label>
+  <button class="ui button" type="submit">Submit</button>
+  <!--<div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
+  <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
+  </div>
+</div>

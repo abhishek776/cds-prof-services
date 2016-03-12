@@ -16,7 +16,9 @@ Rails.application.routes.draw do
   get 'home', to: 'home#feed'
 
   # User Routes
-  resources :users
+  resources :users do
+    resources :dogs
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
