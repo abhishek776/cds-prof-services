@@ -1,23 +1,17 @@
-
-  <div class="ui borderless main menu">
-    <div class="ui text container">
-      <div href="#" class=" item">
-        <!--<img class="logo" src="assets/images/logo.png"> -->
-        CityDogShare
-      </div>
-      <%= link_to "Home", home_path, class: "item" %>
-      <!-- TODO: change the Explore Dogs & Services routes --> 
-      <%= link_to "Explore Dogs", home_path, class: "item" %>
-      <%= link_to "Explore Services", home_path, class: "item" %>
-      
-      <div class="ui right floated dropdown item">
-        <%= @user.first_name + " " + @user.last_name %> <i class="dropdown icon"></i>
+<div class="ui large top menu fixed" id="my-menu">
+  <h2 class="item logo-font">City Dog Share</h2>
+  <div class="right menu" style="margin-right: 80px">
+    
+    <% if current_user %>
+      <div class="ui top right pointing dropdown item right_item">
+        <%= current_user.first_name + " " + current_user.last_name %>
         <div class="menu">
-          <div class="item"><%= link_to "My Profile", user_path(@user), class: "item"%></div>
-          <div class="divider"></div>
-          <div class="item"><%= link_to "Settings", user_path(@user), class: "item" %></div>
-          <div class="item"><%= link_to "Log Out", '/logout', class: "item"%></div>
+          <div class="item menu_item"><%= link_to "My Profile", user_path(@user), class: "item"%></div>
+          <div class="item menu_item"><%= link_to "Log Out", '/logout', class: "item"%></div>
         </div>
-      </div>
-    </div>
+      </div>    
+    <% else %>
+      <%= link_to "FACEBOOK LOGIN", "/auth/facebook", id: "log_in", class: "item login" %>
+    <% end %>
   </div>
+</div>
