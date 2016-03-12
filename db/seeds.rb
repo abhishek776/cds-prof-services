@@ -518,27 +518,25 @@ mix_delete_list = [
   "Basset Griffon Vendéen, Petit"
 ]
 
-=begin
 mix_list.each do |name|
-  Mix.find_or_create_by_value(name)
+  Mix.find_or_create_by(value: name)
 end
 
 mix_delete_list.each do |name|
-  m = Mix.find_by_value(name)
+  m = Mix.find_by(value: name)
   m.destroy if m
 end
 
 energy_list = [
-  "high",
-  "active",
-  "good",
-  "some",
-  "low",
-  "zzzzz"
+  "High",
+  "Active",
+  "Good",
+  "Some",
+  "Low",
 ]
 
 energy_list.each do |level|
-  EnergyLevel.find_or_create_by_value(level)
+  EnergyLevel.find_or_create_by(value: level)
 end
 
 personality_list = [
@@ -553,7 +551,7 @@ personality_list = [
 ]
 
 personality_list.each do |type|
-  Personality.find_or_create_by_value(type)
+  Personality.find_or_create_by(value: type)
 end
 
 
@@ -567,7 +565,7 @@ likes_list = [
 ]
 
 likes_list.each do |item|
-  Like.find_or_create_by_value(item)
+  Like.find_or_create_by(value: item)
 end
 
 sizes_list = [
@@ -581,10 +579,21 @@ sizes_list.each do |size|
   Size.find_or_create_by(value: size)
 end
 
-dogs_list = [{:name => "Fluffy", :gender => "Female", :size_id => 1}, {:name => "Fido", :gender => "Male", :size_id => 3}, {:name => "Batman", :gender => "Female", :size_id => 2}]
+dogs_list = [{:name => "Batman", :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1} ]
 
 dogs_list.each do |dog|
-  dog = Dog.create(:name => dog[:name], :gender => dog[:gender])
-  dog.size_id = dog[:size_id]
-  dog.save 
+  dog = Dog.create(dog)
+end
+
+mix_linker_list = [{:dog_id => 1, :mix_id => 210},
+                   {:dog_id => 1, :mix_id => 280}]
+
+mix_linker_list.each do |link|
+  mix_link = DogMixLinker.create(link)
+end
+
+personality_linker_list = [{:dog_id => 1, :personality_id => 8}]
+
+personality_linker_list.each do |link|
+  dog = DogPersonalityLinker.create(link)
 end
