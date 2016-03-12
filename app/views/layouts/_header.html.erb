@@ -1,0 +1,22 @@
+
+  <div class="ui borderless main menu">
+    <div class="ui text container">
+      <div href="#" class=" item">
+        <!--<img class="logo" src="assets/images/logo.png"> -->
+        CityDogShare
+      </div>
+      <a href="#" class="item">Home</a>
+      <a href="#" class="item">Explore Dogs</a>
+      <a href="#" class="item">Explore Services</a>
+      <a href="#" class="ui right floated dropdown item">
+        <%= @user.first_name + " " + @user.last_name %> <i class="dropdown icon"></i>
+        <div class="menu">
+          <div class="item">My Profile</div>
+          <div class="item">My Dogs</div>
+          <div class="divider"></div>
+          <div class="item">Settings</div>
+          <div class="item">Log Out</div>
+        </div>
+      </a>
+    </div>
+  </div>
