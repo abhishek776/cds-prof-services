@@ -1,12 +1,76 @@
-<div class="large-12 columns">
-  <br />
-  <div class="large-7 columns" id ="user_info">
-    <div class="ui blue inverted top attached segment" style="overflow:hidden">
+<%= render "layouts/header" %>
+<div class="ui one column grid">
+  <div class="five wide column">
+    <!--
+    <div class="ui segment">
       <div id="name">
-        <h1><%= image_tag @user.image, :class => "ui middle aligned small image", :id => "ui-segment" %>&nbsp; <%= @user.first_name %></h1>
+        <%= image_tag @user.image, :class => "ui middle aligned small image", :id => "ui-segment" %>
+        <h2><%= @user.first_name + " " + @user.last_name%></h2>
       </div>
     </div>
-<button class="ui button">
-  Button
-</button>
-  
+-->
+<div class="ui fluid card">
+  <div class="image" style="padding:3em;">
+    <%= image_tag @user.image %>
+  </div>
+  <div class="content">
+    <a class="header"><%= @user.first_name + " " + @user.last_name %></a>
+    <div class="meta">
+      <span class="date">Joined in 2013</span>
+    </div>
+    <div class="description">
+      <!-- link to @user.description -->
+      <%= @user.first_name %> likes to drink coffee.
+    </div>
+  </div>
+  <div class="extra content">
+    <a>
+      <i class="heart icon"></i>
+      4 Dogs
+    </a>
+    <a>
+      <i class="calendar icon"></i>
+      5 events
+    </a>
+    <a>
+      <i class="star icon"></i>
+      Premium User
+    </a>
+  </div>
+</div>
+  </div>
+  <div class="eleven wide column">
+    <div class="ui segment">
+      <div id="dogs">
+      <h2><%= @user.first_name %>'s Dogs</h2>
+<div class="ui fluid card">
+  <div class="content">
+    <div class="header">Lexy
+    <i class="right floated star icon"></i>
+    </div>
+    <div class="meta">
+      <span class="category">5 years old</span>
+    </div>
+    <div class="description">
+      <p>Lexy is my first dog!</p>
+    </div>
+  </div>
+  <div class="extra content">
+     <a>
+      <i class="left floated calendar icon"></i>
+      2 events
+    </a>
+    <span class="right floated star">
+      <i class="star icon"></i>
+      Favorite
+    </span>
+      <!--<img class="ui avatar image" src="/images/avatar/small/matt.jpg"> Matt -->
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+    
