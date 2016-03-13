@@ -5,15 +5,14 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
-    @user = User.find(session[:user_id])
+    #@user = User.find(session[:user_id])
     @dogs = Dog.all
   end
 
   # GET /dogs/1
   # GET /dogs/1.json
   def show
-    # id = params[:name] # retrieve movie ID from URI route
-    # @dog = Dog.find(id)
+    @dog = Dog.find(params[:id])
   end
 
   # GET /dogs/new
