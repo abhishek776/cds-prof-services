@@ -18,6 +18,9 @@ module NavigationHelpers
     
     when /Clark's profile page/
       user_path(User.find_by_first_name("Clark"))
+      
+    when /^the explore dogs page$/
+      dogs_path
     
 
     # Add more mappings here.
