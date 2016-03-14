@@ -24,48 +24,8 @@ h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a, div, input{
     padding-bottom: 0px !important;
 }
 
-#my-menu {
-    background-color: white;
-    box-shadow: none;
-    border-top: 0px;
-    border-bottom: 1px solid $border-color;
-    // padding: 15px 150px;
-
-    h2.logo-font {
-        margin-left: 75px;
-        font-size: 25px;
-        font-weight: 300;
-        margin-bottom: 0px;
-        margin-top: 0px;
-
-        span {
-            border-bottom: 1px solid $dark-gray;
-        }
-    }
-
-    .login {
-        font-size: 16px;
-        color: $dark-gray;
-        font-weight: 300;
-        // margin: 8px 0px;
-        // padding: 0px;
-        // margin-top: 13px;
-        padding: 5px 3px;
-        margin: 20px 0px;
-        border-bottom: 1px solid white;
-        text-decoration: none;
-
-        &:hover {
-            cursor: pointer;
-            color: $teal;
-            border-bottom: 1px solid $teal;
-            background: white;
-        }
-    }
-}
-
 .pusher {
-    padding-top: 66px;
+    padding-top: 54px;
 
     .masthead {
         background-image: url('/dogbanner.png') !important;
