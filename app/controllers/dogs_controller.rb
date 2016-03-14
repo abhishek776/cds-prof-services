@@ -12,6 +12,7 @@ class DogsController < ApplicationController
   # GET /dogs/1
   # GET /dogs/1.json
   def show
+    @user = User.find(session[:user_id])
     # id = params[:name] # retrieve movie ID from URI route
     # @dog = Dog.find(id)
   end
@@ -24,10 +25,10 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
-    @form_filler = DogViewHelper.new(nil, nil, false)
+    # @form_filler = DogViewHelper.new(nil, nil, false)
     @dog = Dog.find(params[:id])
-    @pictures = @dog.pictures
-    @form_filler.dog_view_update(@dog)
+    # @pictures = @dog.pictures
+    # @form_filler.dog_view_update(@dog)
     @action = :update
     @method = :put
   end

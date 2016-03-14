@@ -1,26 +1,14 @@
-<h1>Editing Dog</h1>
+<!--<h1>Editing Dog</h1>-->
 
-<%= render 'form' %>
+<!--<%= render 'form' %>-->
 
-<%= link_to 'Show', @dog %> |
-<%= link_to 'Back', dogs_path %>
+<!--<%= link_to 'Show', @dog %> |-->
+<!--<%= link_to 'Back', dogs_path %>-->
 
-<h1> Create New Dog</h1>
+<!--<h1> Edit Dog</h1>-->
 
-<%= form_tag dogs_path do%>
+<!--<%= form_tag user_dog_path(@dog, @user) do%>-->
 
-<% = label :dog, :name, 'Name'%>
-  <%= text_field :dog, 'name'%>
-
-<!--<%= label :dog, :mix, 'Mix'%>-->
-<!--  <%= select :movie, :rating, ['G','PG','PG-13','R','NC-17']%>-->
-
-  <!--<%= label :movie, :release_date, 'Released On'%>-->
-  <!--<%= date_select :movie, :release_date%>-->
+<!--<%= submit_tag 'Save Changes'%>-->
   
-  <!--<%= label :movie, :director, 'Director'%>-->
-  <!--<%= text_field :movie, 'director'%>-->
 
-  <!--<%= submit_tag 'Save Changes'%>-->
-  
-<%= link_to 'Back to profile', dogs_path%>
