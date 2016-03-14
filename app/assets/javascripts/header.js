@@ -11,7 +11,7 @@
       });
 
       // show dropdown on hover
-      $('.main.menu  .ui.dropdown').dropdown({
+      $('.right.menu  .ui.dropdown').dropdown({
         on: 'hover'
       });
     })
