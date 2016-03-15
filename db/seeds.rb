@@ -554,7 +554,6 @@ personality_list.each do |type|
   Personality.find_or_create_by(value: type)
 end
 
-
 likes_list = [
   "dogs (all)",
   "dogs (some or most)",
