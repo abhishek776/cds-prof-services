@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Explore Dogs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Mix</th>
+      <th>Energy Level</th>
+      <th>Personality</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dogs.each do |dog| %>
+      <tr>
+        <td><%= link_to dog.name, dog_path(dog) %></td>
+        <td><%= dog.gender %></td>
+        <td><%= dog.age_caption %></td>
+        <td><%= dog.mix_caption %></td>
+        <td><%= dog.energy_level %></td>
+        <td><%= dog.personality_caption %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dog', new_dog_path %>
