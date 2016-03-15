@@ -1,10 +1,10 @@
 class Picture < ActiveRecord::Base
 
-  # belongs_to :movie
+  belongs_to :dog
   # attr_accessible :image
 
-  # #paperclip multiple pictures
-  # has_attached_file :image, 
+  #paperclip multiple pictures
+  # has_attached_file :image
   #                   :styles => { :small    => '150x',
   #                               :medium   => '300x' },
   #                   :default_url => "",

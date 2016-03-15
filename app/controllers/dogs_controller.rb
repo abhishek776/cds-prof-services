@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  require 'dog_form_filler'
   
 
   # GET /dogs
@@ -13,6 +14,8 @@ class DogsController < ApplicationController
   # GET /dogs/1.json
   def show
     @dog = Dog.find(params[:id])
+    # @mix = DogMixLinker.find(@dog.mix_id)
+    # @pictures = @dog.pictures
   end
 
   # GET /dogs/new
@@ -48,15 +51,32 @@ class DogsController < ApplicationController
   # end
   
   def create
+    @mix =  Mix.all
     @dog = Dog.new(dog_params)
     @user = User.find(session[:user_id])
     @dog.user_id = current_user.id
+
     if @dog.save
       redirect_to @user
     else
       render 'new'
     end 
   end
+  
+  # def create
+  #   # @form_filler = DogViewHelper.new(nil)
+  #   @mixes = Mix.all
+  #   @dog = Dog.new(@form_filler.attributes_list(dog_params))
+  #   @dog.user_id = current_user.id
+
+  #   if @dog.save      
+  #     # add_multiple_pictures(@dog)
+  #     redirect_to user_path(current_user)
+  #   # else
+  #   #   flash[:notice] = @dog.errors.messages
+  #   #   render 'new'
+  #   end
+  # end
 
   # PATCH/PUT /dogs/1
   # PATCH/PUT /dogs/1.json
