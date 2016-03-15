@@ -1,11 +1,12 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  require 'dog_form_filler'
   
 
   # GET /dogs
   # GET /dogs.json
   def index
-    @user = User.find(session[:user_id])
+    #@user = User.find(session[:user_id])
     @dogs = Dog.all
   end
 
@@ -15,6 +16,7 @@ class DogsController < ApplicationController
     @user = User.find(session[:user_id])
     # id = params[:name] # retrieve movie ID from URI route
     # @dog = Dog.find(id)
+    @dog = Dog.find(params[:id])
   end
 
   # GET /dogs/new
@@ -25,10 +27,10 @@ class DogsController < ApplicationController
 
   # GET /dogs/1/edit
   def edit
-    # @form_filler = DogViewHelper.new(nil, nil, false)
+    #@form_filler = DogViewHelper.new(nil, nil, false)
     @dog = Dog.find(params[:id])
-    # @pictures = @dog.pictures
-    # @form_filler.dog_view_update(@dog)
+    @pictures = @dog.image
+    #@form_filler.dog_view_update(@dog)
     @action = :update
     @method = :put
   end
@@ -50,15 +52,32 @@ class DogsController < ApplicationController
   # end
   
   def create
+    @mix =  Mix.all
     @dog = Dog.new(dog_params)
     @user = User.find(session[:user_id])
     @dog.user_id = current_user.id
+
     if @dog.save
       redirect_to @user
     else
       render 'new'
     end 
   end
+  
+  # def create
+  #   # @form_filler = DogViewHelper.new(nil)
+  #   @mixes = Mix.all
+  #   @dog = Dog.new(@form_filler.attributes_list(dog_params))
+  #   @dog.user_id = current_user.id
+
+  #   if @dog.save      
+  #     # add_multiple_pictures(@dog)
+  #     redirect_to user_path(current_user)
+  #   # else
+  #   #   flash[:notice] = @dog.errors.messages
+  #   #   render 'new'
+  #   end
+  # end
 
   # PATCH/PUT /dogs/1
   # PATCH/PUT /dogs/1.json

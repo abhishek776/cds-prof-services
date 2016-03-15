@@ -1,6 +1,4 @@
-
-  <%= link_to 'To all Dogs', dogs_path %>
-
+<%= link_to 'To all Dogs', dogs_path %>
   
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
 <% javascript_include_tag 'tags.js' %>
@@ -8,12 +6,43 @@
 <%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
 
-  <div class="field"><label>Name</label>
+  
+    <div class="field"><label>Name</label>
     <%= text_field(:dog, :name) %>
+    </div>
+    
+  <div class="field"><label>Mix</label>
+    <%= select :dog, :gender,  
+  ["Otterhound",  
+  "Pachon Navarro",
+  "Paisley Terrier",
+  "Papillon",
+  "Parson Russell Terrier",
+  "Patterdale Terrier",
+  "Pekingese",
+  "Perro de Presa Canario",
+  "Perro de Presa Mallorquin",
+  "Peruvian Hairless Dog",
+  "Phalène",
+  "Pharaoh Hound",
+  "Phu Quoc ridgeback dog",
+  "Picardy Spaniel",
+  "Pitt Bull",
+  "Plott Hound",
+  "Podenco Canario",
+  "Pointer",
+  "Polish Greyhound",
+  "Polish Hound",
+  "Polish Hunting Dog",
+  "Polish Lowland Sheepdog",
+  "Polish Tatra Sheepdog",
+  "Pomeranian",
+  "Pont-Audemer"] %>
   </div>
  
+ 
 
-    <div class="field">
+  <div class="field">
     <%= file_field(:dog, :image) %>
   </div>
 
@@ -53,7 +82,7 @@
 
  <!--IMAGE UPLOADING -->
 
-  <% end %>
+<% end %>
 
 <div class="field"><label>
   <button class="ui button" type="submit">Submit</button>
@@ -61,3 +90,5 @@
   <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
   </div>
 </div>
+
+                
