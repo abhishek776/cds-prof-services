@@ -10,17 +10,16 @@ Feature: Facebook OAuth is used for signing into accounts
 	
   Scenario: I should be able to sign up through facebook
     When I follow "FACEBOOK LOGIN"
-    Then I should be on Clark's profile page
+    Then I should be on Clark's home feed
     
   Scenario: I should be able to log out from the home page
     When I follow "FACEBOOK LOGIN"
     And I am on the home page
-    Then I should see "LOG OUT"
+    Then I should see "Log Out"
   
-  Scenario: I should be able ot log in after logging out
+  Scenario: I should be able to log in after logging out
     When I follow "FACEBOOK LOGIN"
-    And I am on the home page
-    And I follow "LOG OUT"
+    And I follow "Log Out"
     And I am on the home page
     And I follow "FACEBOOK LOGIN"
-    Then I should be on Clark's profile page
+    Then I should be on Clark's home feed

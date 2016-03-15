@@ -1,0 +1,86 @@
+$border-color: #E6E6E6;
+$light-gray: #BFBFBF;
+$dark-gray: #404040;
+$off-white: #F7F7F7;
+$teal: #1dc499;
+$blue: #28b9f1;
+
+#my-menu {
+    background-color: white;
+    box-shadow: none;
+    border-top: 0px;
+    border-bottom: 1px solid $border-color;
+    // padding: 15px 150px;
+
+    h2.logo-font {
+        margin-left: 75px;
+        font-size: 20px;
+        font-weight: 300;
+        margin-bottom: 0px;
+        margin-top: 0px;
+
+        span {
+            border-bottom: 1px solid $dark-gray;
+        }
+    }
+
+    .login {
+        font-size: 16px;
+        color: $dark-gray;
+        font-weight: 300;
+        padding: 5px 3px;
+        margin: 12px 0px;
+        margin-right: 80px;
+        border-bottom: 1px solid white;
+        text-decoration: none;
+
+        &:hover {
+            cursor: pointer;
+            color: $teal;
+            border-bottom: 1px solid $teal;
+            background: white;
+        }
+    }
+    
+    .right_item {
+        
+        .name-text {
+            vertical-align: top;
+            margin-top: 12px;
+            margin-right: 4px;
+            display: inline-block;
+        }
+        
+        font-size: 16px;
+        color: $dark-gray;
+        font-weight: 300;
+        margin: 0px 0px;
+        border-bottom: 1px solid white;
+        text-decoration: none;
+        padding-top: 10px;
+        padding-bottom: 6px;
+        
+        .menu-pic {
+            height: 30px;
+            width: 30px;
+            border-radius: 30px;
+            border: 3px solid $light-gray;
+        }
+        
+    }
+    
+    .menu_item {
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        a {
+            font-weight: 300;
+            font-size: 14px;
+            margin: 0px !important;
+            padding: 0px !important;
+            &:hover {
+                background-color: transparent;
+            }
+        }
+    }
+    
+}
