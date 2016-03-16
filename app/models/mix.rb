@@ -13,8 +13,8 @@ class Mix < ActiveRecord::Base
   #   Mix.autocomplete(q).map(&:value)
   # end
 
-  # def self.all_values
-  #   Mix.order(:value).pluck('Distinct value')
-  # end
+  def self.all_values
+    Mix.order(:value).pluck('Distinct value')
+  end
 
 end

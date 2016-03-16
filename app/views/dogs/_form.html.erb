@@ -7,12 +7,17 @@
 <div class="ui form">  
 
   
-    <div class="field"><label>Name</label>
-    <%= text_field(:dog, :name) %>
-    </div>
+    <!--<div class="field"><label>Dog Name</label>-->
+    <!--<%= text_field(:dog, :name) %>-->
+    <!--</div>-->
+    
+    <label>
+    <input id="Dog Name" type="text_field" <%= text_field(:dog, :name) %>></input>
+     Dog Name
+    </label>
     
   <div class="field"><label>Mix</label>
-    <%= select :dog, :gender,  
+    <%= select :dog, :mixes,  
   ["Otterhound",  
   "Pachon Navarro",
   "Paisley Terrier",
@@ -83,8 +88,9 @@
  <!--IMAGE UPLOADING -->
 
 <% end %>
-
-<div class="field"><label>
+  
+  <!--<button class="ui button" type="submit">Submit</button>-->
+<div class="field"><label>Submit</label>
   <button class="ui button" type="submit">Submit</button>
   <!--<div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
   <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->

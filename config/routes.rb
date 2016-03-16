@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   get 'auth/:provider/callback', to: 'sessions#handle_auth', as: 'auth_success'
   get 'auth/failure', to: 'sessions#handle_failure', as: 'auth_failure'
   get 'logout', to: 'sessions#destroy', as: 'logout'
-  get 'signup', to: 'sessions#login', as: 'login'
+  get 'signup', to: 'sessions#login', as: 'signup'
+  get 'login', to: 'sessions#login', as: 'login'
   get 'home', to: 'home#feed'
+
+  # get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
 
   # User Routes
   resources :users do

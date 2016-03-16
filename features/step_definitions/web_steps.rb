@@ -57,12 +57,16 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
-When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-  fill_in(field, :with => value)
-end
+# When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+#   fill_in(field, :with => value)
+# end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
+end
+
+When /^I fill in dog_name with "([^\"]*)"$/ do |value|
+  fill_in "Dog Name", :with => value
 end
 
 # Use this to fill in an entire form with data from a table. Example:
@@ -80,6 +84,10 @@ When /^(?:|I )fill in the following:$/ do |fields|
   fields.rows_hash.each do |name, value|
     When %{I fill in "#{name}" with "#{value}"}
   end
+end
+
+When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
+  fill_in(field.gsub(' ', ' '), :with => value)
 end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|

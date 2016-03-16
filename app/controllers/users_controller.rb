@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   def show
       @user = User.find(session[:user_id])
+      @dogs = Dog.where(user_id: @user.uid)
+      # Movie.where(rating: @selected_ratings.keys).order(ordering)
       render 'show'
 =begin
     if User.exists?(params[:id]) == false
