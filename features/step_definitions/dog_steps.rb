@@ -36,5 +36,11 @@ Then /I should not see a star/ do
   pending
 end
 
+When /I create a "(.*)" event for "(.*)"/ do |type, name|
+  pending
+end
 
+Then /I should see a "(.*)" event on "(.*)"'s event list/ do |type, name|
+  pending
+end
 
