@@ -44,3 +44,18 @@ Then /I should see a "(.*)" event on "(.*)"'s event list/ do |type, name|
   pending
 end
 
+Given /^the dog "(.*?)" has an event$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I follow the "(.*?)" link$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I log in as "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+Then /^I should see that someone requested "(.*?)"'s event$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
