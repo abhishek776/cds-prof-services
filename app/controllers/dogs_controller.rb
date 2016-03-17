@@ -23,6 +23,8 @@ class DogsController < ApplicationController
   def new
     @user = User.find(session[:user_id])
     @dog = Dog.new
+    @mix = Mix.all
+    @size = Size.all
   end
 
   # GET /dogs/1/edit
