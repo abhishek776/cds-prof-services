@@ -1,23 +1,14 @@
-Given /the following dogs exist/ do |dogs_table|
+Given /the following dogs exist/ do |dogs_table|\
   dogs_table.hashes.each do |dog|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-    Dog.create(dog)
+    new_dog = Dog.new()
+    new_dog.name = dog[:name]
+    new_dog.gender = dog[:gender]
+    new_dog.size_id = Size.find_by_value(dog[:size]).id
+    new_dog.dob = Time.now.advance(years:-dog[:age].to_i)
+    new_dog.mixes << Mix.find_by_value(dog[:mix])
+    new_dog.personalities << Personality.find_by_value(dog[:personality])
+    new_dog.energy_level_id = EnergyLevel.find_by_value(dog[:energy]).id
+    new_dog.save!
   end
 end
 
-Given /the following mix links exist/ do |mix_link_table|
-  mix_link_table.hashes.each do |mix_link|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-    DogMixLinker.create(mix_link)
-  end
-end
-
-Given /the following personality links exist/ do |personality_link_table|
-  personality_link_table.hashes.each do |personality_link|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-    DogPersonalityLinker.create(personality_link)
-  end
-end
