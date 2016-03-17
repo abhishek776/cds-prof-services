@@ -5,7 +5,7 @@ RSpec.describe "dogs/new", type: :view do
     assign(:dog, Dog.new())
   end
 
-  it "renders new dog form" do
+  it "renders form" do
     render
 
     assert_select "form[action=?][method=?]", dogs_path, "post" do

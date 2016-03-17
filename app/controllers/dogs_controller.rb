@@ -14,8 +14,6 @@ class DogsController < ApplicationController
   # GET /dogs/1.json
   def show
     @user = User.find(session[:user_id])
-    # id = params[:name] # retrieve movie ID from URI route
-    # @dog = Dog.find(id)
     @dog = Dog.find(params[:id])
   end
 
@@ -57,7 +55,11 @@ class DogsController < ApplicationController
     @mix =  Mix.all
     @dog = Dog.new(dog_params)
     @user = User.find(session[:user_id])
-    @dog.user_id = current_user.id
+    @size = Size.find(dog_params['size_id'])
+    @user.dogs.create(user: @user)
+    @size.dogs.create(size: @size)
+    # @dog.mixes << @mix
+    # @recipe.categories << @category
 
     if @dog.save
       redirect_to @user

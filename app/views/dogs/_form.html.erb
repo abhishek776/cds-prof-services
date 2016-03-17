@@ -25,7 +25,7 @@
   
   <div class="field"><label>Size</label>
       <% size_options = options_from_collection_for_select(Size.all, 'id', 'value', @size.collect {|s| s.value}) %>
-    <%= select :dog, :size, size_options %> 
+    <%= select :dog, :size_id, size_options %> 
   </div>
 
   <div class="field">
