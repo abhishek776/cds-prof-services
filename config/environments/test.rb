@@ -40,4 +40,26 @@ Rails.application.configure do
   
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.add_mock(:facebook, {
+    :uid => '12345',
+    :info => {
+      :name => 'Bruce Wayne',
+      :email => 'not_batman@wayneenterprises.com',
+      :first_name => 'Bruce',
+      :last_name => 'Wayne',
+      :image => 'http://tinyurl.com/opnc38n',
+      :urls => {:Facebook => 'https://www.facebook.com/batman'},
+      :nickname => 'batman',
+      :location => 'Bat Cave, Gotham City',
+      :verified => true
+    },
+    :credentials => {
+      :token => 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
+      :expires_at => 1321747205, # when the access token expires (it always will)
+      :expires => true # this will always be true
+     }
+  })
 end

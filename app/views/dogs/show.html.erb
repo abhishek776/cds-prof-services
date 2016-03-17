@@ -9,7 +9,10 @@
   <p>   <%= @dog.user_id %>   </p>
   <p>   <%= @dog.size_id %>   </p>
   <p>   <%= @dog.energy_level_id %>   </p>
-  
+   <h1><%= image_tag "default_dog.jpg", :class => "ui avatar image" %> <%= @dog.image %></h1>
+   <div class="image" style="padding:3em;">
+    <%= image_tag @dog.image %>
+  </div>
   tetst----------------------------------------------------------
   
 

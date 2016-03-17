@@ -9,6 +9,7 @@ class Dog < ActiveRecord::Base
   belongs_to :energy_level
   belongs_to :size
   
+  
   def age_caption
     now = Time.now.utc.to_date
     age_in_months = (now.year - dob.year) * 12 + now.month - dob.month

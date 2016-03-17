@@ -57,6 +57,7 @@ class DogsController < ApplicationController
     # @values[:mix] = selected[:mix] if selected[:mix]
     # @mix =  Mix.find(value: dog_params['mixes'])
     # @personality = Personality.find(params[:personality])
+    @pic = Picture.new(dog_params[:image])
     @dog = Dog.new(dog_params)
     @user = User.find(session[:user_id])
     @size = Size.find(dog_params['size_id'])
@@ -64,6 +65,8 @@ class DogsController < ApplicationController
     @user.dogs.create(user: @user)
     @size.dogs.create(size: @size)
     @energy_level.dogs.create(energy_level: @energy_level)
+   
+    
     # @dog.mixes << @mix
     # @recipe.categories << @category
 
