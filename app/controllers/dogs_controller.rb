@@ -74,21 +74,6 @@ class DogsController < ApplicationController
     end 
   end
   
-  # def create
-  #   # @form_filler = DogViewHelper.new(nil)
-  #   @mixes = Mix.all
-  #   @dog = Dog.new(@form_filler.attributes_list(dog_params))
-  #   @dog.user_id = current_user.id
-
-  #   if @dog.save      
-  #     # add_multiple_pictures(@dog)
-  #     redirect_to user_path(current_user)
-  #   # else
-  #   #   flash[:notice] = @dog.errors.messages
-  #   #   render 'new'
-  #   end
-  # end
-
   # PATCH/PUT /dogs/1
   # PATCH/PUT /dogs/1.json
   def update
