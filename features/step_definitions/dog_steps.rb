@@ -24,5 +24,13 @@ When /I filter (.*) "([^"]*)"/ do |filter, value|
   pending
 end
 
+When /I click a star for dog with dog id "([^"]*)"/ do |dog_id|
+  pending
+end
+
+Then /I should not see a star/ do 
+  pending
+end
+
 
 
