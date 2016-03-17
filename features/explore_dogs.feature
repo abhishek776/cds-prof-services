@@ -61,6 +61,14 @@ Scenario: I should be able to filter the dogs by energy level
   And I should see "The Joker"
   And I should not see "Harley Quinn"
   
+Scenario: I should be able to filter the dogs by events
+  When I am on the explore dogs page
+  And I filter event
+  And I press "Go"
+  Then I should see "Batman"
+  And I should see "The Joker"
+  And I should not see "Harley Quinn"
+  
 Scenario: I should be able to apply multiple filters to the dogs
   When I am on the explore dogs page
   And I filter size "small"
@@ -69,6 +77,8 @@ Scenario: I should be able to apply multiple filters to the dogs
   Then I should see "Harley Quinn"
   And I should not see "Batman"
   And I should not see "The Joker"
+  
+
   
   
   
