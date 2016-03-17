@@ -24,6 +24,9 @@ module NavigationHelpers
     when /^the explore dogs page$/
       dogs_path
     
+    when /"(.*)"'s dog page/
+      pending
+    
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

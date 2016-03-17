@@ -44,3 +44,11 @@ Then /I should see a "(.*)" event on "(.*)"'s event list/ do |type, name|
   pending
 end
 
+When /^I edit the name to "(.*?)"$/ do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+
+When /^I create a dog with the following info:$/ do |table|
+  # table is a Cucumber::Ast::Table
+  pending # express the regexp above with the code you wish you had
+end
