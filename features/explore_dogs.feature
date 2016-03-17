@@ -9,7 +9,7 @@ Background: dogs have been added to the database
   | name          | gender | age | energy | size            | personality     | mix                             |
   | Batman        | Male   | 3   | High   | large (41-100)  | still a puppy   | German Shepherd Dog             |
   | The Joker     | Male   | 6   | Active | medium (16-40)  | fetcher         | Mutt                            |
-  | Harley Quinn  | Female | 4   | Some   | small (0-15)    | lover           | Poodle
+  | Harley Quinn  | Female | 4   | Some   | small (0-15)    | lover           | Poodle                          |
   
 
 Scenario: I should be able to see all of the dogs and a number of features

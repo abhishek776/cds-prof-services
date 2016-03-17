@@ -12,3 +12,17 @@ Given /the following dogs exist/ do |dogs_table|\
   end
 end
 
+When /I am logged in/ do
+  pending
+end
+
+When /I am not logged in/ do
+  pending
+end
+
+When /I filter (.*) "([^"]*)"/ do |filter, value|
+  pending
+end
+
+
+
