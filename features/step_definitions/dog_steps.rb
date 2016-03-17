@@ -24,6 +24,10 @@ When /I filter (.*) "([^"]*)"/ do |filter, value|
   pending
 end
 
+When /I filter event/ do
+  pending
+end
+
 When /I click a star for dog with dog id "([^"]*)"/ do |dog_id|
   pending
 end
