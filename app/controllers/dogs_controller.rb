@@ -24,6 +24,8 @@ class DogsController < ApplicationController
     @all_mixes = Mix.all
     @size = Size.all
     @energy = EnergyLevel.all
+    @like_list = Like.all
+    @personality_list = Personality.all
     # @personality = Personality.all
   end
 
@@ -67,6 +69,14 @@ class DogsController < ApplicationController
     @energy_level.dogs.create(energy_level: @energy_level)
     params[:mixes].each do |s| 
       @dog.mixes << Mix.find_by_value(s)
+    end
+    
+    params[:likes].each do |s| 
+      @dog.likes << Like.find_by_value(s)
+    end
+    
+    params[:personalities].each do |s|
+      @dog.personalities << Personality.find_by_value(s)
     end
   # Debug(params)
     
@@ -113,7 +123,7 @@ class DogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
       # params.fetch(:dog, :name)
-      params.require(:dog).permit(:dog, :image, :mixes, :photo, :name, :dob, :energy_level_id, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
+      params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :photo, :name, :dob, :energy_level_id, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
     end
 end
 

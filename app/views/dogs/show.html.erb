@@ -10,6 +10,8 @@
   <p>   <%= @dog.size_id %>   </p>
   <p>   <%= @dog.energy_level_id %>   </p>
   <p> <%=@dog.readable_mixes.join(', ')%></p>
+    <p> <%=@dog.readable_likes.join(', ')%></p>
+     <p> <%=@dog.readable_personalities.join(', ')%></p>
    <div class="image" style="padding:3em;">
     <!--<%= image_tag @dog.photo %>-->
   </div>

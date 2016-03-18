@@ -74,4 +74,16 @@ class Dog < ActiveRecord::Base
     self.mixes.map {|m| m.value}
   end
   
+  def readable_likes
+    self.likes.map {|l| l.value}
+  end
+  
+  def readable_personalities
+    self.personalities.map {|p| p.value}
+  end
+  
+  def owner
+    User.find(self.user_id)
+  end
+
 end

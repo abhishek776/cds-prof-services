@@ -23,8 +23,7 @@
   <div class="field"><label>Birthdate</label>
   <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>
   </div>
-
-
+  
   <div class="field"><label>Gender</label>
     <%= select :dog, :gender, ["Male", "Female"] %>
   </div>
@@ -34,11 +33,23 @@
   <%= select :dog, :size_id, size_options %> 
   </div>
 
+
+  <div class="field"><label>Personality</label>
+  <%= select_tag :personalities, options_for_select(@personality_list.collect{|s| s.value}),
+  :multiple => true, :size => 8 %>
+  </div>
+
+  
  
- <div class="field"><label>Mix</label>
- <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}),
-  :multiple => true, :size => 20 %>
-</div>
+  <div class="field"><label>Mix</label>
+  <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}),
+  :multiple => true, :size => 11 %>
+  </div>
+  
+  <div class="field"><label>Likes</label>
+  <%= select_tag :likes, options_for_select(@like_list.collect{|s| s.value}),
+  :multiple => true, :size => 6 %>
+  </div>
 
     
   <div class="field"><label>Energy Level</label>

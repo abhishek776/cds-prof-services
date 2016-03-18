@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160318051543) do
+ActiveRecord::Schema.define(version: 20160318092227) do
 
   create_table "dog_like_linkers", force: :cascade do |t|
     t.integer "dog_id"
@@ -21,6 +21,11 @@ ActiveRecord::Schema.define(version: 20160318051543) do
   create_table "dog_mix_linkers", force: :cascade do |t|
     t.integer "dog_id"
     t.integer "mix_id"
+  end
+
+  create_table "dog_personality_linkers", force: :cascade do |t|
+    t.integer "dog_id"
+    t.integer "personality_id"
   end
 
   create_table "dogs", force: :cascade do |t|
