@@ -40,7 +40,7 @@ Rails.application.configure do
   
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  
+  config.gem 'paperclip'
   OmniAuth.config.test_mode = true
 
   OmniAuth.config.add_mock(:facebook, {
@@ -56,10 +56,6 @@ Rails.application.configure do
       :location => 'Bat Cave, Gotham City',
       :verified => true
     },
-    :credentials => {
-      :token => 'ABCDEF...', # OAuth 2.0 access_token, which you may wish to store
-      :expires_at => 1321747205, # when the access token expires (it always will)
-      :expires => true # this will always be true
-     }
+   
   })
 end

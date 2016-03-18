@@ -9,20 +9,20 @@
   <p>   <%= @dog.user_id %>   </p>
   <p>   <%= @dog.size_id %>   </p>
   <p>   <%= @dog.energy_level_id %>   </p>
-   <h1><%= image_tag "default_dog.jpg", :class => "ui avatar image" %> <%= @dog.image %></h1>
    <div class="image" style="padding:3em;">
-    <%= image_tag @dog.image %>
+    <!--<%= image_tag @dog.photo %>-->
   </div>
-  tetst----------------------------------------------------------
   
-
-  
+  <!--<%= image_tag @dog.photo.url %>-->
+  <!--<%= image_tag @dog.photo.url(:medium) %>-->
+  <!--<%= image_tag @dog.photo.url(:thumb) %>-->
+  <!--tetst------------------------------------------------------------>
 <div class="ui one column grid">
   <div class="five wide column">
 
     <div class="ui fluid card">
       <div class="image" style="padding:3em;">
-        <%= image_tag @dog.image %>
+        <%= image_tag @dog.photo %>
       </div>
       <div class="content">
         <a class="header"><%= @dog.name %></a>

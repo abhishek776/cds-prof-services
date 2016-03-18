@@ -10,17 +10,28 @@ class Dog < ActiveRecord::Base
   belongs_to :size
   
   has_many :pictures, :dependent => :destroy
+  
+  has_attached_file :photo,
+    :styles => {
+      :large =>"500x500>",
+      :medium => "300x300>",
+      :thumb => "100x100>" },
+    :url => "/:class/:attachment/:id/:style_:basename.:extension"
+  
+  validates_attachment :photo, 
+      content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
+      :size => { :in => 0..500.kilobytes } 
 
-  has_attached_file :photo, 
-                    :styles => { :small    => '150x',
-                                 :medium   => '300x' },
-                    :default_url => "",
-                    :storage => :s3,
-                    :bucket => 'citydogshare',
-                    :path => "/:class/:images/:id/:style/:basename.:extension"
+  # has_attached_file :photo, 
+  #                   :styles => { :small    => '150x',
+  #                               :medium   => '300x' },
+  #                   :default_url => "",
+  #                   # :storage => :s3,
+  #                   :bucket => 'citydogshare',
+  #                   :path => "/:class/:images/:id/:style/:basename.:extension"
 
-  validates_attachment_size :photo, :less_than => 5.megabytes
-  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+  # validates_attachment_size :photo, :less_than => 5.megabytes
+  # validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
 
   #paperclip dog multiple pictures
   has_many :pictures, :dependent => :destroy

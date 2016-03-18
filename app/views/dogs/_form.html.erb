@@ -60,9 +60,12 @@
   <%= radio_button :dog, :fixed, false  %>
   </div>
 
-  <div class="field"><label>Dog's Photo</label>
-    <%= file_field(:dog, :photo) %>
-  </div>
+  <!--<div class="field"><label>Dog's Photo</label>-->
+  <!--  <%= file_field(:dog, :photo) %>-->
+  <!--</div>-->
+  <%= form_for @dog, :url => dogs_path, :html => { :multipart => true } do |form| %>
+  <%= form.file_field :photo %>
+  <% end %>
 
   <div class="field"><label>Description</label>
     <%= text_area(:dog, :description) %>
