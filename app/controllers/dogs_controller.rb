@@ -21,7 +21,7 @@ class DogsController < ApplicationController
   def new
     @user = User.find(session[:user_id])
     @dog = Dog.new
-    @mix = Mix.all
+    @all_mixes = Mix.all
     @size = Size.all
     @energy = EnergyLevel.all
     # @personality = Personality.all
@@ -65,7 +65,10 @@ class DogsController < ApplicationController
     @user.dogs.create(user: @user)
     @size.dogs.create(size: @size)
     @energy_level.dogs.create(energy_level: @energy_level)
-   
+    params[:mixes].each do |s| 
+      @dog.mixes << Mix.find_by_value(s)
+    end
+  # Debug(params)
     
     # @dog.mixes << @mix
     # @recipe.categories << @category
@@ -110,7 +113,7 @@ class DogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
       # params.fetch(:dog, :name)
-      params.require(:dog).permit(:dog, :image, :photo, :name, :dob, :energy_level_id, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
+      params.require(:dog).permit(:dog, :image, :mixes, :photo, :name, :dob, :energy_level_id, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
     end
 end
 

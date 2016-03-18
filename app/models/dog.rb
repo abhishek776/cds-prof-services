@@ -70,4 +70,8 @@ class Dog < ActiveRecord::Base
     personality_list.join(", ")
   end
   
+  def readable_mixes
+    self.mixes.map {|m| m.value}
+  end
+  
 end
