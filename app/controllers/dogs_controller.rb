@@ -1,6 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
-  require 'dog_form_filler'
+  # require 'dog_form_filler'
   
 
   # GET /dogs
@@ -57,7 +57,7 @@ class DogsController < ApplicationController
     # @values[:mix] = selected[:mix] if selected[:mix]
     # @mix =  Mix.find(value: dog_params['mixes'])
     # @personality = Personality.find(params[:personality])
-    @pic = Picture.new(dog_params[:image])
+    # @pic = Picture.new(dog_params[:image])
     @dog = Dog.new(dog_params)
     @user = User.find(session[:user_id])
     @size = Size.find(dog_params['size_id'])
@@ -110,7 +110,7 @@ class DogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
       # params.fetch(:dog, :name)
-      params.require(:dog).permit(:dog, :image, :name, :dob, :energy_level_id, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
+      params.require(:dog).permit(:dog, :image, :photo, :name, :dob, :energy_level_id, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
     end
 end
 

@@ -9,6 +9,21 @@ class Dog < ActiveRecord::Base
   belongs_to :energy_level
   belongs_to :size
   
+  has_many :pictures, :dependent => :destroy
+
+  has_attached_file :photo, 
+                    :styles => { :small    => '150x',
+                                 :medium   => '300x' },
+                    :default_url => "",
+                    :storage => :s3,
+                    :bucket => 'citydogshare',
+                    :path => "/:class/:images/:id/:style/:basename.:extension"
+
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
+
+  #paperclip dog multiple pictures
+  has_many :pictures, :dependent => :destroy
   
   def age_caption
     now = Time.now.utc.to_date

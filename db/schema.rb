@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314232415) do
+ActiveRecord::Schema.define(version: 20160318035024) do
 
   create_table "dog_like_linkers", force: :cascade do |t|
     t.integer "dog_id"
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(version: 20160314232415) do
 
   create_table "dogs", force: :cascade do |t|
     t.string   "name"
-    t.string   "image"
     t.datetime "dob"
     t.string   "description"
     t.string   "motto"
@@ -36,6 +35,11 @@ ActiveRecord::Schema.define(version: 20160314232415) do
     t.integer  "size_id"
     t.integer  "energy_level_id"
     t.integer  "user_id"
+    t.string   "image"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   create_table "energy_levels", force: :cascade do |t|

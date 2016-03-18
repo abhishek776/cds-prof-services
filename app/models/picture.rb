@@ -4,7 +4,7 @@ class Picture < ActiveRecord::Base
   # attr_accessible :image
 
   paperclip multiple pictures
-  has_attached_file :image
+  has_attached_file :image,
                     :styles => { :small    => '150x',
                                 :medium   => '300x' },
                     :default_url => "",
