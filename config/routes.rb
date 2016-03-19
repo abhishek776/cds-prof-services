@@ -22,6 +22,10 @@ Rails.application.routes.draw do
   resources :users do
     resources :dogs
   end
+  # resources :users
+  
+  # #Dog Routes
+  # resources :dogs
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

@@ -21,22 +21,11 @@ module NavigationHelpers
     when /Clark's profile page/
       user_path(User.find_by_first_name("Clark"))
       
-  
-    when /^the users page for "Batman"$/
-      '/users/12'
-    when /^the search dogs page$/
-      '/dogs'
-    when /^the share dogs page$/
-      '/events/new'
-    when /^the edit page for non-existent user$/
-      '/users/5/edit?'
-    when /^the profile page for non-existent user$/
-      '/users/5'
-    when /^my calendar page$/
-      '/events'
-    when /^the edit event page$/
-      '/events/12/edit'
-      
+    when /^the explore dogs page$/
+      dogs_path
+    
+    when /"(.*)"'s dog page/
+      pending
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

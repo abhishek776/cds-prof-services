@@ -507,28 +507,37 @@ mix_list = [
   "Unknown"
 ]
 
-
-
-
+mix_delete_list = [
+"Australian Stumpy Tail Cattle Dog[10]",
+"Welsh Corgi, Cardigan",
+  "Welsh Corgi, Pembroke",
+    "Münsterländer, Large",
+  "Münsterländer, Small",
+    "Bleu de Gascogne, Grand",
+  "Bleu de Gascogne, Petit",
+    "Basset Griffon Vendéen, Grand",
+  "Basset Griffon Vendéen, Petit"
+]
 
 mix_list.each do |name|
   Mix.find_or_create_by(value: name)
 end
 
+mix_delete_list.each do |name|
+  m = Mix.find_by(value: name)
+  m.destroy if m
+end
 
 energy_list = [
-  "high",
-  "active",
-  "good",
-  "some",
-  "low",
-  "zzzzz"
+  "High",
+  "Active",
+  "Good",
+  "Some",
+  "Low",
 ]
 
 energy_list.each do |level|
-
   EnergyLevel.find_or_create_by(value: level)
-
 end
 
 personality_list = [
@@ -545,7 +554,6 @@ personality_list = [
 personality_list.each do |type|
   Personality.find_or_create_by(value: type)
 end
-
 
 likes_list = [
   "dogs (all)",
@@ -571,11 +579,31 @@ sizes_list.each do |size|
   Size.find_or_create_by(value: size)
 end
 
-dogs_list = [{:name => "Fluffy", :gender => "Female", :size_id => 1}, {:name => "Fido", :gender => "Male", :size_id => 3}, {:name => "Batman", :gender => "Female", :size_id => 2}]
+# dogs_list = [{:name => "Fluffy", :gender => "Female", :size_id => 1}, {:name => "Fido", :gender => "Male", :size_id => 3}, {:name => "Batman", :gender => "Female", :size_id => 2}]
+
+# dogs_list.each do |dog|
+#   dog = Dog.create(:name => dog[:name], :gender => dog[:gender])
+#   dog.size_id = dog[:size_id]
+#   dog.save 
+# end
+
+
+
+dogs_list = [{:name => "Batman", :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1} ]
 
 dogs_list.each do |dog|
-  dog = Dog.create(:name => dog[:name], :gender => dog[:gender])
-  dog.size_id = dog[:size_id]
-  dog.save 
+  dog = Dog.create(dog)
 end
 
+mix_linker_list = [{:dog_id => 1, :mix_id => 210},
+                   {:dog_id => 1, :mix_id => 280}]
+
+mix_linker_list.each do |link|
+  mix_link = DogMixLinker.create(link)
+end
+
+personality_linker_list = [{:dog_id => 1, :personality_id => 8}]
+
+personality_linker_list.each do |link|
+  dog = DogPersonalityLinker.create(link)
+end
