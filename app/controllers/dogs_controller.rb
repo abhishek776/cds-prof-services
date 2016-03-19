@@ -61,6 +61,7 @@ class DogsController < ApplicationController
     # @personality = Personality.find(params[:personality])
     # @pic = Picture.new(dog_params[:image])
     @dog = Dog.new(dog_params)
+    @dog.user_id = session[:user_id]
     @user = User.find(session[:user_id])
     @size = Size.find(dog_params['size_id'])
     @energy_level = EnergyLevel.find(dog_params['energy_level_id'])
