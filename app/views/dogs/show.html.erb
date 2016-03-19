@@ -5,38 +5,6 @@
 
 <p id="notice"><%= notice %></p>
 
-  <%=  @dog.name %>
-  <p>   <%= @dog.user_id %>   </p>
-  <p>   <%= @dog.size_id %>   </p>
-  <p>   <%= @dog.energy_level %>   </p>
-  <p> <%=@dog.readable_mixes.join(', ')%></p>
-    <p> <%=@dog.readable_likes.join(', ')%></p>
-     <p> <%=@dog.readable_personalities.join(', ')%></p>
-       <p> <%= @dog.energy_level%></p>
-        <p> <%=@dog.dob%></p>
-        dfdsfsdf
-       <p> <%=@dog.owner%></p>
-                <p> <%=@dog.age_caption%></p>
-
-   <div class="image" style="padding:3em;">
-    <!--<%= image_tag @dog.image %>-->
-  </div>
-  
-   <tbody>
-    <% @dogs.each do |dog| %>
-      <tr>
-        <td><%= link_to dog.name, dog_path(dog) %></td>
-        <td><%= dog.gender %></td>
-        <td><%= dog.dob %></td>
-        <td><%= dog.mix_caption %></td>
-          pppppppppp
-        <td><%= dog.energy_level_id %></td>
-        kkk
-        <td><%= dog.personality_caption %></td>
-      </tr>
-    <% end %>
-  </tbody>
- 
   <!--tetst------------------------------------------------------------>
 <div class="ui one column grid">
   <div class="five wide column">
@@ -82,6 +50,14 @@
     <%= link_to "Edit Dog", edit_dog_path(), :id => "edit_dog_button", :class => "ui primary button", :method => :get %>
     <div class="ui segment">
       <div id="dogs">
+         <div class="description">
+          <td><%=@dog.description %></td> 
+          </br>
+          <td><%=@dog.health %></td>
+          </br>
+          <td><%=@dog.availability %></td> 
+          </br>
+      </div>
       </div>
     </div>
   </div>
@@ -89,7 +65,9 @@
 
 
   <div class="ui one column grid">
+    
   <div class="five wide column">
+    
   </div>
 </div>
 </div>

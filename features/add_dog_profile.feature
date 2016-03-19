@@ -18,11 +18,26 @@ Feature: Facebook OAuth is used for signing into accounts
     When I follow "Add Dog"
     Then I should see "Dog Name"
     When I fill in "Dog Name" with "Cat"
+    And I fill in "Motto" with "Miay"
+    And I fill in "Description" with "I am a cat"
+    And I fill in "Health Notes" with "exelent"
+    And I fill in "General Availability" with "anytime"
     When I press "Submit" 
     Then I should be on Clark's profile page
-    Then I follow "To All Dogs"
+    When I follow "To All Dogs"
+    Then I should see "Cat"
+    When I follow "Cat"
+    Then I should see "I am a cat"
+    And I should see "Miay"
+    And I should see "exelent"
+    And I should see "anytime"
     
-
+    When I follow "My Profile"
+    And I follow "Add Dog"
+    Then I should see "New Dog"
+    When I press "Submit"
+    Then I should be on the Clark's profile page
+    
 
 # Background: user has been added to the database and logged in
 #   Given the following users exist:
