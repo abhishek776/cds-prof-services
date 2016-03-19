@@ -15,6 +15,7 @@ class DogsController < ApplicationController
   def show
     @user = User.find(session[:user_id])
     @dog = Dog.find(params[:id])
+    @dogs = Dog.all
   end
 
   # GET /dogs/new
@@ -64,10 +65,6 @@ class DogsController < ApplicationController
     @dog.user_id = session[:user_id]
     @user = User.find(session[:user_id])
     @size = Size.find(dog_params['size_id'])
-    @energy_level = EnergyLevel.find(dog_params['energy_level_id'])
-    @user.dogs.create(user: @user)
-    @size.dogs.create(size: @size)
-    @energy_level.dogs.create(energy_level: @energy_level)
     params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
     params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
     params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?

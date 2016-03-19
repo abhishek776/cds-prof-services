@@ -12,7 +12,7 @@
   <p> <%=@dog.readable_mixes.join(', ')%></p>
     <p> <%=@dog.readable_likes.join(', ')%></p>
      <p> <%=@dog.readable_personalities.join(', ')%></p>
-       <p> <%=@dog.energy_level%></p>
+       <p> <%= @dog.energy_level%></p>
         <p> <%=@dog.dob%></p>
         dfdsfsdf
        <p> <%=@dog.owner%></p>
@@ -21,6 +21,21 @@
    <div class="image" style="padding:3em;">
     <!--<%= image_tag @dog.image %>-->
   </div>
+  
+   <tbody>
+    <% @dogs.each do |dog| %>
+      <tr>
+        <td><%= link_to dog.name, dog_path(dog) %></td>
+        <td><%= dog.gender %></td>
+        <td><%= dog.dob %></td>
+        <td><%= dog.mix_caption %></td>
+          pppppppppp
+        <td><%= dog.energy_level_id %></td>
+        kkk
+        <td><%= dog.personality_caption %></td>
+      </tr>
+    <% end %>
+  </tbody>
  
   <!--tetst------------------------------------------------------------>
 <div class="ui one column grid">
