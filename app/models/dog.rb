@@ -30,7 +30,8 @@ class Dog < ActiveRecord::Base
   has_many :pictures, :dependent => :destroy
   
   def age_caption
-    now = Time.now.utc.to_date
+    # now = Time.now.utc.to_date
+    now = Time.now.to_datetime
     age_in_months = (now.year - dob.year) * 12 + now.month - dob.month
     # 0 month old puppies will be considered 1 month old
     age_in_months = 1 if age_in_months == 0
