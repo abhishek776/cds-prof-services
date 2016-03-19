@@ -11,14 +11,15 @@
     <!--<%= text_field(:dog, :name) %>-->
     <!--</div>-->
     
-  <label>
-  <input id="Dog Name" type="text_field" <%= text_field(:dog, :name) %>></input>
-  Dog Name
-  </label>
+  <label>Dog Name</label>
+  <input id="Dog Name" type="text_field" <%= text_field(:dog, :name) %></input>
   
-  <div class="field"><label>Motto</label>
-    <%= text_field(:dog, :motto) %>
-  </div>
+  
+  </br>
+  <label> Motto </label>
+  <input id="Motto" type="text_field" <%= text_field(:dog, :motto) %></input>
+ 
+  
   
   <div class="field"><label>Birthdate</label>
   <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>
@@ -72,19 +73,18 @@
   <!--<%= form.file_field :image %>-->
   <!--<% end %>-->
   <input type="file" name="dog[image]" id="dog_image">
-
-  <div class="field"><label>Description</label>
-    <%= text_area(:dog, :description) %>
-  </div>
-
-  <div class="field"><label>Health Notes</label>
-    <%= text_area(:dog, :health, :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %>
-  </div>
-
-  <div class="field"><label>General Availability</label>
-    <%=text_area(:dog, :availability, :placeholder => "Tell us when you would like a sitter") %>
-  </div>
-
+  </br>
+  <label>Description</label>
+  <input id="Description" type="text_field" <%= text_field(:dog, :description) %></input>
+  
+  </br>
+  <label> Health Notes</label>
+  <input id="Health Notes" type="text_field" <%= text_field(:dog, :health, :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %></input>
+ 
+  </br>
+  <label>General Availability</label>
+  <input id="General Availability" type="text_field" <%= text_field(:dog, :availability, :placeholder => "Tell us when you would like a sitter") %></input>
+  
 
  <!--IMAGE UPLOADING -->
 
