@@ -2,29 +2,29 @@
 
 
 
-require 'uri'
-require 'cgi'
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
-require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
+# require 'uri'
+# require 'cgi'
+# require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+# require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
 
-Given /the following users exist/ do |users_table|
-  users_table.hashes.each do |user|
-    # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-    new_user = User.create(user)
-    new_user.uid = "12345"
-    new_user.save
-  end
-end
+# Given /the following users exist/ do |users_table|
+#   users_table.hashes.each do |user|
+#     # each returned element will be a hash whose key is the table header.
+#     # you should arrange to add that movie to the database here.
+#     new_user = User.create(user)
+#     new_user.uid = "12345"
+#     new_user.save
+#   end
+# end
 
 
-Given /^I am logged in$/ do  
-  visit "/login"
-end  
+# Given /^I am logged in$/ do  
+#   visit "/login"
+# end  
 
-Given /^my authentication fails$/ do
-  visit "/auth/failure"
-end
+# Given /^my authentication fails$/ do
+#   visit "/auth/failure"
+# end
 
 # Given /^(?:|I )am on (.+)$/ do |page_name|
 #   visit path_to(page_name)
