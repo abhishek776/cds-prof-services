@@ -65,13 +65,13 @@
   </div>
 
   <!--<div class="field"><label>Dog's Photo</label>-->
-  <!--  <%= file_field(:dog, :photo) %>-->
+  <!--  <%= file_field(:dog, :image) %>-->
   <!--</div>-->
   
   <!--<%= form_for @dog, :url => dogs_path, :html => { :multipart => true } do |form| %>-->
-  <!--<%= form.file_field :photo %>-->
+  <!--<%= form.file_field :image %>-->
   <!--<% end %>-->
-  <input type="file" name="dog[photo]" id="dog_photo">
+  <input type="file" name="dog[image]" id="dog_image">
 
   <div class="field"><label>Description</label>
     <%= text_area(:dog, :description) %>
