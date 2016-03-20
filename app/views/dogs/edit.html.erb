@@ -1,0 +1,74 @@
+
+<%= link_to 'To all Dogs', dogs_path %>
+
+  
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<% javascript_include_tag 'tags.js' %>
+
+<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
+<div class="ui form">  
+
+  <div class="field"><label>Name</label>
+    <%= text_field(:dog, :name, :value => @dog.name) %>
+  </div>
+ 
+  <div class="image" style="padding:3em;">
+    <%= image_tag @dog.image %>
+  </div>
+  
+  <div class="field">
+    <%= file_field(:dog, :image) %>
+  </div>
+
+  <div class="field"><label>Birthdate</label>
+    <%= @dog.dob %>
+    <%= date_select :dog, :dob, { :default => @dog.dob } %>
+  </div>
+
+  <div class="field"><label>Gender</label>
+    <%= select :dog, :gender, ["Male", "Female"], :selected => @dog.gender %>
+  </div>
+ 
+
+  <div class="field"><label>Motto</label>
+    <%= text_field(:dog, :motto, :value => @dog.motto) %>
+  </div>
+
+
+  <div class="field"><label>Description</label>
+    <%= text_area(:dog, :description, :value => @dog.description) %>
+  </div>
+
+  <div class="field"><label>Health Notes</label>
+    <%= text_area(:dog, :health, :value => @dog.health ) %>
+  </div>
+
+  <div class="field"><label>Is Your Dog Spayed/Neutered?</label>
+    <%= label :fixed, "Yes", :value => "true"  %>
+    <%= radio_button :dog, :fixed, true, :checked => true if @dog.fixed %>
+    <%= label :fixed, "No", :value => "false" %>
+    <%= radio_button :dog, :fixed, false, :checked => true if not @dog.fixed%>
+  </div>
+
+  <div class="field"><label>General Availability</label>
+    <%=text_area(:dog, :availability, :value => @dog.availability) %>
+  </div>
+
+
+ <!--IMAGE UPLOADING -->
+
+
+
+<div class="field"><label>
+  <button class="ui button" type="submit">Submit</button>
+  <!--<div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
+  <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
+  </div>
+</div>
+
+<% end %>
+
+<%= link_to 'Back', dogs_path %>
+
+
+

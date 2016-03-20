@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :dogs
+  # The priority is based upon order of creation: first created -> highest priority.
+  # See how all your routes lay out with "rake routes".
+
+
   # Home Page
   root :to => 'landing#index'
 
@@ -8,13 +13,19 @@ Rails.application.routes.draw do
   get 'auth/failure', to: 'sessions#handle_failure', as: 'auth_failure'
   get 'logout', to: 'sessions#destroy', as: 'logout'
   get 'signup', to: 'sessions#login', as: 'login'
+  # get 'login', to: 'sessions#login', as: 'login'
   get 'home', to: 'home#feed'
 
+  # get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+
   # User Routes
-  resources :users
+  resources :users do
+    resources :dogs
+  end
+  # resources :users
   
-  #Dog Routes
-  resources :dogs
+  # #Dog Routes
+  # resources :dogs
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

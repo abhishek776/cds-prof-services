@@ -5,12 +5,13 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
 users = [ {:uid => '1', :last_name => 'Wayne', :first_name => 'Bruce', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
            :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
            {:uid => '2', :last_name => 'Wayne2', :first_name => 'Bruce2', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
            :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
         ]
-        
+
 users.each do |user|
   User.create!(user)
 end
@@ -577,6 +578,16 @@ sizes_list = [
 sizes_list.each do |size|
   Size.find_or_create_by(value: size)
 end
+
+# dogs_list = [{:name => "Fluffy", :gender => "Female", :size_id => 1}, {:name => "Fido", :gender => "Male", :size_id => 3}, {:name => "Batman", :gender => "Female", :size_id => 2}]
+
+# dogs_list.each do |dog|
+#   dog = Dog.create(:name => dog[:name], :gender => dog[:gender])
+#   dog.size_id = dog[:size_id]
+#   dog.save 
+# end
+
+
 
 dogs_list = [{:name => "Batman", :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1} ]
 

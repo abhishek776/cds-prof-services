@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Edit', edit_dog_path(@dog) %> |
+<%= link_to 'Back', dogs_path %>
+
+<p id="notice"><%= notice %></p>
+
+  <!--tetst------------------------------------------------------------>
+<div class="ui one column grid">
+  <div class="five wide column">
+
+    <div class="ui fluid card">
+      <div class="image" style="padding:3em;">
+        <%= image_tag @dog.image %>
+      </div>
+      <div class="content">
+        <a class="header"><%= @dog.name %></a>
+      <div class="meta">
+      <span class="date">Joined in 2013</span>
+      </div>
+      <div class="description">
+          <!-- link to @user.description -->
+      <%= @dog.name %> <%=@dog.motto%>
+      </div>
+      <div class="description">
+      <td><%= @dog.mix_caption %></td>
+      </div>
+      </div>
+       <div class="description">
+      <td><%= @dog.gender %></td>
+      </div>
+      <div class="extra content">
+        <a>
+      <i class="heart icon"></i>
+        4 Dogs
+      </a>
+      <a>
+      <i class="calendar icon"></i>
+        5 events
+      </a>
+      <a>
+      <i class="star icon"></i>
+      Premium User
+      </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="eleven wide column">
+    <%= link_to "Edit Dog", edit_dog_path(), :id => "edit_dog_button", :class => "ui primary button", :method => :get %>
+    <div class="ui segment">
+      <div id="dogs">
+         <div class="description">
+          <td><%=@dog.description %></td> 
+          </br>
+          <td><%=@dog.health %></td>
+          </br>
+          <td><%=@dog.availability %></td> 
+          </br>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <div class="ui one column grid">
+    
+  <div class="five wide column">
+    
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+    
+    

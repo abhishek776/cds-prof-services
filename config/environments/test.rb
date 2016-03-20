@@ -36,7 +36,26 @@ Rails.application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
-
+  
+  
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  # config.gem 'paperclip'
+  OmniAuth.config.test_mode = true
+
+  OmniAuth.config.add_mock(:facebook, {
+    :uid => '12345',
+    :info => {
+      :name => 'Bruce Wayne',
+      :email => 'not_batman@wayneenterprises.com',
+      :first_name => 'Bruce',
+      :last_name => 'Wayne',
+      :image => 'http://tinyurl.com/opnc38n',
+      :urls => {:Facebook => 'https://www.facebook.com/batman'},
+      :nickname => 'batman',
+      :location => 'Bat Cave, Gotham City',
+      :verified => true
+    },
+   
+  })
 end
