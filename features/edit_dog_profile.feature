@@ -19,10 +19,16 @@ Scenario: I'm able to access edit dog page
 Scenario: Owner can edit his or her dog
   # When I am logged in as "Bruce Wayne"
   # And I am on "The Joker"'s dog page
-  And I edit the name to "Bane"
+  Then I follow "Edit Dog"
+  #And I edit the name to "Bane"
+  And I fill in "dog_name" with "Bane" 
+  And I press "Submit"
   Then I should be on "Bane"'s dog page
   And I should see "Bane"
   And I should not see "Cat"
+  
+  
+  
 
 # Scenario: Non-owner should not be able to edit his or her dog
 #   When I am logged in as "Clark Kent"
