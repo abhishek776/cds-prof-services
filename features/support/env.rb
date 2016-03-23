@@ -9,7 +9,10 @@ CodeClimate::TestReporter.start
 
 ENV["RAILS_ENV"] ||= 'test'
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start 'rails'
+SimpleCov.start do
+  add_filter "/features/"
+end
 require File.expand_path("../../../config/environment", __FILE__)
 require 'cucumber/rails'
 load "#{Rails.root}/db/seeds.rb"

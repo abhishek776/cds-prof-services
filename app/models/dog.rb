@@ -11,8 +11,6 @@ class Dog < ActiveRecord::Base
   belongs_to :energy_level
   belongs_to :size
   
-  has_many :pictures, :dependent => :destroy
-  
   # has_attached_file :image,
   #   :styles => {
   #     :large =>"500x500>",
@@ -27,7 +25,7 @@ class Dog < ActiveRecord::Base
 
 
   #paperclip dog multiple pictures
-  has_many :pictures, :dependent => :destroy
+  #has_many :pictures, :dependent => :destroy
   
   def age_caption
     # now = Time.now.utc.to_date

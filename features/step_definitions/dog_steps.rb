@@ -12,6 +12,32 @@ Given /the following dogs exist/ do |dogs_table|\
   end
 end
 
+Given /I am exploring dogs/ do
+  steps %Q{
+    Given I am on the home page
+    When I follow "FACEBOOK LOGIN"
+    Then I should be on Clark's home feed
+    And I should see "Feed!"
+    When I follow "My Profile"
+    Then I should see "Dogs"
+    And I should see "Add Dog"
+    When I follow "Add Dog"
+    Then I should see "Dog Name"
+    When I fill in "Dog Name" with "Cat"
+    And I fill in "Motto" with "Miay"
+    And I fill in "Description" with "I am a cat"
+    And I fill in "Health Notes" with "exelent"
+    And I fill in "General Availability" with "anytime"
+    When I press "Submit" 
+    Then I should be on Clark's profile page
+    When I follow "To All Dogs"
+    Then I should see "Explore Dogs"
+  }
+end
+  
+  
+  
+
 When /I am logged in/ do
   pending
 end
@@ -61,7 +87,10 @@ Then /^I should see that someone requested "(.*?)"'s event$/ do |arg1|
 end
 
 When /^I edit the name to "(.*?)"$/ do |arg1|
-  pending # express the regexp above with the code you wish you had
+  steps %Q{ 
+    I fill in "name" with arg1 
+    I press "Submit"
+  }
 end
 
 When /^I create a dog with the following info:$/ do |table|
