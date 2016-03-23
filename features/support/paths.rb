@@ -25,7 +25,7 @@ module NavigationHelpers
       dogs_path
     
     when /"(.*)"'s dog page/
-      pending
+      dog_path(Dog.find_by_name($1))
     
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:

@@ -7,10 +7,10 @@ class DogsController < ApplicationController
   end
   # GET /dogs/1
   # GET /dogs/1.json
+  # <Dog id: 3, name: "Turbo", image: "#<ActionDispatch::Http::UploadedFile:0x007f69cb814...", dob: "2015-01-07 00:00:00", 
+  # description: "D", motto: "Motto - Motto", fixed: false, health: "HHH", availability: "?", gender: "Male", size_id: 2, energy_level_id: 2, user_id: 5>
   def show
-    @user = User.find(session[:user_id])
     @dog = Dog.find(params[:id])
-    @dogs = Dog.all
   end
 
   # GET /dogs/new
@@ -27,9 +27,13 @@ class DogsController < ApplicationController
   # GET /dogs/1/edit
   def edit
     @dog = Dog.find(params[:id])
-    @pictures = @dog.image
     @action = :update
     @method = :put
+    @size = Size.all
+    @personality_list = Personality.all
+    @all_mixes = Mix.all
+    @energy = EnergyLevel.all
+    @like_list = Like.all
   end
   
   def create
@@ -46,6 +50,32 @@ class DogsController < ApplicationController
       render 'new'
     end 
   end
+  
+  def update
+    @dog = Dog.find(params[:id])
+    @dog.update_attributes(dog_params)
+    params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
+    params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
+    params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?
+    if @dog.save
+      flash[:notice] = "#{@dog.name} was succesfully updated"  
+       redirect_to show     
+    else
+      flash[:notice] = "Update error"
+      redirect_to index
+    end 
+  end
+  
+  
+
+  def destroy
+    @user = User.find(session[:user_id])
+    @dog = Dog.find(params[:id])
+    @dog.destroy
+    
+  end  
+    
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -55,7 +85,8 @@ class DogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
-      params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto, :fixed, :health, :availability, :gender, :size_id, :energy_level_id, :user_id)
+      params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto,
+        :fixed, :health, :availability, :gender, :size_id, :user_id)
     end
 end
 
