@@ -38,6 +38,14 @@ Feature: Facebook OAuth is used for signing into accounts
     When I press "Submit"
     Then I should be on the Clark's profile page
     
+    When I follow "To All Dogs"
+    And I follow "Cat"
+    Then I should see "Delete Dog"
+    When I follow "Delete Dog"
+    Then I should be on Clark's profile page
+    When I follow "To All Dogs"
+    Then I should not see "Cat"
+    
 
 # Background: user has been added to the database and logged in
 #   Given the following users exist:
