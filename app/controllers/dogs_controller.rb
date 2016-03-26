@@ -7,8 +7,6 @@ class DogsController < ApplicationController
   end
   # GET /dogs/1
   # GET /dogs/1.json
-  # <Dog id: 3, name: "Turbo", image: "#<ActionDispatch::Http::UploadedFile:0x007f69cb814...", dob: "2015-01-07 00:00:00", 
-  # description: "D", motto: "Motto - Motto", fixed: false, health: "HHH", availability: "?", gender: "Male", size_id: 2, energy_level_id: 2, user_id: 5>
   def show
     @dog = Dog.find(params[:id])
   end
@@ -66,16 +64,13 @@ class DogsController < ApplicationController
     end 
   end
   
-  
-
   def destroy
     @user = User.find(session[:user_id])
     @dog = Dog.find(params[:id])
+    # @dog.photo.destroy
     @dog.destroy
-    
-  end  
-    
-
+    redirect_to user_path(@user)
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
