@@ -29,6 +29,7 @@ Scenario: Owner can edit his or her dog
   
   
   
+  
 
 # Scenario: Non-owner should not be able to edit his or her dog
 #   When I am logged in as "Clark Kent"
