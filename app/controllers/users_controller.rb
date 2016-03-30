@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_filter :current_user
   def show
       @user = User.find(session[:user_id])
       @dogs = Dog.where(user_id: @user.uid)

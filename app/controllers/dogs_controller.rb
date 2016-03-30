@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  before_filter :current_user
   # GET /dogs
   # GET /dogs.json
   def index
@@ -10,6 +11,7 @@ class DogsController < ApplicationController
   def show
     @dog = Dog.find(params[:id])
     @parent = User.find(session[:user_id])
+    
   end
 
   # GET /dogs/new

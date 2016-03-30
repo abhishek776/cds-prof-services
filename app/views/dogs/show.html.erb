@@ -50,9 +50,12 @@
   </div>
 
   <div class="eleven wide column">
+    <% if not @current_user.nil? and @current_user.id == @dog.user_id %>
     <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui primary button", :method => :get %>
     <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :class => "ui primary button", :method => :delete %>    
     <%= link_to "Add event", new_event_path(), :id => "add_event_button", :class => "ui primary button", :method => :get %> 
+    </p>
+    <% end %>
     </br>
     <div class="ui segment">
       <div id="dogs">
@@ -100,7 +103,6 @@
                 <strong>Description:</strong> <%= event.description %>
               <% end %>
             </div>
-            <%= link_to "Edit", edit_event_path(event.id) %></p>
         </div>
         <% end %>
       </div>
