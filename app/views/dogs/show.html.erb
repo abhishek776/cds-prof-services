@@ -42,21 +42,20 @@
       </div>    
       
       <div class="extra content">
-        <a> <i class="heart icon"></i> Parent </a>
+        <a> <i class="heart icon"></i><%= link_to "Parent", user_path(@parent.id) %></a>
         <a> <i class="calendar icon"></i> 5 events </a>
         <a> <i class="star icon"></i> Premium User </a>
       </div>
+      <% if not @current_user.nil? and @current_user.id == @dog.user_id %>
+      <%= link_to "Add event", new_event_path(), :id => "add_event_button", :class => "ui secondary button", :method => :get %> 
+      <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui  button", :method => :get %>
+      <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :class => "ui  button", :method => :delete %>    
+      <% end %>
     </div>
   </div>
 
   <div class="eleven wide column">
-    <% if not @current_user.nil? and @current_user.id == @dog.user_id %>
-    <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui primary button", :method => :get %>
-    <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :class => "ui primary button", :method => :delete %>    
-    <%= link_to "Add event", new_event_path(), :id => "add_event_button", :class => "ui primary button", :method => :get %> 
-    </p>
-    <% end %>
-    </br>
+ <!-- -->
     <div class="ui segment">
       <div id="dogs">
          <div class="description">
@@ -70,8 +69,8 @@
 
       </div>
       </div>
-      
-            <!-- THIS IS THE EVENTS LISTING -->
+    </div>
+           <!-- THIS IS THE EVENTS LISTING -->
       <div class="ui green inverted top attached segment">
         <strong><%= @dog.name %>'s Events:</strong>
       </div>
@@ -109,14 +108,16 @@
     <br />
   </div>
   <!-- END OF EVENTS LISTING -->
-      
-    </div>
   </div>
+  
 </div>
-
+   
 <div class="ui one column grid">
   
+  
   <div class="five wide column">
+    
+    
     
   </div>
 </div>
