@@ -23,6 +23,11 @@ Rails.application.routes.draw do
     resources :dogs
   end
   # resources :users
+  resources :mixes, :only => [:index, :show] do
+    collection do
+      get :autocomplete
+    end
+  end
   
   # #Dog Routes
   # resources :dogs
