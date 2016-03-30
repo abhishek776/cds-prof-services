@@ -20,7 +20,7 @@ Feature: Facebook OAuth is used for signing into accounts
     When I fill in "Dog Name" with "Cat"
     And I fill in "Motto" with "Miay"
     And I fill in "Description" with "I am a cat"
-    And I fill in "Health Notes" with "exelent"
+    And I fill in "Health Notes" with "excelent"
     And I fill in "General Availability" with "anytime"
     When I press "Submit" 
     Then I should be on Clark's profile page

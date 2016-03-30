@@ -25,6 +25,11 @@ Rails.application.routes.draw do
   # resources :users
   resources :events, :only => [:index, :new, :create, :edit, :update, :show, :destroy]
 
+  resources :mixes, :only => [:index, :show] do
+    collection do
+      get :autocomplete
+    end
+  end
   
   # #Dog Routes
   # resources :dogs
