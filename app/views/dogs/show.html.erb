@@ -52,6 +52,8 @@
   <div class="eleven wide column">
     <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui primary button", :method => :get %>
     <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :class => "ui primary button", :method => :delete %>    
+    <%= link_to "Add event", new_event_path(), :id => "add_event_button", :class => "ui primary button", :method => :get %>
+
     <div class="ui segment">
       <div id="dogs">
          <div class="description">
@@ -67,7 +69,44 @@
   </div>
 </div>
 
-     <%= link_to "Add event", new_event_path(), :id => "add_event_button", :class => "ui primary button", :method => :get %>
+
+<!-- THIS IS THE EVENTS LISTING -->
+      <div class="ui blue inverted top attached segment">
+        <strong><%= @dog.name %>'s Events:</strong>
+      </div>
+      <div class="ui bottom attached segment">
+        <% if @dog.future_events? == false || @dog.events.count == 0 %>
+          <h1> No Upcoming Events </h1>
+        <% end %>
+        <% @dog.future_events.each do |event| %>
+        <div class="ui vertical segment">
+          <div class="large-9 columns">
+            <strong>  
+              <% if event.start_date == event.end_date %>
+                <%= event.start_date.strftime('%v') %>
+              <% else %>
+                <%= event.start_date.strftime('%v') %> to <%= event.end_date.strftime('%v') %>
+              <% end %>
+            </strong>
+          </div>
+          <div class="large-3 columns">
+            <% if not @current_user.nil? and @current_user.id == @dog.user_id %>
+              <%= link_to "Edit", edit_event_path(event.id) %></p>
+            <% end %>
+          </div>
+            <div class="large-12 columns content">
+              <strong>Time:</strong> <%= event.time_of_day.join(", ") %></br>
+              <strong>Where:</strong> <%= event.my_location %></br>
+              <% if event.description != "" %>
+                <strong>Description:</strong> <%= event.description %>
+              <% end %>
+            </div>
+        </div>
+        <% end %>
+      </div>
+    <br />
+  </div>
+
 
 <div class="ui one column grid">
   
