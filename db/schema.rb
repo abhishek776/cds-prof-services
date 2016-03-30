@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160326084851) do
+ActiveRecord::Schema.define(version: 20160330001931) do
 
   create_table "dog_like_linkers", force: :cascade do |t|
     t.integer "dog_id"
@@ -49,6 +49,15 @@ ActiveRecord::Schema.define(version: 20160326084851) do
 
   create_table "energy_levels", force: :cascade do |t|
     t.string "value"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.string   "time_of_day"
+    t.string   "my_location"
+    t.integer  "dog_id"
+    t.string   "description"
   end
 
   create_table "likes", force: :cascade do |t|

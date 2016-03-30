@@ -11,6 +11,8 @@ class Dog < ActiveRecord::Base
   belongs_to :energy_level
   belongs_to :size
   
+  has_many :events, :dependent => :destroy
+  
   has_attached_file :image,
     :styles => {
       :large =>"500x500>",
@@ -74,6 +76,16 @@ class Dog < ActiveRecord::Base
   
   def owner
     User.find(self.user_id)
+  end
+  
+   # Event Methods
+  def future_events?
+    # for all events, if at least one comes after yesterday, return true
+    events.where("end_date > ?", 1.day.ago.midnight).pluck('end_date') != []
+  end
+
+  def future_events
+    events.where("end_date > ?", 1.day.ago.midnight).order("start_date ASC")
   end
 
 end

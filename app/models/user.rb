@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # validates :phone_number, format: { with: /\(\d{3}\)(\ ?)\d{3}-\d{4}/, message: "Bad format for phone number." }, :allow_blank => true
   # validates :zipcode, format: { with: /\d{5}/, message: "Bad format for zipcode."}, :allow_blank => true
   has_many :dogs, :dependent => :destroy
-  # has_many :events, :through => :dogs
+  has_many :events, :through => :dogs
 
   # has_many :stars, :dependent => :destroy
   # has_many :starred_dogs, through: :stars, :source => :dog
@@ -31,10 +31,10 @@ class User < ActiveRecord::Base
   #   return "#{self.first_name} #{self.last_name}"
   # end
 
-  # def future_events?
-  #   # for all events, if at least one comes after yesterday, return true
-  #   events.where("end_date > ?", 1.day.ago.midnight).pluck('end_date') != []
-  # end
+  def future_events?
+    # for all events, if at least one comes after yesterday, return true
+    events.where("end_date > ?", 1.day.ago.midnight).pluck('end_date') != []
+  end
 
 
 end
