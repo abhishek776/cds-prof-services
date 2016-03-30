@@ -29,10 +29,11 @@
 </script>
 
 <p>
+  
 
   <%= form_tag({controller: :events, action: @action}, method: @method, :multipart => true) do %>
   <div class="ui form">
-    <% if @action == :create %>
+<!-- DELETED IF ACTION: CREATE condition -->
     <div class="field"><label>Dog to Share</label>
       <div class="ui buttons">
         <% @form_filler.all_dogs.each do |dog| %>
@@ -44,7 +45,7 @@
         <% end %>
       </div>
     </div>
-    <% end %>
+  
 
     <div class="field">
       <label>Start</label>

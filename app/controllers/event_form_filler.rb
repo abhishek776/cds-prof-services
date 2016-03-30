@@ -62,9 +62,4 @@ class EventViewHelper
   def end_date_string
     date_string(@values[:end_date])
   end
-
-
-
-
-
 end

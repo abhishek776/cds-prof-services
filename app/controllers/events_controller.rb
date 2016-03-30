@@ -23,7 +23,7 @@ class EventsController < ApplicationController
     @form_filler = EventViewHelper.new(current_user)
     @action = :create
     @method = :post
-
+    
     unless @form_filler.all_dogs != []
       flash[:notice] = "Please create a dog to share"
       redirect_to user_path(current_user.id)
@@ -81,8 +81,12 @@ class EventsController < ApplicationController
 
 
   def set_flash
+    @form_filler = EventViewHelper.new(current_user)
+    @event_attr = @form_filler.event_info(params)
+    @dogs = @form_filler.dogs
     if @dogs.empty?
-      flash[:notice] = {:name => ["Please select a dog to share"]}
+      puts "??????????yeah"
+      flash[:notice] = {:name => ["Please select a to share"]}
     elsif not create_events
       flash[:notice] = @event.errors.messages
     end

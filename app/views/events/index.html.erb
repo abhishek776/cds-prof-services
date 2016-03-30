@@ -17,7 +17,6 @@
 <div id='calendar'></div>
 
 <p> </p>
- <%= link_to "Add Event", new_event_path, :class => "ui primary button" %>
 <p></p>
 
 <% if current_user.future_events? %>
@@ -25,48 +24,38 @@
  <div class = "large-12 columns">
   <% for dog in @dogs do %>
     <% if dog.future_events? %>
-     
      <div class="row">
-          <h3 class = "ui ribbon label"> <%= dog.name %> </h3>
-
-  <% for event in dog.future_events %>
-<p></p>
- <div class = "large-6 columns">
-  <div class = "ui blue inverted top attached segment" style = "overflow:hidden">
-
+          <h3 class = "ui green ribbon label"> <%=link_to dog.name, dog_path(dog.id) %> </h3>
+           <div class="ui bottom"> <%= link_to (image_tag dog.image, :class => "ui small circular image") , dog_path(dog.id) %>
+        
+      <% for event in dog.future_events %>
+         <div class = "large-6 columns">
+          <div class = "ui ribbon label" style = "overflow:hidden">
           <% if event.start_date == event.end_date %>
              <%= event.start_date.strftime('%v') %>
           <% else %>
              <%= event.start_date.strftime('%v') %> to <%= event.end_date.strftime('%v') %>
           <% end %>
-         </div>
-         <div class = "ui bottom attached segment">
-          <p>
+          </div>
+          <div class = "ui bottom attached segment">
           <strong>Time:</strong> <%= event.time_of_day.join(", ") %>
           <br />
           <strong>Location:</strong> <%= event.my_location %>
           <br />
           <strong>Description:</strong> <%= event.description %>
           <br />
-                  <br />
-          <%= link_to "Edit", edit_event_path(event.id) %></p>
-
+          <br />
+          <% if not @current_user.nil? and @current_user.id == dog.user_id %>
+          <%= link_to "Edit", edit_event_path(event.id) %>
+          <% end %>
         </div>
       </div>
-
     <%end%>
-
-
-
     <% end %>
-
    </div>
-</br>
+</p>
   <%end%>
-
   </div>
-
-</br>
 </div>
 
 <% else %>
