@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     resources :dogs
   end
   # resources :users
+  resources :events, :only => [:index, :new, :create, :edit, :update, :show, :destroy]
+
   
   # #Dog Routes
   # resources :dogs
