@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :current_user
+  before_action :current_user
   # def show
   #     @user = User.find(session[:user_id])
   #     @dogs = Dog.where(user_id: @user.uid)
@@ -31,8 +32,14 @@ class UsersController < ApplicationController
       @own_profile = false
       @user = User.find(id)
       @dogs = Dog.where(user_id: @user.uid)
+      
       if @user == @current_user
         @own_profile = true
+        @stars = Star.where(user_id: session[:user_id])
+        @staredDogs = []
+        @stars.each do |s|
+          @staredDogs.push(Dog.find(s.dog_id))
+        end
       end
       render 'show'
     end
@@ -61,12 +68,12 @@ class UsersController < ApplicationController
     redirect_to root_path()
   end
 
-  # def stars
-  #   if !current_user.nil? and current_user.id != params[:id].to_i
-  #     redirect_to(stars_user_path(current_user)) and return
-  #   end
-  #   @dogs = User.find_by_id(params[:id]).starred_dogs
-  # end
+  def stars
+    if !current_user.nil? and current_user.id != params[:id].to_i
+      redirect_to(stars_user_path(current_user)) and return
+    end
+    @dogs = User.find_by_id(params[:id]).starred_dogs
+  end
   
   
   private

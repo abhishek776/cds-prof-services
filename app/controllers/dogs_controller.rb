@@ -8,6 +8,30 @@ class DogsController < ApplicationController
   def index
     @dogs = Dog.all
   end
+  
+  # def index
+
+    # ip_zipcode = get_ip_address_zipcode
+    # @form_filler = DogViewHelper.new(current_user, ip_zipcode, true)
+    # @form_filler.update_values(params, ip_zipcode, current_user)
+    
+  #   @form_filler = DogViewHelper.new(current_user, nil, true)
+  #   @form_filler.update_values(params, nil, current_user)
+
+
+  #   @dogs = Dog.filter_by @form_filler.values
+  #   @no_dogs = @dogs.empty?
+
+  #   @zipcodes = get_zipcode_from_dogs
+  #   @counts = get_zipcode_counts.to_json
+  # end
+
+  # def get_ip_address_zipcode
+  #   request.safe_location.postal_code
+  # end
+  
+  
+  
   # GET /dogs/1
   # GET /dogs/1.json
   def show

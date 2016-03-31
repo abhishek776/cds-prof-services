@@ -34,6 +34,13 @@ Rails.application.routes.draw do
     end
   end
   
+  resource :starred_dogs, only: [:create, :destroy]
+  resources :users do
+    member do
+      get 'stars'
+    end
+  end
+  
   # #Dog Routes
   # resources :dogs
 

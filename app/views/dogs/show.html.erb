@@ -10,6 +10,26 @@
         <%= image_tag @dog.image %>
       </div>
       
+      <!--STARS----------------------------------->
+        <% if not current_user.nil? %>
+          <div class="stars">
+          <%- unless current_user.starred_dogs.exists?(id: @dog.id) -%>
+          <%= link_to starred_dogs_path(dog_id: @dog), method: :post, id: "star_#{@dog.id}" do%>
+          <i class="empty icon white large"><%= @dog.stars.count %></i><i class="empty star icon white large"></i>
+          <%end%>
+          <% else %>
+          <%= link_to starred_dogs_path(dog_id: @dog), method: :delete, id: "star_#{@dog.id}"  do%>
+          <i class="icon white large"><%= @dog.stars.count %></i><i class="star icon white large"></i>
+          <%end%>
+          <% end %>
+          </div>
+        <%end%>
+        
+        <!--END OF SARS------------->
+
+      
+      
+      
       <div class="content">
         <p class="header"><%= @dog.name %></p>
         <div class="meta">

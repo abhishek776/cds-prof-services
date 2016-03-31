@@ -133,15 +133,82 @@
 </div>
 
 <!--END OF USERS DOGS------------------------------>
-      
-      
-
-    
   
       </div>
     </div>
   </div>
 </div>
+
+
+<h2>Starred Dogs</h2>
+<% if not @dogs.nil? %>
+    <% @staredDogs.each do |dog| %>
+
+    <% if dog.future_events? %>
+    <div class="ui vertical segment" style="padding: 1em; border-style: solid; border-width: 1px; border-color: #5bbd72; border-radius: 3px" id = <%= dog.owner.zipcode %> >
+    <div class="ui green bottom right attached right label" style="border-radius:0">Looking for a sitter!</div>
+
+    <% else %>
+    <div class="ui vertical segment" style="padding: 1em" id = <%= dog.owner.zipcode %> >
+    <% end %>
+
+      <div class="large-3 columns" style="padding: 0">
+        <!-- <span class="image"> -->
+                    <div id="image"><% if dog.image.file? %>
+          <%= image_tag dog.image.url(:medium) %>
+        <% else %>
+          <%= image_tag "default_dog.jpg" %>
+        <% end %></div>
+        <!-- </span> -->
+      </div>
+
+      <div class="large-9 columns" style="padding-right: 0">
+        <div class="content">
+          <div class="ui medium header" style="margin-bottom: 0">
+            <%= link_to dog.name, dog_path(dog) %>  
+          <% if not current_user.nil? %>
+          <span class="right floated stars">
+            <%- unless current_user.starred_dogs.exists?(id: dog.id) -%>
+              <%= link_to starred_dogs_path(dog_id: dog), method: :post, id: "star_#{dog.id}" do%>
+              <i class="empty icon yellow large" style="margin-right: -0.3em"><%= dog.stars.count %></i><i class="empty star icon yellow large"></i>
+              <%end%>
+            <%- else -%>
+              <%= link_to starred_dogs_path(dog_id: dog), method: :delete, id: "star_#{dog.id}" do%>
+              <i class="icon yellow large" style="margin-right: -0.3em"><%= dog.stars.count %></i><i class="star icon yellow large"></i>
+              <%end%>
+            <%- end -%>
+          </span>
+          <%end%>
+          </div>
+          <div class="age">
+            <b><%= dog.age_caption %></b>
+          </div>
+          <span class="right floated" style="margin-right: 5%">
+            <%= dog.owner.zipcode %>
+          </span>
+          <div class="attributes">
+            <b><%= dog.tags %></b>
+          </div>
+          <div class="description">
+            <%= dog.motto %>
+          </div>
+        </div>
+        <div class="extra content">
+          <% unless dog.availability == "" %>
+          <i class="wait icon"></i>
+          <%= dog.availability %>
+          <% end %>
+        </div>
+        <% if dog.future_events? %>
+        <b>Next event:</b> <%= dog.future_events.first.start_date.strftime("%m/%d/%Y") %>
+        <% end %>
+      </div>
+
+    </div>
+    <% end %>
+<% else %>
+  No starred dogs.
+<%end%>
 
   
 

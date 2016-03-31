@@ -12,6 +12,8 @@ class Dog < ActiveRecord::Base
   belongs_to :size
   
   has_many :events, :dependent => :destroy
+  has_many :stars, :dependent => :destroy
+
   
   has_attached_file :image,
     :styles => {:large =>"500x500>",:medium => "300x300>",:thumb => "100x100>"},
@@ -86,5 +88,25 @@ class Dog < ActiveRecord::Base
   def future_events
     events.where("end_date > ?", 1.day.ago.midnight).order("start_date ASC")
   end
+  
+  def tags
+    readable_personalities.join(", ") 
+  end
 
+  def self.age_ranges
+    ["0-2 years", "2-4 years", "5-8 years", "9+ years"]
+  end
+  
+  # def self.filter_by(criteria)
+  #   dogs = Dog.near(criteria[:zipcode], criteria[:radius], order: :distance)
+  #             .has_mix(criteria[:mix])
+  #             .has_size(criteria[:size])
+  #             .has_likes(criteria[:like])
+  #             .has_personalities(criteria[:personality])
+  #             .has_gender(criteria[:gender])
+  #             .has_energy_level(criteria[:energy_level])
+  #             .in_age_range(convert_age_ranges_to_dob_query(criteria[:age]))
+  # end
+
+ 
 end

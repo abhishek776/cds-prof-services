@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330001931) do
+ActiveRecord::Schema.define(version: 20160331123058) do
 
   create_table "dog_like_linkers", force: :cascade do |t|
     t.integer "dog_id"
@@ -75,6 +75,15 @@ ActiveRecord::Schema.define(version: 20160330001931) do
   create_table "sizes", force: :cascade do |t|
     t.string "value"
   end
+
+  create_table "stars", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "dog_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stars", ["user_id"], name: "index_stars_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "provider"
