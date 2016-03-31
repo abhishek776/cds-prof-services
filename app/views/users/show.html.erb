@@ -1,4 +1,4 @@
-<div class="ui one column grid">
+  <div class="ui one column grid">
   <div class="five wide column">
     <!--
     <div class="ui segment">
@@ -8,22 +8,22 @@
       </div>
     </div>
 -->
-<div class="ui fluid card">
+  <div class="ui fluid card">
   <div class="image" style="padding:3em;">
-    <%= image_tag @user.image %>
+  <%= image_tag @user.image %>
   </div>
   <div class="content">
-    <a class="header"><%= @user.first_name + " " + @user.last_name %></a>
-    <div class="meta">
-      <span class="date">Joined in 2013</span>
-    </div>
-    <div class="description">
-      <!-- link to @user.description -->
-     <%= @user.description %>
-    </div>
-    <% if @user.gender != nil && @user.gender != ""%>
-    <div id="gender"><strong>Gender:</strong>&nbsp;&nbsp;<%= @user.gender %></div>
-    <%end%>
+  <a class="header"><%= @user.first_name + " " + @user.last_name %></a>
+  <div class="meta">
+  <span class="date">Joined in 2013</span>
+  </div>
+  <div class="description">
+  <!-- link to @user.description -->
+  <%= @user.description %>
+  </div>
+  <% if @user.gender != nil && @user.gender != ""%>
+  <div id="gender"><strong>Gender:</strong>&nbsp;&nbsp;<%= @user.gender %></div>
+  <%end%>
 
     <% if current_user %>
     <% if @user.address != nil && @user.address != ""%>
@@ -107,6 +107,12 @@
             <i class="star icon"></i>
             Favorite
           </span>
+          <br />
+          </br>
+          <% if not @current_user.nil? and @current_user.id == dog.user_id %>
+          <%= link_to "Delete Dog", dog_path(dog.id), :id => "delete_dog_button", :class => "header", :method => :delete %>    
+          <% end %>
+
       <!--<img class="ui avatar image" src="/images/avatar/small/matt.jpg"> Matt -->
         </div>
         </div>

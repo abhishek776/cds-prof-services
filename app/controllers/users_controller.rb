@@ -32,7 +32,6 @@ class UsersController < ApplicationController
       @user = User.find(id)
       @dogs = Dog.where(user_id: @user.uid)
       if @user == @current_user
-        
         @own_profile = true
       end
       render 'show'
@@ -44,10 +43,10 @@ class UsersController < ApplicationController
       flash[:notice] = "You may only edit your own profile."
       redirect_to @current_user
     elsif params[:user] != nil and @current_user.update_attributes(user_params)
-      # @current_user.dogs.each do |dog|
-        # dog.geocode
-        # dog.save
-      # end
+      @current_user.dogs.each do |dog|
+        dog.geocode
+        dog.save
+      end
       flash[:notice] = "Profile successfully updated."
       redirect_to @current_user
     else
