@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   resources :users do
     resources :dogs
   end
+  
+  post 'users/:id/edit', to: 'users#edit'
+
   # resources :users
   resources :events, :only => [:index, :new, :create, :edit, :update, :show, :destroy]
 

@@ -43,11 +43,11 @@ class UsersController < ApplicationController
     if  User.exists?(params[:id]) == false || User.find(params[:id]) != @current_user
       flash[:notice] = "You may only edit your own profile."
       redirect_to @current_user
-    elsif params[:user] != nil and @current_user.update_attributes(params[:user])
-      @current_user.dogs.each do |dog|
+    elsif params[:user] != nil and @current_user.update_attributes(user_params)
+      # @current_user.dogs.each do |dog|
         # dog.geocode
         # dog.save
-      end
+      # end
       flash[:notice] = "Profile successfully updated."
       redirect_to @current_user
     else
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:image, :name, :uid, :oauth_token, :oauth_expires_at)
+      params.require(:user).permit( :oauth_token, :oauth_expires_at,:first_name, :last_name, :location, :gender, :image, :phone_number, :email, :description, :address, :zipcode, :city, :country)
     end
   
 end

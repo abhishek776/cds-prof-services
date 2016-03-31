@@ -19,32 +19,39 @@
     </div>
     <div class="description">
       <!-- link to @user.description -->
-      <%= @user.first_name %> likes to drink coffee.
+     <%= @user.description %>
     </div>
-  </div>
-  <div class="extra content">
-    <a>
-      <i class="heart icon"></i>
-      4 Dogs
-    </a>
-    <a>
-      <i class="calendar icon"></i>
-      5 events
-    </a>
-    <a>
-      <i class="star icon"></i>
-      Premium User
-    </a>
-        </div>
-        <% if @own_profile %>
-        <%= link_to "Add Dog", new_dog_path(), :id => "add_dog_button", :class => "ui secondary button", :method => :get %>
-        <%= link_to "Edit Profile", edit_user_path(@user.id), :id => "edit_user_button", :class => "ui secondary button", :method => :get %>
-        <% end %>
-        </div>
-  
-  </div>
+    <% if @user.gender != nil && @user.gender != ""%>
+    <div id="gender"><strong>Gender:</strong>&nbsp;&nbsp;<%= @user.gender %></div>
+    <%end%>
 
-  <div class="eleven wide column">
+    <% if current_user %>
+    <% if @user.address != nil && @user.address != ""%>
+    <div id="location"><strong>Location:</strong>&nbsp;&nbsp;<%= "#{@user.address}, #{@user.city}, #{@user.zipcode}, #{@user.country}" %></div>
+    <%end%>
+    <%else%>
+    <% if @user.address != nil && @user.address != ""%>
+    <div id="location"><strong>Location:</strong>&nbsp;&nbsp;You must <%= link_to "log in", "/auth/facebook/?type=login", id: 'log_in' %> to view!</div>
+    <%end%>
+    <%end%>
+
+    <% if not @user.zipcode.nil? and not @user.zipcode == ""  %>
+    <div id="zipcode"><strong>Zipcode:</strong>&nbsp;&nbsp;<%= @user.zipcode %></div>
+    <%end%>
+    </div>
+    <div class="extra content">
+    <a> <i class="heart icon"></i>4 Dogs</a>
+    <a><i class="calendar icon"></i>5 events</a>
+    <a><i class="star icon"></i>Premium User</a>
+    </div>
+    <% if @own_profile %>
+    <%= link_to "Add Dog", new_dog_path(), :id => "add_dog_button", :class => "ui secondary button", :method => :get %>
+    <%= link_to "Edit Profile", edit_user_path(@user.id), :id => "edit_user_button", :class => "ui secondary button", :method => :get %>
+    <% end %>
+    </div>
+   </div>
+
+   <div class="eleven wide column">
     <!--<button class="ui button">-->
     <%= link_to 'To All Dogs', dogs_path, :id => "To All Dogs" %>
     </br>
