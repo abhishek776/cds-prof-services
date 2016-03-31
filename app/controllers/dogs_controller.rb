@@ -12,7 +12,7 @@ class DogsController < ApplicationController
   # GET /dogs/1.json
   def show
     @dog = Dog.find(params[:id])
-    @parent = User.find(session[:user_id])
+    @parent = User.find(@dog.user_id)
     
   end
 
