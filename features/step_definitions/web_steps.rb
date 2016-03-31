@@ -66,7 +66,12 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
 end
 
 When /^I fill in dog_name with "([^\"]*)"$/ do |value|
-  fill_in "Dog Name", :with => value
+  fill_in("dog_name", :with => value)
+end
+
+
+When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
+  fill_in arg1, :with => arg2
 end
 
 # Use this to fill in an entire form with data from a table. Example:
@@ -86,9 +91,6 @@ When /^(?:|I )fill in the following:$/ do |fields|
   end
 end
 
-When /^I fill in "([^\"]*)" with "([^\"]*)"$/ do |field, value|
-  fill_in(field.gsub(' ', ' '), :with => value)
-end
 
 When /^(?:|I )select "([^"]*)" from "([^"]*)"$/ do |value, field|
   select(value, :from => field)

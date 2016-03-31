@@ -14,7 +14,7 @@ class Dog < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   
   has_attached_file :image,
-    :styles => {:large =>"500x500>",:medium => "300x300>",:thumb => "100x100>" },
+    :styles => {:large =>"500x500>",:medium => "300x300>",:thumb => "100x100>"},
     :default_url => "default_dog.jpg",
     :url => "/:class/:attachment/:id/:style_:basename.:extension"
     

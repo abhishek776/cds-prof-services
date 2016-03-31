@@ -15,7 +15,7 @@ Feature: Facebook OAuth is used for signing into accounts
     When I follow "My Profile"
     Then I should see "Dogs"
     And I should see "Add Dog"
-    When I fill in "dog_name" with "Spock"
+    When I fill in dog_name with "Spock"
     And I select "2010" from "dog_dob_1i"
     And I select "December" from "dog_dob_2i"
     And I select "4" from "dog_dob_3i"

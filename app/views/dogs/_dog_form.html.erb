@@ -4,7 +4,7 @@
 <%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
 
-  <div class="field"><label>Name</label>
+  <div id='dog_name' class="field"><label>Name</label>
     <%= text_field(:dog, :name) %>
   </div>
 

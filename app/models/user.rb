@@ -27,10 +27,11 @@ class User < ActiveRecord::Base
   end
 
 
-  def full_name
-    return "#{self.first_name} #{self.last_name}"
-  end
-
+  # def full_name
+  #   return "#{self.first_name} #{self.last_name}"
+  # end
+  
+  
   def future_events?
     # for all events, if at least one comes after yesterday, return true
     events.where("end_date > ?", 1.day.ago.midnight).pluck('end_date') != []
