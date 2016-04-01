@@ -1,10 +1,5 @@
 <h1>New Dog</h1>
 
-<%= link_to 'To all Dogs', dogs_path %>
-  
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
-<% javascript_include_tag 'tags.js' %>
-
 <%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
 

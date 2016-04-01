@@ -21,7 +21,6 @@ class Dog < ActiveRecord::Base
       content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
       :size => { :in => 0..500.kilobytes } 
 
-
   def set_mix_like_personality(new_mixes, new_likes, new_pers)
     self.mixes = []
     self.likes = []
@@ -30,7 +29,6 @@ class Dog < ActiveRecord::Base
     new_likes.each { |s| self.likes << Like.find_by_value(s)} unless new_likes.nil?
     new_pers.each { |s| self.personalities << Personality.find_by_value(s)} unless personalities.nil?
   end
-
   
   def age_caption
     # now = Time.now.utc.to_date
