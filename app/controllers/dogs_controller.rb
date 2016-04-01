@@ -1,6 +1,5 @@
 class DogsController < ApplicationController
-  require 'dog_form_filler'
-   
+
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show]
   
