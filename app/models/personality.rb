@@ -4,7 +4,7 @@ class Personality < ActiveRecord::Base
   has_many :dogs, :through => :dog_personality_linkers
 
 
-  # def self.all_values
-  #     Personality.pluck('value')
-  # end
+  def self.all_values
+      Personality.pluck('value')
+  end
 end

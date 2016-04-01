@@ -1,6 +1,7 @@
-Given /the following dogs exist/ do |dogs_table|\
+Given /the following dogs exist/ do |dogs_table|
   dogs_table.hashes.each do |dog|
     new_dog = Dog.new()
+    new_dog.user_id = dog[:user_id]
     new_dog.name = dog[:name]
     new_dog.gender = dog[:gender]
     new_dog.size_id = Size.find_by_value(dog[:size]).id
@@ -12,6 +13,36 @@ Given /the following dogs exist/ do |dogs_table|\
   end
 end
 
+Given /the following users exist/ do |users_table|
+  users_table.hashes.each do |user|
+    # each returned element will be a hash whose key is the table header.
+    # you should arrange to add that movie to the database here.
+    new_user = User.new()
+    new_user.uid = user[:uid]
+    new_user.first_name = user[:first_name]
+    new_user.last_name = user[:last_name]
+    new_user.description = user[:description]
+    new_user.save!
+  end
+end
+
+And /^I have created an event for "([^"]*)" (today|3 days ago)$/ do |dog, time|
+  new_event = Event.new()
+  if time == "today"
+    new_event.start_date = DateTime.current.to_date
+    new_event.end_date = DateTime.current.to_date
+  else
+    new_event.start_date = 3.days.ago
+    new_event.end_date = 3.days.ago
+  end
+  new_event.time_of_day = ["Morning"]
+  new_event.my_location = "My House"
+  new_event.description = "Princess needs a walk"
+  new_event.dog = Dog.find_by_name(dog)
+  new_event.save!
+end
+
+
 Given /I am exploring dogs/ do
   steps %Q{
     Given I am on the home page
@@ -22,13 +53,13 @@ Given /I am exploring dogs/ do
     Then I should see "Dogs"
     And I should see "Add Dog"
     When I follow "Add Dog"
-    Then I should see "Dog Name"
-    When I fill in "Dog Name" with "Cat"
+    Then I should see "Name"
+    When I fill in "Name" with "Cat"
     And I fill in "Motto" with "Miay"
     And I fill in "Description" with "I am a cat"
     And I fill in "Health Notes" with "exelent"
     And I fill in "General Availability" with "anytime"
-    When I press "Submit" 
+    When I press "update_dog_button" 
     Then I should be on Clark's profile page
     When I follow "To All Dogs"
     Then I should see "Explore Dogs"
@@ -36,11 +67,13 @@ Given /I am exploring dogs/ do
 end
   
   
-  
+Given /^I am logged in$/ do  
+  visit "/auth/facebook?type=login"
+end    
 
-When /I am logged in/ do
-  pending
-end
+# When /I am logged in/ do
+#   pending
+# end
 
 When /I am not logged in/ do
   pending
@@ -54,12 +87,13 @@ When /I filter event/ do
   pending
 end
 
-When /I click a star for dog with dog id "([^"]*)"/ do |dog_id|
-  pending
+And /^I click a star for dog with dog id "(.)"/ do |id|
+    click_link("star_#{id}")
 end
 
-Then /I should not see a star/ do 
-  pending
+And /^I should not see a star$/ do
+  all('div.stars').count.should == 0
+  all('span.stars').count.should == 0
 end
 
 When /I create a "(.*)" event for "(.*)"/ do |type, name|
@@ -97,3 +131,4 @@ When /^I create a dog with the following info:$/ do |table|
   # table is a Cucumber::Ast::Table
   pending # express the regexp above with the code you wish you had
 end
+

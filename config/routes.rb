@@ -22,7 +22,24 @@ Rails.application.routes.draw do
   resources :users do
     resources :dogs
   end
+  
+  post 'users/:id/edit', to: 'users#edit'
+
   # resources :users
+  resources :events, :only => [:index, :new, :create, :edit, :update, :show, :destroy]
+
+  resources :mixes, :only => [:index, :show] do
+    collection do
+      get :autocomplete
+    end
+  end
+  
+  resource :starred_dogs, only: [:create, :destroy]
+  resources :users do
+    member do
+      get 'stars'
+    end
+  end
   
   # #Dog Routes
   # resources :dogs

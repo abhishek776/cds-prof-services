@@ -12,6 +12,9 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
+    
+    when /^the edit event page$/
+      '/events/1/edit'
 
     when /^the home\s?page$/
       '/'
@@ -20,6 +23,9 @@ module NavigationHelpers
       
     when /Clark's profile page/
       user_path(User.find_by_first_name("Clark"))
+      
+    when /Bane's profile page/
+      user_path(User.find_by_first_name("Bane"))
       
     when /^the explore dogs page$/
       dogs_path
