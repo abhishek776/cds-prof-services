@@ -28,7 +28,7 @@ Given /I am exploring dogs/ do
     And I fill in "Description" with "I am a cat"
     And I fill in "Health Notes" with "exelent"
     And I fill in "General Availability" with "anytime"
-    When I press "Submit" 
+    When I press "update_dog_button" 
     Then I should be on Clark's profile page
     When I follow "To All Dogs"
     Then I should see "Explore Dogs"
