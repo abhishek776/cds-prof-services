@@ -9,6 +9,7 @@ class DogsController < ApplicationController
  
   # GET /dogs/1
   def show
+    @dog = Dog.find(params[:id])
   end
 
   # GET /dogs/new
@@ -46,7 +47,8 @@ class DogsController < ApplicationController
     @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
     if @dog.save
       flash[:notice] = "#{@dog.name} was succesfully updated."  
-      redirect_to show     
+      puts show.nil?
+      redirect_to show
     else
       flash[:notice] = "Update Error."
       redirect_to index
