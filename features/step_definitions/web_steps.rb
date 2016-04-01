@@ -57,17 +57,11 @@ When /^(?:|I )follow "([^"]*)"$/ do |link|
   click_link(link)
 end
 
-# When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
-#   fill_in(field, :with => value)
-# end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
-When /^I fill in dog_name with "([^\"]*)"$/ do |value|
-  fill_in("dog_name", :with => value)
-end
 
 
 When(/^I fill in "([^"]*)" with "([^"]*)"$/) do |arg1, arg2|
