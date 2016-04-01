@@ -21,6 +21,9 @@ module NavigationHelpers
     when /Clark's profile page/
       user_path(User.find_by_first_name("Clark"))
       
+    when /Bane's profile page/
+      user_path(User.find_by_first_name("Bane"))
+      
     when /^the explore dogs page$/
       dogs_path
     
