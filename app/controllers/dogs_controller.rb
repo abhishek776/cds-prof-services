@@ -1,5 +1,6 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, except: [:index, :show]
   
   # GET /dogs
   def index
@@ -12,30 +13,22 @@ class DogsController < ApplicationController
 
   # GET /dogs/new
   def new
-    @user = User.find(session[:user_id])
+    @user = current_user
     @action = :create
     @method = :post
-    @all_mixes = Mix.all
-    @size = Size.all
-    @energy = EnergyLevel.all
-    @like_list = Like.all
-    @personality_list = Personality.all
+    set_dog_types
   end
 
   # GET /dogs/:id/edit
   def edit
     @action = :update
     @method = :put
-    @size = Size.all
-    @personality_list = Personality.all
-    @all_mixes = Mix.all
-    @energy = EnergyLevel.all
-    @like_list = Like.all
+    set_dog_types
   end
   
   # POST /dogs/create
   def create
-    @user = User.find(session[:user_id])
+    @user = current_user
     @dog = Dog.new(dog_params)
     @dog.user_id = session[:user_id]
     @size = Size.find(dog_params['size_id'])
@@ -52,30 +45,44 @@ class DogsController < ApplicationController
     @dog.update_attributes(dog_params)
     @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
     if @dog.save
-      flash[:notice] = "#{@dog.name} was succesfully updated"  
+      flash[:notice] = "#{@dog.name} was succesfully updated."  
       redirect_to show     
     else
-      flash[:notice] = "Update error"
+      flash[:notice] = "Update Error."
       redirect_to index
     end 
   end
 
   def destroy
-    @user = User.find(session[:user_id])
+    @user = current_user
     @dog.destroy
     redirect_to user_path(@user)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_dog
       @dog = Dog.find(params[:id])
     end
+    
+    def set_dog_types
+      @all_mixes = Mix.all
+      @size = Size.all
+      @energy = EnergyLevel.all
+      @like_list = Like.all
+      @personality_list = Personality.all
+    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
       params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto,
         :fixed, :health, :availability, :gender, :size_id, :user_id)
     end
+    
+    def require_login
+      unless current_user
+        redirect_to home_path
+      end
+    end
+    
 end
 
