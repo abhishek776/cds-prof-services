@@ -1,86 +1,73 @@
-<h1>New Dog</h1>
+<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true, :class => "ui form") do %>
 
-<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
-<div class="ui form">  
-
-    
-  <label>Dog Name</label>
-  <input id="Dog Name" type="text_field" <%= text_field(:dog, :name) %></input>
-  
-  
-  </br>
-  <label> Motto </label>
-  <input id="Motto" type="text_field" <%= text_field(:dog, :motto) %></input>
- 
-  
-  
-  <div class="field"><label>Birthdate</label>
-  <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>
+  <div class="field">
+    <label>Dog Name</label>
+    <%= text_field(:dog, :name, :placeholder => "Dog Name") %>
   </div>
   
-  <div class="field"><label>Gender</label>
-    <%= select :dog, :gender, ["Male", "Female"] %>
+  <div class="field">
+    <label>Motto</label>
+    <%= text_field(:dog, :motto, :placeholder => "Motto") %>
   </div>
   
-  <div class="field"><label>Size</label>
-  <% size_options = options_from_collection_for_select(Size.all, 'id', 'value', @size.collect {|s| s.value}) %>
-  <%= select :dog, :size_id, size_options %> 
-  </div>
-
-
-  <div class="field"><label>Personality</label>
-  <%= select_tag :personalities, options_for_select(@personality_list.collect{|s| s.value}),
-  :multiple => true, :size => 8 %>
+  <div class="field">
+    <label>Birthdate</label>
+    <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>
   </div>
 
-  
- 
-  <div class="field"><label>Mix</label>
-  <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}),
-  :multiple => true, :size => 11 %>
+  <div class="field">
+    <label>Gender</label>
+    <%= select(:dog, :gender, ["Male", "Female"], {}, {:class => "ui dropdown"}) %>
   </div>
   
-  <div class="field"><label>Likes</label>
-  <%= select_tag :likes, options_for_select(@like_list.collect{|s| s.value}),
-  :multiple => true, :size => 6 %>
+  <div class="field">
+    <label>Size</label>
+    <% size_options = options_from_collection_for_select(Size.all, 'id', 'value') %>
+    <%= select(:dog, :size_id, size_options, {}, {:class => "ui dropdown"}) %>
+  </div>  
+  
+  <div class="field">
+    <label>Mix</label>
+    <% mix_options = options_from_collection_for_select(Mix.all, 'id', 'value') %>
+    <%= select(:dog, :mixes, mix_options, {}, {:class => "ui selection dropdown", :id => "multi-select"}) %>
+  </div>  
+
+  <div class="field">
+    <label>Likes</label>
+    <% like_options = options_from_collection_for_select(Like.all, 'id', 'value') %>
+    <%= select(:dog, :likes, like_options, {}, {:class => "ui selection dropdown", :id => "multi-select"}) %>
   </div>
 
-    
-  <div class="field"><label>Energy Level</label>
-  <% energy_options = options_from_collection_for_select(EnergyLevel.all, 'id', 'value', @energy.collect {|s| s.value}) %>
-  <%= select :dog, :energy_level_id, energy_options %> 
-  </div>
-  
-  <div class="field"><label>Is Your Dog Spayed/Neutered?</label>
-  <%= label :fixed, "Yes", :value => "true"  %>
-  <%= radio_button :dog, :fixed, true, :checked => true %>
-  <%= label :fixed, "No", :value => "false" %>
-  <%= radio_button :dog, :fixed, false  %>
+  <div class="field">
+    <label>Energy Level</label>
+    <% energy_options = options_from_collection_for_select(EnergyLevel.all, 'id', 'value') %>
+    <%= select(:dog, :energy, energy_options, {}, {:class => "ui dropdown"}) %>
   </div>
 
-  <input type="file" name="dog[image]" id="dog_image">
-  </br>
-  <label>Description</label>
-  <input id="Description" type="text_field" <%= text_field(:dog, :description) %></input>
+  <div class="field">
+    <label>Is Your Dog Spayed/Neutered?</label>
+    <%= select(:dog, :fixed, [["Yes", true], ["No", false]], {}, {:class => "ui dropdown"}) %>
+  </div>
   
-  </br>
-  <label> Health Notes</label>
-  <input id="Health Notes" type="text_field" <%= text_field(:dog, :health, :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %></input>
- 
-  </br>
-  <label>General Availability</label>
-  <input id="General Availability" type="text_field" <%= text_field(:dog, :availability, :placeholder => "Tell us when you would like a sitter") %></input>
-  
+  <div class="field">
+    <label>Dog Avatar</label>
+    <input type="file" name="dog[image]" id="dog_image">
+  </div>
 
- <!--IMAGE UPLOADING -->
-<% end %>
+  <div class="field">
+    <label>Description</label>
+    <%= text_area(:dog, :description, :rows => "1") %>
+  </div>
   
-  <!--<button class="ui button" type="submit">Submit</button>-->
-<div class="field"><label>Submit</label>
+  <div class="field">
+    <label>Health Notes</label>
+    <%= text_area(:dog, :health, :rows => "1", :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %>
+  </div>
+  
+  <div class="field">
+    <label>General Availability</label>
+    <%= text_area(:dog, :health, :rows => "1", :placeholder => "Tell us when you would like a sitter...") %>
+  </div>
+  
   <button class="ui button" type="submit">Submit</button>
-  <!--<div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
-  <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
-  </div>
-</div>
-
-                
+<% end %>

@@ -19,21 +19,11 @@ class DogsController < ApplicationController
 
   # GET /dogs/new
   def new
-    @user = User.find(session[:user_id])
-    @form_filler = DogViewHelper.new(nil, nil, false)
+    @user = current_user
     @action = :create
     @method = :post
-
-    # if params[:no_dog] == "true"
-    #   @first_dog = true
-    #   flash[:notice] = "Add your first dog"
+    set_dog_types
     render 'new'
-    # end
-
-    # unless current_user.zipcode != nil and current_user.zipcode != "" 
-    #   flash[:notice] = "Please update your zipcode to add a dog."
-    #   redirect_to edit_user_path(current_user)
-    # end
   end
 
   # GET /dogs/:id/edit
