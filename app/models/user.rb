@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
     self.first_name = auth[:info][:name].split(' ')[0]
     self.last_name = auth[:info][:name].split(' ')[1]
     self.email = auth[:info][:email]
-    self.image = auth[:info][:image][0..-7] + "square"
+    self.image = auth[:info][:image][0..-7] + "large&width=400&height=400"
     if(auth[:extra][:raw_info] != nil)
       self.gender = auth[:extra][:raw_info][:gender]
     end
