@@ -19,7 +19,6 @@ Background: user has been added to the database and logged in
     
     
   
-  And I have created an event for "Princess" today
   And I am logged in
   
   Scenario: User should be able to delete their dog's event

@@ -26,7 +26,6 @@ Scenario: User can star dog from search results
   And I follow "All Dogs"
   And I should see "Batman"
   And I should see "Rat"
-  When I follow "Rat"
   # And I should see "star_6"
   # And I follow "star_6"
   # And I click a star for dog with dog id "6"
