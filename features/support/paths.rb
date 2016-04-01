@@ -30,6 +30,9 @@ module NavigationHelpers
     when /^the explore dogs page$/
       dogs_path
     
+    when /^the explore professionals page$/
+      professionals_path
+    
     when /"(.*)"'s dog page/
       dog_path(Dog.find_by_name($1))
     
