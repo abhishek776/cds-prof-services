@@ -6,7 +6,7 @@ Feature: view dog profile
   In order to learn more about dogs I am interested in.
   
 Background: dogs have been added to the database
-  Given I am exploring dogs:
+  Given I am exploring dogs
     
 Scenario: I'm able to see dog information
 

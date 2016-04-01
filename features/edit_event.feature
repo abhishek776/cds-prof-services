@@ -26,12 +26,12 @@ Background: user has been added to the database and logged in
     
     When I follow "Add Dog"
     Then I should see "Name"
-    When I fill in "Name" with "Cat"
+    When I fill in "Dog Name" with "Cat"
     And I fill in "Motto" with "Miay"
     And I fill in "Description" with "I am a cat"
     And I fill in "Health Notes" with "excelent"
     And I fill in "General Availability" with "anytime"
-    When I press "update_dog_button" 
+    When I press "Submit" 
     And I have created an event for "Cat" today
     And I should see "Cat"
     When I follow "Cat"
