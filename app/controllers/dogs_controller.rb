@@ -19,21 +19,11 @@ class DogsController < ApplicationController
 
   # GET /dogs/new
   def new
-    @user = User.find(session[:user_id])
-    @form_filler = DogViewHelper.new(nil, nil, false)
+    @user = current_user
     @action = :create
     @method = :post
-
-    # if params[:no_dog] == "true"
-    #   @first_dog = true
-    #   flash[:notice] = "Add your first dog"
+    set_dog_types
     render 'new'
-    # end
-
-    # unless current_user.zipcode != nil and current_user.zipcode != "" 
-    #   flash[:notice] = "Please update your zipcode to add a dog."
-    #   redirect_to edit_user_path(current_user)
-    # end
   end
 
   # GET /dogs/:id/edit
@@ -45,15 +35,13 @@ class DogsController < ApplicationController
   
   # POST /dogs/create
   def create
-    @form_filler = DogViewHelper.new(nil, nil, false)
-    @dog = Dog.new(@form_filler.attributes_list(dog_params))
-    @dog.user_id = current_user.id
-
-    if @dog.save      
-      # add_multiple_pictures(@dog)
-      redirect_to user_path(current_user)
+    @user = current_user
+    @dog = Dog.new(dog_params)
+    @dog.user_id = @user.id
+    @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
+    if @dog.save
+      redirect_to @user
     else
-      flash[:notice] = @dog.errors.messages
       render 'new'
     end
   end
@@ -93,8 +81,8 @@ class DogsController < ApplicationController
     end
 
     def dog_params
-      params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level, :description, :motto,
-        :fixed, :health, :availability, :gender, :size, :user_id)
+      params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto,
+        :fixed, :health, :availability, :gender, :size_id, :user_id)
     end
     
     def require_login
