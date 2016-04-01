@@ -12,6 +12,9 @@ module NavigationHelpers
   #
   def path_to(page_name)
     case page_name
+    
+    when /^the edit event page$/
+      '/events/1/edit'
 
     when /^the home\s?page$/
       '/'

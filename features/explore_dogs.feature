@@ -6,10 +6,10 @@ Feature: explore dogs in the area
 Background: dogs have been added to the database
   Given the following dogs exist:
     
-  | name          | gender | age | energy | size            | personality     | mix                             |
-  | Batman        | Male   | 3   | High   | large (41-100)  | still a puppy   | German Shepherd Dog             |
-  | The Joker     | Male   | 6   | Active | medium (16-40)  | fetcher         | Mutt                            |
-  | Harley Quinn  | Female | 4   | Some   | small (0-15)    | lover           | Poodle                          |
+  | name          | gender | age | energy | size            | personality     | mix                   |user_id   |
+  | Batman        | Male   | 3   | High   | large (41-100)  | still a puppy   | German Shepherd Dog   |1         |
+  | The Joker     | Male   | 6   | Active | medium (16-40)  | fetcher         | Mutt                  |1         |
+  | Harley Quinn  | Female | 4   | Some   | small (0-15)    | lover           | Poodle                |1         |
   
 
 Scenario: I should be able to see all of the dogs and a number of features

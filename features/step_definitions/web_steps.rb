@@ -65,6 +65,9 @@ When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
   fill_in(field, :with => value)
 end
 
+
+
+
 When /^I fill in dog_name with "([^\"]*)"$/ do |value|
   fill_in("dog_name", :with => value)
 end
@@ -262,3 +265,5 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+
+

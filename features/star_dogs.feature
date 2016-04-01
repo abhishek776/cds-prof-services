@@ -1,15 +1,20 @@
+@facebook_test
 Feature: star dogs that you like
   As a user or professional service
   I should be able to star a dog I like
   So that the dog appears on a shortlist of dogs I've starred
   
-Background: dogs have been added to the database
-  Given the following dogs exist:
-
-  | name          | gender | age | energy | size            | personality     | mix                             |
-  | Batman        | Male   | 3   | High   | large (41-100)  | still a puppy   | German Shepherd Dog             |
-  | The Joker     | Male   | 6   | Active | medium (16-40)  | fetcher         | Mutt                            |
-  | Harley Quinn  | Female | 4   | Some   | small (0-15)    | lover           | Poodle                          |
+Background: user has been added to the database and logged in
+  Given the following users exist:
+    | last_name  | first_name | gender | image                      | phone_number  | description  | address       | zipcode | city     | country | uid |
+    | Kent       | Clark      | male   | http://tinyurl.com/opnc38n | (555)228-6261 | I love bats  | 387 Soda Hall | 94720   | Berkeley | US      | 5  |
+    | Pinzon     | Juan       | male   | http://tinyurl.com/okrw3vd | (555)123-1234 |   love dogs  | 387 Cory Hall | 94720   | Berkeley | US      | 6  |
+  
+  And the following dogs exist:
+    | name     | mix              | age | size            | gender | likes      | energy  | personality | user_id |
+    | Princess | Labrador         | 1   | small (0-15)    | Female | cats       | High    | whatever    | 5  |
+    | Spock    | Aidi             | 3   | medium (16-40)  | Male   | dogs (all) | Some    | lover       | 6       |
+    
   
   And I am on the explore dogs page
   
