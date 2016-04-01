@@ -16,9 +16,7 @@ Background: user has been added to the database and logged in
     | Spock    | Aidi             | 3   | medium (16-40)  | Male   | dogs (all) | Some    | lover       | 6       |
      
 
-Background:
-  Given I am logged in
-  And the dog "Batman" has an event
+
 
 Scenario: I can request the event
   When I go to "Batman"'s dog page

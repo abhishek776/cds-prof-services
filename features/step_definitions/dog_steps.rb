@@ -87,12 +87,13 @@ When /I filter event/ do
   pending
 end
 
-When /I click a star for dog with dog id "([^"]*)"/ do |dog_id|
-  pending
+And /^I click a star for dog with dog id "(.)"/ do |id|
+    click_link("star_#{id}")
 end
 
-Then /I should not see a star/ do 
-  pending
+And /^I should not see a star$/ do
+  all('div.stars').count.should == 0
+  all('span.stars').count.should == 0
 end
 
 When /I create a "(.*)" event for "(.*)"/ do |type, name|

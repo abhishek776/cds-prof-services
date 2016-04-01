@@ -13,45 +13,50 @@ Background: user has been added to the database and logged in
   And the following dogs exist:
     | name     | mix              | age | size            | gender | likes      | energy  | personality | user_id |
     | Princess | Labrador         | 1   | small (0-15)    | Female | cats       | High    | whatever    | 5  |
-    | Spock    | Aidi             | 3   | medium (16-40)  | Male   | dogs (all) | Some    | lover       | 6       |
+    | Rat      | Aidi             | 3   | medium (16-40)  | Male   | dogs (all) | Some    | lover       | 6       |
     
   
   And I am on the explore dogs page
+  And I am logged in
   
-Scenario: I must be logged in to star a dog from search results
-  When I am not logged in
-  Then I should not see a star 
 
 Scenario: User can star dog from search results
-  When I am logged in
-  And I click a star for dog with dog id "3"
-  And I follow "My Stars"
-  Then I should see "Harley Quinn"
-
-Scenario: User can star dog from dog profile
-  When I am logged in
-  And I follow "Batman"
-  And I click a star for dog with dog id "1"
-  And I follow "My Stars"
-  Then I should see "Batman"
-
-
-Scenario: User should be able to unstar a dog from search results
-  When I am logged in
-  And I click a star for dog with dog id "2"
-  And I click a star for dog with dog id "2"
-  And I click a star for dog with dog id "1"
-  And I follow "My Stars"
-  Then I should not see "The Joker"
+  # When I am logged in
+  When I follow "My Profile"
+  And I follow "All Dogs"
   And I should see "Batman"
+  And I should see "Rat"
+  When I follow "Rat"
+  # And I should see "star_6"
+  # And I follow "star_6"
+  # And I click a star for dog with dog id "6"
+  
+#   And I follow "My Profile"
+#   Then I should see "Rat"
 
-Scenario: User should be able to unstar a dog from dog profile
-  When I am logged in
-  And I am on the search dogs page
-  And I follow "Batman"
-  And I click a star for dog with dog id "1"
-  Then I should see "1"
-  And I click a star for dog with dog id "1"
-  Then I should see "0"
-  And I follow "My Favorites"
-  Then I should not see "Batman"
+# Scenario: User can star dog from dog profile
+#   When I am logged in
+#   And I follow "Princess"
+#   And I should see "star_5"
+#   And I click a star for dog with dog id "5"
+
+
+# Scenario: User should be able to unstar a dog from search results
+#   When I am logged in
+#   And I click a star for dog with dog id "2"
+#   And I click a star for dog with dog id "2"
+#   And I click a star for dog with dog id "1"
+#   And I follow "My Stars"
+#   Then I should not see "The Joker"
+#   And I should see "Batman"
+
+# Scenario: User should be able to unstar a dog from dog profile
+#   When I am logged in
+#   And I am on the search dogs page
+#   And I follow "Batman"
+#   And I click a star for dog with dog id "1"
+#   Then I should see "1"
+#   And I click a star for dog with dog id "1"
+#   Then I should see "0"
+#   And I follow "My Favorites"
+#   Then I should not see "Batman"

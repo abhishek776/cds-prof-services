@@ -8,9 +8,9 @@
       <div class="image" style="padding:3em;">
         <%= image_tag @dog.image %>
       </div>
-      <!--STARS----------------------------------->
+      
         <% if not current_user.nil? %>
-          <div class="stars">
+          <div class="stars"><label for="star_<%=@dog.id%>" >star_<%=@dog.id%></label>
             <%- unless current_user.starred_dogs.exists?(id: @dog.id) -%>
             <%= link_to starred_dogs_path(dog_id: @dog), method: :post, id: "star_#{@dog.id}" do%>
             <i class="empty icon white large"><%= @dog.stars.count %></i><i class="empty star icon white large"></i>
@@ -23,8 +23,7 @@
           </div>
         <%end%>
         
-        <!--END OF SARS------------->
-      
+
       <div class="content">
         <p class="header"><%= @dog.name %></p>
         <div class="meta">
@@ -80,7 +79,7 @@
           <br>
           Availability: <%=@dog.availability %>
           <br>
-          <div class="ui bottom">My parent is <%= link_to @parent.first_name, user_path(@parent.id) %></span> <%= image_tag @parent.image, :class => "ui avatar image" %></div>
+          <div class="ui bottom">My parent is <%= link_to @parent.first_name, user_path(@parent.id) %> <%= image_tag @parent.image, :class => "ui avatar image" %></div>
       </div>
       </div>
     </div>
