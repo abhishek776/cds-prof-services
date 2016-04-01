@@ -27,7 +27,7 @@ class Dog < ActiveRecord::Base
     self.personalities = []
     new_mixes.each { |s| self.mixes << Mix.find_by_value(s)} unless new_mixes.nil?
     new_likes.each { |s| self.likes << Like.find_by_value(s)} unless new_likes.nil?
-    new_pers.each { |s| self.personalities << Personality.find_by_value(s)} unless personalities.nil?
+    new_pers.each { |s| self.personalities << Personality.find_by_value(s)} unless new_pers.nil?
   end
   
   def age_caption
