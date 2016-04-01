@@ -2,38 +2,15 @@ class DogsController < ApplicationController
   require 'dog_form_filler'
    
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  before_action :require_login, except: [:index, :show]
+  
   before_filter :current_user
   # GET /dogs
-  # GET /dogs.json
   def index
     @dogs = Dog.all
   end
-  
-  # def index
-
-    # ip_zipcode = get_ip_address_zipcode
-    # @form_filler = DogViewHelper.new(current_user, ip_zipcode, true)
-    # @form_filler.update_values(params, ip_zipcode, current_user)
-    
-  #   @form_filler = DogViewHelper.new(current_user, nil, true)
-  #   @form_filler.update_values(params, nil, current_user)
-
-
-  #   @dogs = Dog.filter_by @form_filler.values
-  #   @no_dogs = @dogs.empty?
-
-  #   @zipcodes = get_zipcode_from_dogs
-  #   @counts = get_zipcode_counts.to_json
-  # end
-
-  # def get_ip_address_zipcode
-  #   request.safe_location.postal_code
-  # end
-  
-  
-  
+ 
   # GET /dogs/1
-  # GET /dogs/1.json
   def show
     @dog = Dog.find(params[:id])
     @parent = User.find(@dog.user_id)
@@ -41,15 +18,6 @@ class DogsController < ApplicationController
   end
 
   # GET /dogs/new
-  # def new
-  #   @user = User.find(session[:user_id])
-  #   @dog = Dog.new
-  #   @all_mixes = Mix.all
-  #   @size = Size.all
-  #   @energy = EnergyLevel.all
-  #   @like_list = Like.all
-  #   @personality_list = Personality.all
-  # end
   def new
     @user = User.find(session[:user_id])
     @form_filler = DogViewHelper.new(nil, nil, false)
@@ -68,18 +36,14 @@ class DogsController < ApplicationController
     # end
   end
 
-  # GET /dogs/1/edit
+  # GET /dogs/:id/edit
   def edit
-    @dog = Dog.find(params[:id])
     @action = :update
     @method = :put
-    @size = Size.all
-    @personality_list = Personality.all
-    @all_mixes = Mix.all
-    @energy = EnergyLevel.all
-    @like_list = Like.all
+    set_dog_types
   end
   
+  # POST /dogs/create
   def create
     @form_filler = DogViewHelper.new(nil, nil, false)
     @dog = Dog.new(@form_filler.attributes_list(dog_params))
@@ -94,149 +58,50 @@ class DogsController < ApplicationController
     end
   end
   
-  # def create
-  #   @user = User.find(session[:user_id])
-  #   @dog = Dog.new(dog_params)
-  #   @dog.user_id = session[:user_id]
-  #   @size = Size.find(dog_params['size_id'])
-  #   params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
-  #   params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
-  #   params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?
-  #   if @dog.save
-  #     redirect_to @user
-  #   else
-  #     render 'new'
-  #   end 
-  # end
-  
+  # POST /dogs/:id/update
   def update
-    @dog = Dog.find(params[:id])
     @dog.update_attributes(dog_params)
-    params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
-    params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
-    params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?
+    @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
     if @dog.save
-      flash[:notice] = "#{@dog.name} was succesfully updated"  
-       redirect_to show     
+      flash[:notice] = "#{@dog.name} was succesfully updated."  
+      puts show.nil?
+      redirect_to show
     else
-      flash[:notice] = "Update error"
+      flash[:notice] = "Update Error."
       redirect_to index
     end 
   end
 
   def destroy
-    @user = User.find(session[:user_id])
-    @dog = Dog.find(params[:id])
-    # @dog.photo.destroy
+    @user = current_user
     @dog.destroy
     redirect_to user_path(@user)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_dog
       @dog = Dog.find(params[:id])
     end
+    
+    def set_dog_types
+      @all_mixes = Mix.all
+      @size = Size.all
+      @energy = EnergyLevel.all
+      @like_list = Like.all
+      @personality_list = Personality.all
+    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def dog_params
       params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level, :description, :motto,
         :fixed, :health, :availability, :gender, :size, :user_id)
     end
     
-  # def dog_params
-  #   #params.require(:dog).permit(:description, :name, :pictures)
-  #   params[:dog]
-  # end
+    def require_login
+      unless current_user
+        redirect_to home_path
+      end
+    end
+    
 end
-
-
-
-
-# class DogsController < ApplicationController
-#   before_action :set_dog, only: [:show, :edit, :update, :destroy]
-#   # GET /dogs
-#   # GET /dogs.json
-#   def index
-#     @dogs = Dog.all
-#   end
-#   # GET /dogs/1
-#   # GET /dogs/1.json
-#   def show
-#     @dog = Dog.find(params[:id])
-#   end
-
-#   # GET /dogs/new
-#   def new
-#     @user = User.find(session[:user_id])
-#     @dog = Dog.new
-#     @all_mixes = Mix.all
-#     @size = Size.all
-#     @energy = EnergyLevel.all
-#     @like_list = Like.all
-#     @personality_list = Personality.all
-#   end
-
-#   # GET /dogs/1/edit
-#   def edit
-#     @dog = Dog.find(params[:id])
-#     @action = :update
-#     @method = :put
-#     @size = Size.all
-#     @personality_list = Personality.all
-#     @all_mixes = Mix.all
-#     @energy = EnergyLevel.all
-#     @like_list = Like.all
-#   end
-  
-#   def create
-#     @user = User.find(session[:user_id])
-#     @dog = Dog.new(dog_params)
-#     @dog.user_id = session[:user_id]
-#     @size = Size.find(dog_params['size_id'])
-#     params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
-#     params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
-#     params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?
-#     if @dog.save
-#       redirect_to @user
-#     else
-#       render 'new'
-#     end 
-#   end
-  
-#   def update
-#     @dog = Dog.find(params[:id])
-#     @dog.update_attributes(dog_params)
-#     params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
-#     params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
-#     params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?
-#     if @dog.save
-#       flash[:notice] = "#{@dog.name} was succesfully updated"  
-#       redirect_to show     
-#     else
-#       flash[:notice] = "Update error"
-#       redirect_to index
-#     end 
-#   end
-
-#   def destroy
-#     @user = User.find(session[:user_id])
-#     @dog = Dog.find(params[:id])
-#     # @dog.photo.destroy
-#     @dog.destroy
-#     redirect_to user_path(@user)
-#   end
-
-#   private
-#     # Use callbacks to share common setup or constraints between actions.
-#     def set_dog
-#       @dog = Dog.find(params[:id])
-#     end
-
-#     # Never trust parameters from the scary internet, only allow the white list through.
-#     def dog_params
-#       params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto,
-#         :fixed, :health, :availability, :gender, :size_id, :user_id)
-#     end
-# end
 
