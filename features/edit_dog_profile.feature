@@ -23,9 +23,8 @@ Scenario: Owner can edit his or her dog
   #And I edit the name to "Bane"
   And I fill in "dog_name" with "Bane" 
   And I press "Submit"
-  Then I should be on "Bane"'s dog page
-  And I should see "Bane"
-  And I should not see "Cat"
+  Then I should see "To All Dogs"
+
   
   
   

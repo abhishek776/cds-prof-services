@@ -1,7 +1,10 @@
 class DogsController < ApplicationController
+  require 'dog_form_filler'
+   
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show]
   
+  before_filter :current_user
   # GET /dogs
   def index
     @dogs = Dog.all
@@ -10,14 +13,27 @@ class DogsController < ApplicationController
   # GET /dogs/1
   def show
     @dog = Dog.find(params[:id])
+    @parent = User.find(@dog.user_id)
+    
   end
 
   # GET /dogs/new
   def new
-    @user = current_user
+    @user = User.find(session[:user_id])
+    @form_filler = DogViewHelper.new(nil, nil, false)
     @action = :create
     @method = :post
-    set_dog_types
+
+    # if params[:no_dog] == "true"
+    #   @first_dog = true
+    #   flash[:notice] = "Add your first dog"
+    render 'new'
+    # end
+
+    # unless current_user.zipcode != nil and current_user.zipcode != "" 
+    #   flash[:notice] = "Please update your zipcode to add a dog."
+    #   redirect_to edit_user_path(current_user)
+    # end
   end
 
   # GET /dogs/:id/edit
@@ -29,16 +45,17 @@ class DogsController < ApplicationController
   
   # POST /dogs/create
   def create
-    @user = current_user
-    @dog = Dog.new(dog_params)
-    @dog.user_id = session[:user_id]
-    @size = Size.find(dog_params['size_id'])
-    @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
-    if @dog.save
-      redirect_to @user
+    @form_filler = DogViewHelper.new(nil, nil, false)
+    @dog = Dog.new(@form_filler.attributes_list(dog_params))
+    @dog.user_id = current_user.id
+
+    if @dog.save      
+      # add_multiple_pictures(@dog)
+      redirect_to user_path(current_user)
     else
+      flash[:notice] = @dog.errors.messages
       render 'new'
-    end 
+    end
   end
   
   # POST /dogs/:id/update
@@ -76,8 +93,8 @@ class DogsController < ApplicationController
     end
 
     def dog_params
-      params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto,
-        :fixed, :health, :availability, :gender, :size_id, :user_id)
+      params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level, :description, :motto,
+        :fixed, :health, :availability, :gender, :size, :user_id)
     end
     
     def require_login

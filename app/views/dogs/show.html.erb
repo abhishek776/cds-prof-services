@@ -5,73 +5,127 @@
 <div class="ui one column grid">
   <div class="five wide column">
     <div class="ui fluid card">
-      
       <div class="image" style="padding:3em;">
         <%= image_tag @dog.image %>
       </div>
       
+        <% if not current_user.nil? %>
+          <div class="stars"><label for="star_<%=@dog.id%>" >star_<%=@dog.id%></label>
+            <%- unless current_user.starred_dogs.exists?(id: @dog.id) -%>
+            <%= link_to starred_dogs_path(dog_id: @dog), method: :post, id: "star_#{@dog.id}" do%>
+            <i class="empty icon white large"><%= @dog.stars.count %></i><i class="empty star icon white large"></i>
+            <%end%>
+            <% else %>
+            <%= link_to starred_dogs_path(dog_id: @dog), method: :delete, id: "star_#{@dog.id}"  do%>
+            <i class="icon white large"><%= @dog.stars.count %></i><i class="star icon white large"></i>
+            <%end%>
+            <% end %>
+          </div>
+        <%end%>
+        
+
       <div class="content">
         <p class="header"><%= @dog.name %></p>
         <div class="meta">
-          Age:      <td><%= @dog.age_caption %></td>     
+          Age:  <%= @dog.age_caption %>    
         </div>
         <div class="description">
           Motto:          <%=@dog.motto%>
         </div>
         <div class="description">
-          Mix:          <td><%= @dog.mix_caption %></td>
+          Mix: <%= @dog.mix_caption %>
         </div>
         <div class="description">
-          Gender:           <td><%= @dog.gender %></td>
+          Gender: <%= @dog.gender %>
         </div>
         <div class="description">
-          Size:           <td><%= @dog.size.value %></td>
+          Size: <%= @dog.size.value %>
         </div>
         <div class="description">
-          Personality:   <td><%= @dog.personality_caption %></td>
+          Personality:<%= @dog.personality_caption %>
         </div>
         <div class="description">
-          Likes:   <td><%= @dog.readable_likes.join(", ") %></td>
+          Likes:  <%= @dog.readable_likes.join(", ") %>
         </div> 
         <div class="description">
-          Energy level:   <td><%= @dog.energy_level %></td>
+          Energy level: <%= @dog.energy_level %>
         </div>  
         <div class="description">
-           <td><%= @dog.name %> is <%="not" if not @dog.fixed %> fixed </td>
+           <%= @dog.name %> is <%="not" if not @dog.fixed %> fixed 
         </div>  
       </div>    
       
       <div class="extra content">
-        <a> <i class="heart icon"></i> Parent </a>
+        <i class="heart icon"></i><%= link_to "Parent", user_path(@parent.id) %>
         <a> <i class="calendar icon"></i> 5 events </a>
         <a> <i class="star icon"></i> Premium User </a>
       </div>
+        <% if not @current_user.nil? and @current_user.id == @dog.user_id %>
+        <%= link_to "Add event", new_event_path(), :id => "add_event_button", :class => "ui secondary button", :method => :get %> 
+        <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui  button", :method => :get %>
+        <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :class => "ui  button", :method => :delete %>    
+        <% end %>
     </div>
   </div>
 
   <div class="eleven wide column">
-    <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui primary button", :method => :get %>
-    <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :class => "ui primary button", :method => :delete %>    
+ <!-- -->
     <div class="ui segment">
       <div id="dogs">
          <div class="description">
-          Description: <td><%=@dog.description %></td> 
-          </br>
-          Health: <td><%=@dog.health %></td>
-          </br>
-          Availability: <td><%=@dog.availability %></td> 
-          </br>
+          Description: <%=@dog.description %> 
+          <br>
+          Health: <%=@dog.health %>
+          <br>
+          Availability: <%=@dog.availability %>
+          <br>
+          <div class="ui bottom">My parent is <%= link_to @parent.first_name, user_path(@parent.id) %> <%= image_tag @parent.image, :class => "ui avatar image" %></div>
       </div>
       </div>
     </div>
+           <!-- THIS IS THE EVENTS LISTING -->
+      <div class="ui secondary top attached segment">
+        <strong><%= @dog.name%>'s Events:</strong>
+      </div>
+    <div class="ui bottom attached segment">
+        <% if @dog.future_events? == false || @dog.events.count == 0 %>
+          <h1> No Upcoming Events </h1>
+        <% end %>
+        <% @dog.future_events.each do |event| %>
+        <div class="ui vertical segment">
+          <div class="large-9 columns">
+            <strong>  
+              <% if event.start_date == event.end_date %>
+                <%= event.start_date.strftime('%v') %>
+              <% else %>
+                <%= event.start_date.strftime('%v') %> to <%= event.end_date.strftime('%v') %>
+              <% end %>
+            </strong>
+          </div>
+          <div class="large-3 columns">
+  <!--NEED TO FIXXXX THIS: WHY USER_ID!= DOG.USET_ID -->          
+            <% if not @current_user.nil? and @current_user.id == @dog.user_id %>
+             <%= link_to "Edit Event", edit_event_path(event.id), :id => "edit_event_button", :class => "ui button", :method => :get %> 
+
+            <% end %>
+          </div>
+            <div class="large-12 columns content">
+              <strong>Time:</strong> <%= event.time_of_day.join(", ") %><br>
+              <strong>Where:</strong> <%= event.my_location %><br>
+              <% if event.description != "" %>
+                <strong>Description:</strong> <%= event.description %>
+              <% end %>
+            </div>
+        </div>
+            <% end %>
+    </div>
+    <br>
   </div>
+  <!-- END OF EVENTS LISTING -->
 </div>
-
-
+   
 <div class="ui one column grid">
-  
   <div class="five wide column">
-    
   </div>
 </div>
 
