@@ -1,5 +1,4 @@
 class Dog < ActiveRecord::Base
-  # attr_accessible :name, :image, :dob, :gender, :description, :motto, :fixed, :health, :comments, :contact, :availability, :mixes, :likes, :energy_level, :size, :personalities, :photo, :latitude, :longitude, :video
 
   belongs_to :user
   has_many :dog_mix_linkers
@@ -23,9 +22,15 @@ class Dog < ActiveRecord::Base
       :size => { :in => 0..500.kilobytes } 
 
 
+  def set_mix_like_personality(new_mixes, new_likes, new_pers)
+    self.mixes = []
+    self.likes = []
+    self.personalities = []
+    new_mixes.each { |s| self.mixes << Mix.find_by_value(s)} unless new_mixes.nil?
+    new_likes.each { |s| self.likes << Like.find_by_value(s)} unless new_likes.nil?
+    new_pers.each { |s| self.personalities << Personality.find_by_value(s)} unless personalities.nil?
+  end
 
-  #paperclip dog multiple pictures
-  #has_many :pictures, :dependent => :destroy
   
   def age_caption
     # now = Time.now.utc.to_date

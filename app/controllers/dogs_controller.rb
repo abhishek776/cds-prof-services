@@ -1,20 +1,20 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
+  
   # GET /dogs
-  # GET /dogs.json
   def index
     @dogs = Dog.all
   end
+ 
   # GET /dogs/1
-  # GET /dogs/1.json
   def show
-    @dog = Dog.find(params[:id])
   end
 
   # GET /dogs/new
   def new
     @user = User.find(session[:user_id])
-    @dog = Dog.new
+    @action = :create
+    @method = :post
     @all_mixes = Mix.all
     @size = Size.all
     @energy = EnergyLevel.all
@@ -22,9 +22,8 @@ class DogsController < ApplicationController
     @personality_list = Personality.all
   end
 
-  # GET /dogs/1/edit
+  # GET /dogs/:id/edit
   def edit
-    @dog = Dog.find(params[:id])
     @action = :update
     @method = :put
     @size = Size.all
@@ -34,14 +33,13 @@ class DogsController < ApplicationController
     @like_list = Like.all
   end
   
+  # POST /dogs/create
   def create
     @user = User.find(session[:user_id])
     @dog = Dog.new(dog_params)
     @dog.user_id = session[:user_id]
     @size = Size.find(dog_params['size_id'])
-    params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
-    params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
-    params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?
+    @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
     if @dog.save
       redirect_to @user
     else
@@ -49,15 +47,13 @@ class DogsController < ApplicationController
     end 
   end
   
+  # POST /dogs/:id/update
   def update
-    @dog = Dog.find(params[:id])
     @dog.update_attributes(dog_params)
-    params[:mixes].each { |s| @dog.mixes << Mix.find_by_value(s)} unless params[:mixes].nil?
-    params[:likes].each {|s|  @dog.likes << Like.find_by_value(s)} unless params[:likes].nil?
-    params[:personalities].each { |s| @dog.personalities << Personality.find_by_value(s)}  unless params[:personalities].nil?
+    @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
     if @dog.save
       flash[:notice] = "#{@dog.name} was succesfully updated"  
-       redirect_to show     
+      redirect_to show     
     else
       flash[:notice] = "Update error"
       redirect_to index
@@ -66,8 +62,6 @@ class DogsController < ApplicationController
 
   def destroy
     @user = User.find(session[:user_id])
-    @dog = Dog.find(params[:id])
-    # @dog.photo.destroy
     @dog.destroy
     redirect_to user_path(@user)
   end
