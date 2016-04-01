@@ -1,10 +1,11 @@
 <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
 <% javascript_include_tag 'tags.js' %>
 
-<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
+<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 
-  <div class="field"><label>Name</label>
+
+  <div class="field"><label for="dog_name">Name</label>
     <%= text_field(:dog, :name) %>
   </div>
 
@@ -12,17 +13,13 @@
     <%= image_tag "default_dog.jpg" %>
   </div>
 
-    <div class="field">
+  <div class="field">
     <%= file_field(:dog, :image) %>
   </div>
 
   <div class="field"><label>Pictures</label>
     <%= file_field_tag "images[]", type: :file, multiple: true %>
   </div>
-
-   <!-- <div class="field"><label>Video</label>-->
-   <!--Please enter a Youtube link.-->
-   <!-- <%= text_field(:dog, :video, :placeholder => "https://www.youtube.com/watch?v=NONlkKMGFeA") %>-->
 
 
   <div class="field"><label>Birthdate</label>
@@ -54,7 +51,7 @@
     </div>
   </div>
 
-    <div class="field"><label>Energy Level</label>
+  <div class="field"><label>Energy Level</label>
     <% energy_options = options_from_collection_for_select(EnergyLevel.all, 'id', 'value', @form_filler.values[:energy_level]) %>
     <%= select :dog, :energy_level, energy_options %>
   </div>
@@ -71,18 +68,16 @@
     </div>
   </div>
 
-  <div class="field"><label>Motto</label>
+  <div class="field"><label for='dog_motto'>Motto</label>
     <%= text_field(:dog, :motto) %>
   </div>
 
 
-  <div class="field"><label>Description</label>
+  <div class="field"><label for="dog_description">Description</label>
     <%= text_area(:dog, :description) %>
   </div>
 
-
-
-  <div class="field"><label>Health Notes</label>
+  <div class="field"><label for='dog_health'>Health Notes</label>
     <%= text_area(:dog, :health, :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %>
   </div>
 
@@ -93,7 +88,7 @@
     <%= radio_button :dog, :fixed, false  %>
   </div>
 
-  <div class="field"><label>General Availability</label>
+  <div class="field"><label for="dog_availability">General Availability</label>
     <%=text_area(:dog, :availability, :placeholder => "Tell us when you would like a sitter") %>
   </div>
 
@@ -102,16 +97,9 @@
 <!-- IMAGE UPLOADING -->
 
 
-  <% end %>
-
-<div class="field"><label>
-
-
+<div class="field"><label for='update_dog_button'>Submit</label>
   <div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>
-
-
-  <%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>
-
   </div>
-
+  <% end %>
+  <%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>
 </div>
