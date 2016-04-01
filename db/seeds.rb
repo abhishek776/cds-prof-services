@@ -18,6 +18,7 @@ end
 
 
 mix_list = [
+  "All Mixes",
   "Affenpinscher",
   "Afghan Hound",
   "Aidi",
