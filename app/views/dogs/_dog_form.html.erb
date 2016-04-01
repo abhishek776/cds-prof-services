@@ -8,6 +8,7 @@
   <div  class="field"><label for="dog_name"  >Name</label>
     <%= text_field(:dog, :name) %>
   </div>
+  
 
   <div class="field"><label>Avatar</label>
     <%= image_tag "default_dog.jpg" %>
@@ -102,9 +103,11 @@
 
 
 
-<div class="field"><label>
+<div class="field">
+
 
   <div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>
+
   </div>
   
 <% end %>
