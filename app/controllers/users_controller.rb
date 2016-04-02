@@ -35,19 +35,5 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
-
-  def destroy
-    @current_user.destroy
-    # Don't like this... I wanted to redirect to sessions#destroy, but redirect_to doesn't do DELETE methods
-    session[:user_id] = nil
-    redirect_to root_path()
-  end
-
-  def stars
-    if !current_user.nil? and current_user.id != params[:id].to_i
-      redirect_to(stars_user_path(current_user)) and return
-    end
-    @dogs = User.find_by_id(params[:id]).starred_dogs
-  end
   
 end
