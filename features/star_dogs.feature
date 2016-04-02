@@ -22,16 +22,16 @@ Background: user has been added to the database and logged in
 Scenario: User can star dog from search results
   When I follow "My Profile"
   And I follow "All Dogs"
-  And I should see "Princess"
-  And I follow "Princess"
+  And I should see "Rat"
+  And I follow "Rat"
   And I follow "Star"
   Then I should see "Unstar"
   
 Scenario: User can unstar dog from search results
   When I follow "My Profile"
   And I follow "All Dogs"
-  And I should see "Princess"
-  And I follow "Princess"
+  And I should see "Rat"
+  And I follow "Rat"
   And I follow "Star"
   And I follow "Unstar"
   Then I should see "Star"
