@@ -26,6 +26,14 @@ Scenario: User can star dog from search results
   And I follow "Princess"
   And I follow "Star"
   Then I should see "Unstar"
+
+Scenario: User can star dog and see it on profile
+  When I follow "My Profile"
+  And I follow "All Dogs"
+  And I should see "Princess"
+  And I follow "Princess"
+  And I follow "Star"
+  Then I should see "Unstar"
   
 Scenario: User can unstar dog from search results
   When I follow "My Profile"
@@ -34,5 +42,5 @@ Scenario: User can unstar dog from search results
   And I follow "Princess"
   And I follow "Star"
   And I follow "Unstar"
-  Then I should see "Star"
+  And I follow "My Profile"
   
