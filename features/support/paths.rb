@@ -15,6 +15,12 @@ module NavigationHelpers
     
     when /^the edit event page$/
       '/events/1/edit'
+    
+    when /^the create events page$/
+      '/events/new'
+      
+    when /^the events page$/
+      '/events'
 
     when /^the home\s?page$/
       '/'

@@ -266,4 +266,9 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
+Then /^I fill in the event dates$/ do
+  find(:css, "#date_timepicker_start").set '2017/1/1'
+  find(:css, "#date_timepicker_end").set '2017/1/2'
+end
+
 
