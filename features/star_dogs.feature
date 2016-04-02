@@ -19,7 +19,6 @@ Background: user has been added to the database and logged in
   And I am on the explore dogs page
   And I am logged in
   
-
 Scenario: User can star dog from search results
   When I follow "My Profile"
   And I follow "All Dogs"
