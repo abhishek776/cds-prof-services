@@ -8,7 +8,6 @@
       <div class="image" style="padding:3em;">
         <%= image_tag @dog.image %>
       </div>
-      
         <% if not current_user.nil? %>
           <div class="stars"><label for="star_<%=@dog.id%>" >star_<%=@dog.id%></label>
             <%- unless current_user.starred_dogs.exists?(id: @dog.id) -%>
