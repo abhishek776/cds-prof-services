@@ -61,7 +61,7 @@ Given /I am exploring dogs/ do
     And I fill in "General Availability" with "anytime"
     When I press "Submit" 
     Then I should be on Clark's profile page
-    When I follow "To All Dogs"
+    When I follow "Explore"
     Then I should see "Explore Dogs"
   }
 end
