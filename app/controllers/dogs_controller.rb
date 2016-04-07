@@ -1,6 +1,5 @@
 class DogsController < ApplicationController
-  require 'dog_form_filler'
-   
+
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show]
   
@@ -8,6 +7,12 @@ class DogsController < ApplicationController
   # GET /dogs
   def index
     @dogs = Dog.all
+    filter = params[:filter] || {}
+    gender = filter[:gender] || ["Male", "Female"]
+    @dogs = @dogs.where(gender: gender)
+    if filter[:has_event] and filter[:has_event] == "1"
+      @dogs = @dogs.select {|x| x.future_events?}
+    end
   end
  
   # GET /dogs/1

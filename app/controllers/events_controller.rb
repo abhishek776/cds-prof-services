@@ -9,7 +9,6 @@ class EventsController < ApplicationController
     @dogs = current_user.dogs
     @dogs.each do |dog|
       (@events << dog.events).flatten!
-
     end
   end
 
@@ -54,8 +53,6 @@ class EventsController < ApplicationController
     @method = :put
   end
 
-
-
   def update
     @event = Event.find(params[:id])
     @dog = Dog.find(@event.dog_id)    
@@ -85,7 +82,6 @@ class EventsController < ApplicationController
     @event_attr = @form_filler.event_info(params)
     @dogs = @form_filler.dogs
     if @dogs.empty?
-      puts "??????????yeah"
       flash[:notice] = {:name => ["Please select a to share"]}
     elsif not create_events
       flash[:notice] = @event.errors.messages

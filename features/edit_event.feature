@@ -17,8 +17,6 @@ Background: user has been added to the database and logged in
     | Princess | Labrador         | 1   | small (0-15)    | Female | cats       | High    | whatever    | 5  |
     | Spock    | Aidi             | 3   | medium (16-40)  | Male   | dogs (all) | Some    | lover       | 6       |
     
-    
-  
   And I am logged in
   
   Scenario: User should be able to delete their dog's event
