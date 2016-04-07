@@ -24,6 +24,7 @@ module NavigationHelpers
 
     when /^the home\s?page$/
       '/'
+
     when /^(.*)'s home feed$/
       home_path
       
