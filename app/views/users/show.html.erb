@@ -45,7 +45,6 @@
     <a><i class="star icon"></i>Premium User</a>
     </div>
     <% if @own_profile %>
-    <%= link_to "Add Dog", new_dog_path(), :id => "add_dog_button", :class => "ui secondary button", :method => :get %>
     <%= link_to "Edit Profile", edit_user_path(@user.id), :id => "edit_user_button", :class => "ui secondary button", :method => :get %>
     <% end %>
     </div>
@@ -53,10 +52,13 @@
 
    <div class="eleven wide column">
     <!--<button class="ui button">-->
-    <%= link_to 'To All Dogs', dogs_path, :id => "To All Dogs" %>
-    </br>
     <div class="ui segment">
-      <h2><%= @user.first_name %>'s Dogs</h2>
+      <h2><%= @user.first_name %>'s Dogs
+      <% if @own_profile %>
+      <%= link_to "Add Dog", new_dog_path(), :id => "add_dog_button", :class => "ui secondary button right floated", :method => :get %>
+      <% end %>
+      </h2>
+
       <div class="ui divider"></div>
       <div id="dogs" class="ui relaxed divided list">
       <!-- USERS DOGS ------------------------------------------------------------->  

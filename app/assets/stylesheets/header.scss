@@ -19,7 +19,7 @@ $blue: #28b9f1;
     // padding: 15px 150px;
 
     h2.logo-font {
-        margin-left: 75px;
+        margin-left: 1em;
         font-size: 20px;
         font-weight: 300;
         margin-bottom: 0px;
@@ -75,6 +75,10 @@ $blue: #28b9f1;
         
     }
     
+    .explore-link{
+        margin-right:2em;
+    }
+    
     .menu_item {
         padding-top: 10px !important;
         padding-bottom: 10px !important;
@@ -94,3 +98,23 @@ $blue: #28b9f1;
 .right.floated { float: right }
 
 .no_link_styling{ text-decoration:none;}
+
+a:link {
+    text-decoration: none;
+    color: $dark-gray;
+}
+
+a:visited {
+    text-decoration: none;
+    color: $dark-gray;
+}
+
+a:hover {
+    text-decoration: none;
+    color: $dark-gray;
+}
+
+a:active {
+    text-decoration: none;
+    color: $dark-gray;
+}
