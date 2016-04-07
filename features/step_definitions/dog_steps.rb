@@ -144,3 +144,28 @@ When(/^I like "([^"]*)"$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
+Then(/^I should see a map with "([^"]*)" pins$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^I own the following dogs:$/) do |table|
+  # table is a Cucumber::Core::Ast::DataTable
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When(/^I edit "([^"]*)"'s profile$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I should be able to upload additional photos$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When(/^I have added additional photos to "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I should see an additional photos section$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
