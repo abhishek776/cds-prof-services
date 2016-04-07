@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<%= link_to 'Back', professionals_path %>
+
+<div class="ui one column grid">
+  <div class="five wide column">
+    <div class="ui fluid card">
+      <div class="content">
+        <p class="header"><%= @professional.name %></p>
+        <div class="description">
+          Motto:          <%=@professional.motto%>
+        </div>
+        <div class="description">
+          Description:          <%=@professional.description%>
+        </div>
+      </div>    
+    </div>
+  </div>
+
+  <div class="eleven wide column">
+    <%= link_to "Edit Professional", edit_professional_path(@professional.id), :id => "edit_professional_button", :class => "ui primary button", :method => :get %>
+    <%= link_to "Delete Professional", professional_path(@professional.id), :id => "delete_professional_button", :class => "ui primary button", :method => :delete %>    
+    </div>
+  </div>
+</div>
+
+
+    
+    
