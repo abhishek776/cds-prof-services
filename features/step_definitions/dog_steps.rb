@@ -176,3 +176,13 @@ Then(/^I should see an additional photos section$/) do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
+Then /^I should not find more than one "([^\/]*)"$/ do |regexp|
+  str = regexp
+  str = str + "(.+)" + regexp
+  regexp = Regexp.new(str)
+  if page.respond_to? :should
+    page.should_not have_xpath('//*', :text => regexp)
+  else
+    assert page.has_xpath?('//*', :text => regexp)
+  end
+end
