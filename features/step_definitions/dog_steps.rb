@@ -132,3 +132,15 @@ When /^I create a dog with the following info:$/ do |table|
   pending # express the regexp above with the code you wish you had
 end
 
+Given(/^I am logged in as a new user$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I should see "([^"]*)" before "([^"]*)"$/) do |arg1, arg2|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+When(/^I like "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
