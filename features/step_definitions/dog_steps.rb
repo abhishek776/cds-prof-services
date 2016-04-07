@@ -144,6 +144,13 @@ When(/^I like "([^"]*)"$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
+Given(/^"([^"]*)" has requested an event for "([^"]*)"$/) do |arg1, arg2|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^Bruce Wayne should see my phone number$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
 Then(/^I should see a map with "([^"]*)" pins$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
