@@ -70,7 +70,7 @@
       <h2><%= @user.first_name %>'s Starred Dogs</h2>
       <div class="ui divider"></div>
       <div id="dogs" class="ui relaxed divided list">
-<% if not @dogs.nil? %>
+<% if not @staredDogs.nil? %>
     <% @staredDogs.each do |dog| %>
 
     <% if dog.future_events? %>
@@ -83,11 +83,11 @@
 
       <div class="large-3 columns" style="padding: 0">
         <!-- <span class="image"> -->
-                    <div id="image"><% if dog.image.file? %>
-          <%= image_tag dog.image.url(:medium) %>
-        <% else %>
-          <%= image_tag "default_dog.jpg" %>
-        <% end %></div>
+      <div id="image"><% if dog.image.file? %>
+      <%= image_tag dog.image.url(:medium) %>
+      <% else %>
+      <%= image_tag "default_dog.jpg" %>
+      <% end %></div>
         <!-- </span> -->
       </div>
 

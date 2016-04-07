@@ -593,6 +593,14 @@ dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2
 
 dogs_list.each do |dog|
   dog = Dog.create(dog)
+  event = Event.new()
+  event.start_date = DateTime.current.to_date
+  event.end_date = DateTime.current.to_date
+  event.time_of_day = ["Morning"]
+  event.my_location = "My House"
+  event.description = "Princess needs a walk"
+  event.dog = dog
+  event.save!
 end
 
 mix_linker_list = [{:dog_id => 1, :mix_id => 210},
@@ -607,3 +615,4 @@ personality_linker_list = [{:dog_id => 1, :personality_id => 8}]
 personality_linker_list.each do |link|
   dog = DogPersonalityLinker.create(link)
 end
+
