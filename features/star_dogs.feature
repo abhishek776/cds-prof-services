@@ -21,7 +21,7 @@ Background: user has been added to the database and logged in
   
 Scenario: User can star/unstar dog from search results
   When I follow "My Profile"
-  And I follow "All Dogs"
+  And I follow "Explore"
   And I should see "Princess"
   And I follow "Princess"
   And I follow "Star"
@@ -40,14 +40,14 @@ Scenario: User can not star his own dogs
   And I fill in "Health Notes" with "excelent"
   And I fill in "General Availability" with "anytime"
   When I press "Submit" 
-  And I follow "All Dogs"
+  And I follow "Explore"
   And I follow "Cat"
   And I follow "Star"
   Then I should not see "Unstar"
   
 Scenario: User can unstar dog from search results
   When I follow "My Profile"
-  And I follow "All Dogs"
+  And I follow "Explore"
   And I should see "Princess"
   And I follow "Princess"
   And I follow "Star"
