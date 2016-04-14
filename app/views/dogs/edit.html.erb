@@ -2,8 +2,10 @@
 <%= link_to 'To all Dogs', dogs_path %>
 <h1> Edit information about <%= @dog.name %> </h1>
   
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
-<% javascript_include_tag 'tags.js' %>
+<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+<%= stylesheet_link_tag 'semantic.min.css' %>
+<%= javascript_include_tag 'semantic.min.js' %>
+<%= javascript_include_tag 'dog.js' %>
 
 <%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
@@ -48,7 +50,7 @@
   <div class="field"><label>Mix</label>
     Mix:          <td><%= @dog.mix_caption %></td> <br>
     <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}, @dog.readable_mixes),
-  :multiple => true, :size => 11 %>
+  :multiple => true, :size => 10, :class => "ui fluid search dropdown" %>
   </div>
   
   <div class="field"><label>Likes</label>

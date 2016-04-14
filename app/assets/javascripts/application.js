@@ -14,6 +14,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //= require semantic_modules/jquery-ui.min
+//= require semantic.min
 //= require turbolinks
 //= require tag-it
 //= require_tree .
