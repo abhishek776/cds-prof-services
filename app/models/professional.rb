@@ -2,7 +2,7 @@ class Professional < ActiveRecord::Base
   
   #attr_accessible :name, :motto, :description
 
-  belongs_to :business
+  has_many :user
   #has_many :dog_mix_linkers
   #has_many :dog_like_linkers
   #has_many :dog_personality_linkers

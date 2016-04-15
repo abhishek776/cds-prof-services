@@ -4,9 +4,12 @@ class User < ActiveRecord::Base
   # validates :zipcode, format: { with: /\d{5}/, message: "Bad format for zipcode."}, :allow_blank => true
   has_many :dogs, :dependent => :destroy
   has_many :events, :through => :dogs
+  
 
   has_many :stars, :dependent => :destroy
   has_many :starred_dogs, through: :stars, :source => :dog
+
+  has_one :professional
 
   def update_credentials(credentials)
     self.oauth_token = credentials[:token]
@@ -31,6 +34,7 @@ class User < ActiveRecord::Base
   #   return "#{self.first_name} #{self.last_name}"
   # end
   
+
   
   def future_events?
     # for all events, if at least one comes after yesterday, return true

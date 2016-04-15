@@ -42,6 +42,9 @@ Rails.application.routes.draw do
     end
   end
   
+  #post 'register_as_professional', to: 'user#upgrade'
+  post 'register_professional', to: 'professionals#upgrade'
+  
   # #Dog Routes
   # resources :dogs
 

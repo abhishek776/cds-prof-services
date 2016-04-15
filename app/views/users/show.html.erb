@@ -54,6 +54,7 @@
    <div class="eleven wide column">
     <!--<button class="ui button">-->
     <%= link_to 'To All Dogs', dogs_path, :id => "To All Dogs" %>
+    <%= link_to 'See All Professionals', professionals_path, :id => "See All Professionals" %>
     </br>
     <div class="ui segment">
       <div id="dogs">
@@ -139,6 +140,7 @@
   </div>
 </div>
 
+<%= button_to "Sign Up As A Professional", register_professional_path(:current_user => @current_user.id, :id => @user.id), :id => "register_as_professional", :class => "ui button transparent input" %>
 
 <h2>Starred Dogs</h2>
 <% if not @dogs.nil? %>

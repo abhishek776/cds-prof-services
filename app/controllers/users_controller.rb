@@ -36,4 +36,13 @@ class UsersController < ApplicationController
     end
   end
   
+  private
+    def set_user
+      @user = User.find(params[:id])
+    end
+    def user_params
+      params.require(:user).permit( :oauth_token, :oauth_expires_at,:first_name, :last_name, :location, :gender, :image, :phone_number, :email, :description, :address, :zipcode, :city, :country)
+    end
+
+  
 end

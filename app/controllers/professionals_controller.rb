@@ -11,16 +11,31 @@ class ProfessionalsController < ApplicationController
     @professional = Professional.find(params[:id])
   end
 
-#  # GET /Professionals/new
-#  def new
-#    @user = User.find(session[:user_id])
-#    @Professionals = Professionals.new
-#    @all_mixes = Mix.all
-#    @size = Size.all
-#    @energy = EnergyLevel.all
-#    @like_list = Like.all
-#    @personality_list = Personality.all
-#  end
+
+  def upgrade
+    @professionals = Professional.all
+    if  User.exists?(params[:id]) == false || User.find(params[:id]) != User.find(params[:current_user])
+      flash[:notice] = "You may only upgrade your own profile."
+      redirect_to User.find(params[:current_user])
+    else
+      render 'upgrade'
+    end
+    #Checks that user is correct one
+    #if  User.exists?(params[:id]) == false || User.find(params[:id]) != @current_user
+    #  flash[:notice] = "You may only upgrade your own profile."
+    #  redirect_to @current_user
+    #else
+    #  render 'upgrade'
+    #end
+  end
+  
+
+  # GET /Professionals/new
+  def new
+    @user = User.find(session[:user_id])
+    @Professionals = Professionals.new
+    render 'index'
+  end
 
   # GET /Professionals/1/edit
 #  def edit
