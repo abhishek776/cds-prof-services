@@ -42,6 +42,10 @@
   <div class="eleven wide column">
     <div class="ui segment">
     <h2>Here's the Feed!</h2>
+
+      <%= render :partial => "users/dog", :collection => @staredDogs %>
+      <%= render :partial => "users/dog", :collection => @user.dogs %>
+    
     </div>
   </div>
 </div>
