@@ -132,3 +132,13 @@ When /^I create a dog with the following info:$/ do |table|
   pending # express the regexp above with the code you wish you had
 end
 
+Then /^I should not find more than one "([^\/]*)"$/ do |regexp|
+  str = regexp
+  str = str + "(.+)" + regexp
+  regexp = Regexp.new(str)
+  if page.respond_to? :should
+    page.should_not have_xpath('//*', :text => regexp)
+  else
+    assert page.has_xpath?('//*', :text => regexp)
+  end
+end

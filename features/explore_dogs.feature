@@ -22,6 +22,7 @@ Scenario: I should be able to see all of the dogs and a number of features
   And I should see "still a puppy"
   And I should see "Harley Quinn"
   And I should see "The Joker"
+  And I should not find more than one "Batman"
   
 Scenario: I should be able to filter the dogs by age
   When I am on the explore dogs page 
