@@ -38,6 +38,9 @@ module NavigationHelpers
     
     when /^the explore professionals page$/
       professionals_path
+      
+    when /^the register professionals page$/
+      register_professional_path
     
     when /"(.*)"'s dog page/
       dog_path(Dog.find_by_name($1))

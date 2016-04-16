@@ -1,0 +1,35 @@
+<h2>Edit Your Profile</h2>
+<%= form_tag(controller: "professionals", action: "create", method: "get") do %>
+<div class="ui form">  
+  
+  <div class="field"><label>Name</label>
+  <% if @professional.name != nil && @professional.name != ""%>
+    <%= text_field(:professional,:name, :value => @professional.name) %>
+  <% else %>
+    <%= text_field(:professional,:name, :placeholder => 'What\'s your name?') %>
+  <%end%>
+  </div>
+
+  <div class="field"><label>Motto</label>
+  <% if @professional.motto != nil && @professional.motto != ""%>
+    <%= text_field(:professional,:motto, :value => @professional.motto) %>
+  <% else %>
+    <%= text_field(:professional,:motto, :placeholder => 'What\'s your motto?') %>
+  <%end%>
+  </div>
+
+  <div class="field"><label>Description</label>
+  <% if @professional.description != nil && @professional.description != ""%>
+    <%= text_field(:professional,:description, :value => @professional.description) %>
+  <% else %>
+    <%= text_field(:professional,:description, :placeholder => 'Tell City Dog Share more about yourself.') %>
+  <%end%>
+  </div>
+
+<div class="ui primary button transparent input"><input id='update_professional_button' type="submit" value="Save Changes" name="update_professional_button" class='btn info'  style="text-align:center"/></div>
+
+<% end %>
+
+
+
+</div>
