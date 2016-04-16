@@ -87,7 +87,7 @@ class DogsController < ApplicationController
 
     def dog_params
       params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto,
-        :fixed, :health, :availability, :gender, :size_id, :user_id)
+        :fixed, :health, :availability, :gender, :size_id, :user_id, :youtube_id)
     end
     
     def require_login

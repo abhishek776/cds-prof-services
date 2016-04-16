@@ -19,9 +19,17 @@
   <div class="image" style="padding:3em;">
     <%= image_tag @dog.image.url(:medium) %>
   </div>
-  
+ 
   <div class="field"> <label>Upload another image:</label>
      <%= file_field(:dog, :image) %>
+  </div>
+
+  <div>
+    <%= embed(@dog.youtube_id) %> 
+  </div> 
+  
+  <div class="field"> <label>Upload another video:</label>
+     <%= text_field(:dog, :youtube_id) %>
   </div>
 
   <div class="field"><label>Birthdate</label>
