@@ -1,3 +1,5 @@
+
+
 <p id="notice"><%= notice %></p>
 
 <%= link_to 'Back', dogs_path %>
@@ -8,6 +10,8 @@
       <div class="image" style="padding:3em;">
         <%= image_tag @dog.image %>
       </div>
+      
+
       
         <% if not current_user.nil? %>
           <div class="stars"><label for="star_<%=@dog.id%>" >star_<%=@dog.id%></label>
@@ -122,8 +126,16 @@
             <% end %>
     </div>
     <br>
+    
+      <div class="embed-container">
+        <%= embed(@dog.youtube_id) %>        
+      </div> 
+      
   </div>
   <!-- END OF EVENTS LISTING -->
+  
+
+      
 </div>
    
 <div class="ui one column grid">

@@ -12,6 +12,8 @@ class Dog < ActiveRecord::Base
   
   has_many :events, :dependent => :destroy
   has_many :stars, :dependent => :destroy
+  
+  YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
 
   
   has_attached_file :image,
