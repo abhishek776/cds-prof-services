@@ -58,8 +58,15 @@
   <%= radio_button :dog, :fixed, false  %>
   </div>
 
+  <label>You can add picture of your dog</label>
   <input type="file" name="dog[image]" id="dog_image">
   </br>
+  
+  <label>You can add youtube video of your dog</label>  
+  <div class="field"> 
+     <%= text_field(:dog, :youtube_id) %>
+  </div>
+  
   <label>Description</label>
   <input id="Description" type="text_field" <%= text_field(:dog, :description) %></input>
   
