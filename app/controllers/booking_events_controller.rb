@@ -3,11 +3,15 @@ class BookingEventsController < ApplicationController
   before_action :current_user
   
   def create
-    if current_user != User.find(Dog.find(@event.dog_id).user_id)
-      if Booking.create(event: @event, user: current_user)
-        redirect_to :back
-      end
-    else redirect_to :back
+    # UNCOMMENT to != when done testing
+    # if current_user != User.find(Dog.find(@event.dog_id).user_id)
+    #   if Booking.create(event: @event, user: current_user)
+    #     redirect_to :back
+    #   end
+    # else redirect_to :back
+    # end
+    if Booking.create(event: @event, user: current_user)
+      redirect_to :back
     end
   end
   
