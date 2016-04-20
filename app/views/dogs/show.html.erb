@@ -109,27 +109,23 @@
             </strong>
           </div>
           <div class="large-3 columns">
+            
+            <% if not current_user.nil? %>
+            <div class="booking"><label for="book_<%=event.id%>" >event_<%=event.id%></label>
+            <%- unless current_user.booking_events.exists?(id: event.id) -%>
+            <%= link_to booking_events_path(event_id: event), method: :post, id: "book_#{event.id}" do%>
+            Star
+            <%end%>
+            <%= event.bookings.count %>
+            <% else %>
+            <%= link_to booking_events_path(event_id: event), method: :delete, id: "book_#{event.id}"  do%>
+            Unstar
+            <%end%>
+            <%= event.bookings.count %>
+            <% end %>
+            </div>
+          <%end%>
 
-          <!--  <% if not @current_user.nil? and @current_user.id == @dog.user_id %>-->
-          <!--   <%= link_to "Edit Event", edit_event_path(event.id), :id => "edit_event_button", :class => "ui button", :method => :get %> -->
-          <!--  <% end %>-->
-          <!--</div>-->
-          
-          <!--<div class="large-3 columns">-->
-          <!--  <% if not @current_user.nil? and @current_user.id != @dog.user_id and event.confirmed_user_id  == nil   %>-->
-          <!--  <%= link_to "Book Event", user_booking_path(user_id: @current_user.id), :id => "book_event_button", :class => "ui button", :method => :put %> -->
-          <!--  <% else %>-->
-           
-          <!--  <% if not @current_user.nil? and event.confirmed_user_id.to_i == @current_user.id.to_i %> -->
-          <!--  <%= link_to "Unbook this Event", unbook_event_path(dog_id: @dog), :id => "unbook_event_button", :class => "ui button", :method => :patch %> -->
-          <!--  <% end %>-->
-          <!--  <% end %>-->
-          <!--</div>-->
-          
-          <!-- <% if not @current_user.nil? and @current_user.id == @dog.user_id and event.user_id  != nil%> -->
-           
-          <!--  <%= link_to "Decline request", decline_event_path(dog_id: @dog), :id => "decline_event_button", :class => "ui button", :method => :patch %> -->
-          <!--  <% end %>-->
           
           
             <div class="large-12 columns content">

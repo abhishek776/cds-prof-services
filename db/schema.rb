@@ -11,10 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420020436) do
+ActiveRecord::Schema.define(version: 20160420024001) do
+
+  create_table "booked_events", force: :cascade do |t|
+    t.string   "event_id"
+    t.string   "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "bookings", force: :cascade do |t|
     t.string   "user_id"
+    t.string   "event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -21,12 +21,15 @@ Rails.application.routes.draw do
   # User Routes
   resources :users do
     resources :dogs
-    # resources :booking
+    # resources :booked_events
   end
   
-  resources :events do
-    resources :booking
-  end
+  # resources :events do
+  #   resources :bookings
+  # end
+  
+  resource :booking_events, only: [:create, :destroy]
+
   
   post 'users/:id/edit', to: 'users#edit'
 
@@ -43,6 +46,7 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'stars'
+      get 'bookings'
     end
   end
   

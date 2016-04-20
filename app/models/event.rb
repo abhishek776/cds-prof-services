@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   # attr_accessible :start_date, :end_date, :time_of_day, :my_location, :dog, :description
   belongs_to :dog
-  has_many :booking, :dependent => :destroy
+  has_many :bookings, :dependent => :destroy
 
 
   validates :start_date, :presence => {:message => "Please enter a valid start date"}
