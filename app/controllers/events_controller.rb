@@ -76,7 +76,7 @@ class EventsController < ApplicationController
     @event_attr = @form_filler.event_info(params)
     @dogs = @form_filler.dogs
     if @dogs.empty?
-      flash[:notice] = {:name => ["Please select a to share"]}
+      flash[:notice] = {:name => ["Please select a dog to share"]}
     elsif not create_events
       flash[:notice] = @event.errors.messages
     end
