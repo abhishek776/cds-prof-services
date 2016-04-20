@@ -109,6 +109,10 @@
             </strong>
           </div>
           <div class="large-3 columns">
+            <% if not @current_user.nil? and @current_user.id == @dog.user_id %>
+             <%= link_to "Edit Event", edit_event_path(event.id), :id => "edit_event_button", :class => "ui button", :method => :get %> 
+            <% end %>
+          </div>
             
             <% if not current_user.nil? %>
             <div class="booking"><label for="book_<%=event.id%>" >event_<%=event.id%></label>
