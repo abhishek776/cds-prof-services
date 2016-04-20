@@ -114,12 +114,12 @@
             <div class="booking"><label for="book_<%=event.id%>" >event_<%=event.id%></label>
             <%- unless current_user.booking_events.exists?(id: event.id) -%>
             <%= link_to booking_events_path(event_id: event), method: :post, id: "book_#{event.id}" do%>
-            Star
+            Book
             <%end%>
             <%= event.bookings.count %>
             <% else %>
             <%= link_to booking_events_path(event_id: event), method: :delete, id: "book_#{event.id}"  do%>
-            Unstar
+            Unbook
             <%end%>
             <%= event.bookings.count %>
             <% end %>
