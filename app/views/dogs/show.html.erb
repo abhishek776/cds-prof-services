@@ -129,12 +129,10 @@
             <% end %>
             </div>
           <%end%>
-
-          
           
             <div class="large-12 columns content">
               <strong>Time:</strong> <%= event.time_of_day.join(", ") %><br>
-              <strong>Where:</strong> <%= event.my_location %><br>
+              <strong>Location:</strong> <%= event.my_location %><br>
               <% if event.description != "" %>
                 <strong>Description:</strong> <%= event.description %>
               <% end %>
