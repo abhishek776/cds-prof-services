@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # validates :zipcode, format: { with: /\d{5}/, message: "Bad format for zipcode."}, :allow_blank => true
   has_many :dogs, :dependent => :destroy
   has_many :events, :through => :dogs
-  has_many :booking, :dependent => :destroy
+  # has_many :booking, :dependent => :destroy
 
   has_many :stars, :dependent => :destroy
   has_many :starred_dogs, through: :stars, :source => :dog

@@ -21,6 +21,10 @@ Rails.application.routes.draw do
   # User Routes
   resources :users do
     resources :dogs
+    # resources :booking
+  end
+  
+  resources :events do
     resources :booking
   end
   

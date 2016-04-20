@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420013034) do
+ActiveRecord::Schema.define(version: 20160420020436) do
 
   create_table "bookings", force: :cascade do |t|
     t.string   "user_id"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 20160420013034) do
     t.string   "my_location"
     t.integer  "dog_id"
     t.string   "description"
+    t.string   "confirmed_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
