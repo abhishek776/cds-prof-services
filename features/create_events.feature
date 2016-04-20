@@ -12,10 +12,6 @@ Scenario: I should be able to create an event to sit my dog
   And I have created an event for "Cat" today
   When I am on the events page
   And  should see "Cat"
-  When I follow "Edit"
-  And I press "Delete"
-  When I am on the events page
-  And I should not see "Cat"
   
 Scenario: I should be able to create an event to sit my dog
   When I go to the create events page
