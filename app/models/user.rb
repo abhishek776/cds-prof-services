@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   
   has_many :bookings, :dependent => :destroy
   has_many :booking_events, through: :bookings, :source => :event
-
+  
   has_many :stars, :dependent => :destroy
   has_many :starred_dogs, through: :stars, :source => :dog
 

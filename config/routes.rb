@@ -29,13 +29,17 @@ Rails.application.routes.draw do
   # end
   
   resource :booking_events, only: [:create, :destroy]
+   
 
-
-  
   post 'users/:id/edit', to: 'users#edit'
 
   # resources :users
   resources :events, :only => [:index, :new, :create, :edit, :update, :show, :destroy]
+  resources :booking_events do
+    member do
+      post :confirm
+    end
+  end
 
   resources :mixes, :only => [:index, :show] do
     collection do
