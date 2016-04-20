@@ -42,7 +42,6 @@ And /^I have created an event for "([^"]*)" (today|3 days ago)$/ do |dog, time|
   new_event.save!
 end
 
-
 Given /I am exploring dogs/ do
   steps %Q{
     Given I am on the home page
@@ -65,6 +64,20 @@ Given /I am exploring dogs/ do
     Then I should see "Explore Dogs"
   }
 end
+
+
+# Given /I have created an event/ do
+#   steps %Q{
+#     When I go to the create events page
+#     And I fill in "date_timepicker_start" with "1/3/2017"
+#     And I fill in "date_timepicker_end" with "1/4/2017"
+#     And I check "Morning"
+#     And I check "Cat"
+#     And I choose "my_location_My_House"
+#     And I fill in "description" with "junk"
+#     And I press "Schedule"
+#   }
+# end
   
   
 Given /^I am logged in$/ do  
@@ -89,6 +102,26 @@ end
 
 And /^I click a star for dog with dog id "(.)"/ do |id|
     click_link("star_#{id}")
+end
+
+When(/^I click book for "([^"]*)"$/) do |arg1|  
+  dog = Dog.find_by_name(arg1)
+  event = Event.where(dog_id: dog.id).first
+    click_link("book_#{event.id}")
+end
+
+When(/^I click unbook for "([^"]*)"$/) do |arg1|  
+  dog = Dog.find_by_name(arg1)
+  event = Event.where(dog_id: dog.id).first
+    click_link("unbook_#{event.id}")
+end
+
+When(/^"([^"]*)" was confirmed for "([^"]*)"'s event$/) do |arg1, arg2|
+  dog = Dog.find_by_name(arg2)
+  user = User.find_by_first_name(arg1)
+  event = Event.find(dog.id)
+  event.confirmed_user_id = user.id
+  event.save!
 end
 
 And /^I should not see a star$/ do
@@ -145,6 +178,17 @@ When(/^I like "([^"]*)"$/) do |arg1|
 end
 
 Given(/^"([^"]*)" has requested an event for "([^"]*)"$/) do |arg1, arg2|
+  # pending # Write code here that turns the phrase above into concrete actions
+  dog = Dog.find_by_name(arg2)
+  event = Event.find(dog.id)
+  if not event.nil?
+    user = User.find_by_first_name(arg1)
+  end
+  Booking.create(event: event, user: user)
+end
+
+When(/^event was confirmed$/) do
+  
   pending # Write code here that turns the phrase above into concrete actions
 end
 

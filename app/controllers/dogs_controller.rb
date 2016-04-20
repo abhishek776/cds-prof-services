@@ -1,8 +1,6 @@
 class DogsController < ApplicationController
-
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show]
-  
   before_filter :current_user
   # GET /dogs
   def index

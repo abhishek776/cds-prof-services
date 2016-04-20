@@ -1,7 +1,5 @@
 class EventsController < ApplicationController
-
   require 'event_form_filler'
-
   before_filter :current_user
 
   def index
@@ -29,7 +27,6 @@ class EventsController < ApplicationController
     end
   end
 
-
   def create
     @form_filler = EventViewHelper.new(current_user)
     @event_attr = @form_filler.event_info(params)
@@ -39,10 +36,9 @@ class EventsController < ApplicationController
     if flash[:notice]
       render 'new'
     else
-      redirect_to events_path
+      redirect_to dog_path(@event.dog_id)
     end
   end
-
 
   def edit
     @event = Event.find(params[:id])
@@ -61,33 +57,30 @@ class EventsController < ApplicationController
     @event_attr = @form_filler.event_info(params)
     @event_attr[:dog] = @dog
     if @event.update_attributes(@event_attr)
-      redirect_to events_path
+      redirect_to dog_path(@event.dog_id)
     else
       flash[:notice] = @event.errors.messages
       redirect_to edit_event_path(params[:id])
     end
   end
 
-
   def destroy
     @event = Event.find(params[:id])
     @event.delete
     flash[:notice] = "Your event has been deleted."
-    redirect_to events_path
+    redirect_to dog_path(@event.dog_id)
   end
-
 
   def set_flash
     @form_filler = EventViewHelper.new(current_user)
     @event_attr = @form_filler.event_info(params)
     @dogs = @form_filler.dogs
     if @dogs.empty?
-      flash[:notice] = {:name => ["Please select a to share"]}
+      flash[:notice] = {:name => ["Please select a dog to share"]}
     elsif not create_events
       flash[:notice] = @event.errors.messages
     end
   end
-
 
   def create_events
     @dogs.each do |dog|
@@ -100,7 +93,5 @@ class EventsController < ApplicationController
       end
     end
   end
-
-
 end
 

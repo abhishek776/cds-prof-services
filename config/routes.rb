@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   resources :dogs
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
-
+  
   # Home Page
   root :to => 'landing#index'
 
@@ -22,11 +21,18 @@ Rails.application.routes.draw do
   resources :users do
     resources :dogs
   end
-  
+
+  resource :booking_events, only: [:create, :destroy]
+
   post 'users/:id/edit', to: 'users#edit'
 
   # resources :users
   resources :events, :only => [:index, :new, :create, :edit, :update, :show, :destroy]
+  resources :booking_events do
+    member do
+      post :confirm
+    end
+  end
 
   resources :mixes, :only => [:index, :show] do
     collection do
@@ -38,6 +44,13 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'stars'
+      get 'bookings'
+    end
+  end
+  
+  resources :events do
+    member do
+      get 'bookings'
     end
   end
   

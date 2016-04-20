@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 users = [ {:uid => '1', :last_name => 'Wayne', :first_name => 'Bruce', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
-           :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
+           :phone_number => '(555)228-9999', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
            {:uid => '2', :last_name => 'Wayne2', :first_name => 'Bruce2', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
-           :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
+           :phone_number => '(555)228-9999', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
         ]
 
 users.each do |user|
@@ -589,28 +589,38 @@ end
 
 
 
-dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1} ]
+dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1},
+{:name => "Bear", :user_id => 3, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1}]
 
 dogs_list.each do |dog|
   dog = Dog.create(dog)
   event = Event.new()
-  event.start_date = DateTime.current.to_date
-  event.end_date = DateTime.current.to_date
-  event.time_of_day = ["Morning"]
+  event.start_date = DateTime.tomorrow.to_date
+  event.end_date =DateTime.tomorrow.to_date
+  event.time_of_day = ["Overnight"]
   event.my_location = "My House"
   event.description = "Princess needs a walk"
+  if dog.name == "Bear"
+    event.confirmed_user_id = 1
+    event.description = "Bear needs a walk"
+ else
+    event.description = "Princess needs a walk"
+  end
   event.dog = dog
   event.save!
 end
 
+
+
 mix_linker_list = [{:dog_id => 1, :mix_id => 210},
-                   {:dog_id => 1, :mix_id => 280}]
+                   {:dog_id => 2, :mix_id => 280}]
 
 mix_linker_list.each do |link|
   mix_link = DogMixLinker.create(link)
 end
 
-personality_linker_list = [{:dog_id => 1, :personality_id => 8}]
+personality_linker_list = [{:dog_id => 1, :personality_id => 8},
+                          {:dog_id => 3, :personality_id => 8}]
 
 personality_linker_list.each do |link|
   dog = DogPersonalityLinker.create(link)

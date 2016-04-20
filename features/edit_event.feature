@@ -43,7 +43,7 @@ Background: user has been added to the database and logged in
     And I should see "Time: Morning, Afternoon"
     And I should see "Location: Your House"
     
-    When I follow "Edit"
+    When I follow "Edit Event"
     And I press "Delete Event"
     Then I should see "Your event has been deleted."
 
