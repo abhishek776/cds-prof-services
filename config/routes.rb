@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   # User Routes
   resources :users do
     resources :dogs
+    resources :booking
   end
   
   post 'users/:id/edit', to: 'users#edit'
