@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 users = [ {:uid => '1', :last_name => 'Wayne', :first_name => 'Bruce', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
-           :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
+           :phone_number => '(555)228-9999', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
            {:uid => '2', :last_name => 'Wayne2', :first_name => 'Bruce2', :gender => 'Male', :image => 'https://tinyurl.com/jo5syfh',
-           :phone_number => '(555)228-6261', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
+           :phone_number => '(555)228-9999', :email => 'not_batman@wayneenterprises.com', :description => 'I love bats', :oauth_token => 'ABCDEF...', :oauth_expires_at => '12-Jun-1981'},
         ]
 
 users.each do |user|

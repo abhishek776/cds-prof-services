@@ -1,28 +1,44 @@
+@facebook_test
 Feature: confirm event booking for your dog
   As a dogowner
   I should be able to view everyone who wants to book my dog's event 
   So that I can confirm a booking with someone I approve of.
 
 Background: user has been added to the database and logged in
-  Given the following users exist:
-    | last_name  | first_name | gender | image                      | phone_number  | description  | address       | zipcode | city     | country | uid |
-    | Kent       | Clark      | male   | http://tinyurl.com/opnc38n | (555)228-6261 | I love bats  | 387 Soda Hall | 94720   | Berkeley | US      | 5   |
-    | Pinzon     | Juan       | male   | http://tinyurl.com/okrw3vd | (555)123-1234 |   love dogs  | 387 Cory Hall | 94720   | Berkeley | US      | 6   |
-  
-  And the following dogs exist:
-    | name          | gender | age | energy | size            | personality     | mix                   |
-    | Batman        | Male   | 3   | High   | large (41-100)  | still a puppy   | German Shepherd Dog   |
-    | The Joker     | Male   | 6   | Active | medium (16-40)  | fetcher         | Mutt                  |
-    | Harley Quinn  | Female | 4   | Some   | small (0-15)    | lover           | Poodle                |
-  
+  Given I am exploring dogs
+  And I have created an event for "Cat" today
+  And I have created an event for "Batman" today
   And I am on the home page
-  And "Bruce Wayne" has requested an event for "The Joker"
+  And "Bruce" has requested an event for "Cat"
 
-Scenario: I can see the event request
-  Then I should see "Bruce Wayne"
-  And I should see "The Joker"
+Scenario: I can Book/Undook events
+  When I am on the "Batman"'s dog page
+  And I should see "Book"
+  And I click book for "Batman"
+  And I should see "Unbook"
+  And I click unbook for "Batman"
+  And I should see "Book"
+  
+Scenario: I can see contact info when I was confirmed
+  When I am on the "Batman"'s dog page
+  When I click book for "Batman"
+  And I should see "Unbook"
+  When "Clark" was confirmed for "Batman"'s event 
+  When I am on the "Batman"'s dog page
+  And I should see "Confirmed"
+  And I should see "(555)228-9999"
 
-Scenario: I can confirm the event booking
-  When I follow "Confirm Event"
-  Then I should see "(555)555-5555"
-  And Bruce Wayne should see my phone number
+Scenario: I can reject candidates
+  When I am on the "Cat"'s dog page
+  And I should see "REJECT"
+  When I follow "CONFIRM"
+  And I should see "Confirmed"
+  And I should see "(555)228-9999"
+  When I follow "REJECT"
+  And I should not see "Candidates"
+
+Scenario: I could not book my dogs
+  When I am on the "Cat"'s dog page
+  And I should not see "Book"
+
+  

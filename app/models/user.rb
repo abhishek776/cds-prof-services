@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  # attr_accessible :uid, :oauth_token, :oauth_expires_at, :first_name, :last_name, :location, :gender, :image, :status, :phone_number, :email, :availability, :description, :address, :zipcode, :city, :country
-  # validates :phone_number, format: { with: /\(\d{3}\)(\ ?)\d{3}-\d{4}/, message: "Bad format for phone number." }, :allow_blank => true
-  # validates :zipcode, format: { with: /\d{5}/, message: "Bad format for zipcode."}, :allow_blank => true
   has_many :dogs, :dependent => :destroy
   has_many :events, :through => :dogs
   
@@ -28,17 +25,9 @@ class User < ActiveRecord::Base
     end
     self.save
   end
-
-
-  # def full_name
-  #   return "#{self.first_name} #{self.last_name}"
-  # end
-  
   
   def future_events?
     # for all events, if at least one comes after yesterday, return true
     events.where("end_date > ?", 1.day.ago.midnight).pluck('end_date') != []
   end
-
-
 end

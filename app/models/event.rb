@@ -1,5 +1,4 @@
 class Event < ActiveRecord::Base
-  # attr_accessible :start_date, :end_date, :time_of_day, :my_location, :dog, :description
   belongs_to :dog
   has_many :bookings, :dependent => :destroy
   has_many :booking_users, through: :bookings, :source => :user
@@ -10,5 +9,4 @@ class Event < ActiveRecord::Base
   validates :dog, :presence => {:message => "Please select the dog you want to share"}
 
   serialize :time_of_day
-
 end
