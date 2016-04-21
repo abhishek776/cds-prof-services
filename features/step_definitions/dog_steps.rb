@@ -179,12 +179,13 @@ end
 
 Given(/^"([^"]*)" has requested an event for "([^"]*)"$/) do |arg1, arg2|
   # pending # Write code here that turns the phrase above into concrete actions
-  dog = Dog.find_by_name(arg2)
-  event = Event.find(dog.id)
-  if not event.nil?
-    user = User.find_by_first_name(arg1)
-  end
-  Booking.create(event: event, user: user)
+  pending
+  # dog = Dog.find_by_name(arg2)
+  # event = dog.events[0]
+  # if not event.nil?
+  #   user = User.find_by_first_name(arg1)
+  # end
+  # Booking.create(event: event, user: user)
 end
 
 When(/^event was confirmed$/) do
