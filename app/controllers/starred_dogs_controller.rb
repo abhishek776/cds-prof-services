@@ -12,7 +12,11 @@ class StarredDogsController < ApplicationController
   end
   
   def destroy
-    Star.where(dog_id: @dog.id, user_id: current_user.id).first.destroy
+    star = Star.where(dog_id: @dog.id, user_id: current_user.id)
+    if not star.nil? and not star.first.nil?
+      star.first.destroy
+    end
+    # Star.where(dog_id: @dog.id, user_id: current_user.id).first.destroy
     redirect_to :back
   end
   

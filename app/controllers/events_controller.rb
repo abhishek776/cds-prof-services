@@ -66,8 +66,10 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find(params[:id])
-    @event.delete
-    flash[:notice] = "Your event has been deleted."
+    if not @event.nil?
+      @event.delete
+      flash[:notice] = "Your event has been deleted."
+    end
     redirect_to events_path
   end
 
