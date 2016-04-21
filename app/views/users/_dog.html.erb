@@ -13,8 +13,7 @@
 <div class="ten wide column">
   <h3 class="ui header">
   <a href="<%= dog_path(dog.id) %>" class="header"> <%= dog.name %></a>
-  <i class="right floated star icon"></i>
-  
+
   <div class="sub header">
     <span class="category"> <%= dog.age_caption %></span>
   </div>
@@ -27,7 +26,7 @@
   <div class="description">
     <%= dog.motto %>
   </div>
-      </br>
+      
       <div class="extra content">
         <a>
         <i class="left floated calendar icon"></i>
@@ -37,6 +36,41 @@
           <% if not @current_user.nil? and @current_user.id == dog.user_id %>
           <%= link_to "Edit Dog", edit_dog_path(dog.id), :id => "edit_dog_button", :class => "header", :method => :get %>    
           <% end %>
+          
+          
+  
+     <!--STARRING-->
+          <% if not current_user.nil? %>
+          <span class="right floated stars">
+            <%- unless current_user.starred_dogs.exists?(id: dog.id) -%>
+              <%= link_to starred_dogs_path(dog_id: dog), method: :post, id: "star_#{dog.id}" do%>
+              <i class="empty icon yellow large" style="margin-right: -0.3em">
+                    <%= dog.stars.count %></i><i class="empty star icon yellow large"></i>
+              <%end%>
+            <%- else -%>
+              <%= link_to starred_dogs_path(dog_id: dog), method: :delete, id: "star_#{dog.id}" do%>
+              Unstar
+              <i class="icon yellow large" style="margin-right: -0.3em"><%= dog.stars.count %></i>
+              <%end%>
+            <%- end -%>
+            </span>
+            <%end%>
+          
+     <!--END OF STARRING       -->
+         
+          <span class="right floated" style="margin-right: 5%">
+          <%= dog.owner.zipcode %>
+          </span>
+         
+         
+           <div class="extra content">
+           <% unless dog.availability == "" %>
+           <i class="wait icon"></i>
+           <%= dog.availability %>
+           <% end %>
+           </div>
+           
+          
           
         </div>
         </div>
