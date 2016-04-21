@@ -23,8 +23,6 @@
   <div id = "dogevents"><h3>Upcoming Events:</h3>
  <div class = "large-12 columns">
   <% for @dog in @dogs do %>
-  
-  
     <% if @dog.future_events? %>
      <div class="row">
           <h3 class = "ui green ribbon label"> <%=link_to @dog.name, dog_path(@dog.id) %> </h3>
@@ -38,7 +36,6 @@
 
 <% else %>
 <div id="dogevents"><h3>No upcoming events</h3></div>
-
 <%end%>
 
 
