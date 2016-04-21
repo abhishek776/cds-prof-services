@@ -33,17 +33,11 @@
         <i class="left floated calendar icon"></i>
             2 events
           </a>
-          <!--
-          <span class="right floated star">
-            <i class="star icon"></i>
-            Favorite
-          </span>
-          -->
           <br>
           <% if not @current_user.nil? and @current_user.id == dog.user_id %>
-          <%= link_to "Delete Dog", dog_path(dog.id), :id => "delete_dog_button", :class => "header", :method => :delete %>    
+          <%= link_to "Edit Dog", edit_dog_path(dog.id), :id => "edit_dog_button", :class => "header", :method => :get %>    
           <% end %>
-
+          
         </div>
         </div>
         </div>

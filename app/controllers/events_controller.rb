@@ -36,7 +36,7 @@ class EventsController < ApplicationController
     if flash[:notice]
       render 'new'
     else
-      redirect_to dog_path(@event.dog_id)
+      redirect_to events_path
     end
   end
 
@@ -57,7 +57,7 @@ class EventsController < ApplicationController
     @event_attr = @form_filler.event_info(params)
     @event_attr[:dog] = @dog
     if @event.update_attributes(@event_attr)
-      redirect_to dog_path(@event.dog_id)
+      redirect_to events_path
     else
       flash[:notice] = @event.errors.messages
       redirect_to edit_event_path(params[:id])
@@ -68,7 +68,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     @event.delete
     flash[:notice] = "Your event has been deleted."
-    redirect_to dog_path(@event.dog_id)
+    redirect_to events_path
   end
 
   def set_flash
