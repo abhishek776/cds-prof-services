@@ -24,11 +24,14 @@ Scenario: User can star/unstar dog from search results
   And I follow "Explore"
   And I should see "Princess"
   And I follow "Princess"
-  And I follow "Star"
-  Then I should see "Unstar"
+  And I click a star for "Princess"
+  Then I should see "1"
+  And I click a star for "Princess"
+  Then I should see "0"
+  And I click a star for "Princess"
   When I follow "My Profile"
   Then I should see "Princess"
-  When I follow "Unstar"
+  And I click a star for "Princess" 
   And I should not see "Princess"
 
 Scenario: User can not star his own dogs 
@@ -42,15 +45,13 @@ Scenario: User can not star his own dogs
   When I press "Submit" 
   And I follow "Explore"
   And I follow "Cat"
-  And I follow "Star"
-  Then I should not see "Unstar"
+  And I click a star for "Cat"
+ 
   
 Scenario: User can unstar dog from search results
   When I follow "My Profile"
   And I follow "Explore"
   And I should see "Princess"
   And I follow "Princess"
-  And I follow "Star"
-  And I follow "Unstar"
-  And I follow "My Profile"
-  
+  And I click a star for "Princess"
+  And I should see "1"

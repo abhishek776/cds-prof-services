@@ -10,25 +10,22 @@
       <div class="image" style="padding:3em;">
         <%= image_tag @dog.image %>
       </div>
-      
-
-      
+      <!--STARRING-->
         <% if not current_user.nil? %>
-          <div class="stars"><label for="star_<%=@dog.id%>" >star_<%=@dog.id%></label>
+          <div class="stars"><label for="star_<%=@dog.id%>" ></label>
             <%- unless current_user.starred_dogs.exists?(id: @dog.id) -%>
-            <%= link_to starred_dogs_path(dog_id: @dog), method: :post, id: "star_#{@dog.id}" do%>
-            Star
+             <%= link_to starred_dogs_path(dog_id: @dog), method: :post, :id => "star_#{@dog.id}" do%>
+              <i class="empty icon yellow large" style="margin-right: -0.3em">
+                    <%= @dog.stars.count %></i><i class="empty star icon yellow large"></i>
+            <%end%>            <% else %>
+             <%= link_to starred_dogs_path(dog_id: @dog), method: :delete, :id => "star_#{@dog.id}" do%>
+              <i class="icon yellow large" style="margin-right: -0.3em">
+                   <%= @dog.stars.count %></i><i class="blue star icon large"></i>
             <%end%>
-            <%= @dog.stars.count %>
-            <% else %>
-            <%= link_to starred_dogs_path(dog_id: @dog), method: :delete, id: "star_#{@dog.id}"  do%>
-            Unstar
-            <%end%>
-            <%= @dog.stars.count %>
             <% end %>
           </div>
         <%end%>
-        
+   <!--STARRING     -->
 
       <div class="content">
         <p class="header"><%= @dog.name %></p>
