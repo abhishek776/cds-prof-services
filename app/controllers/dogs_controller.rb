@@ -65,7 +65,9 @@ class DogsController < ApplicationController
 
   def destroy
     @user = current_user
-    @dog.destroy
+    if not @dog.nil?
+      @dog.destroy
+    end
     redirect_to user_path(@user)
   end
 
