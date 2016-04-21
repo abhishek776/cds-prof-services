@@ -100,8 +100,15 @@ When /I filter event/ do
   pending
 end
 
-And /^I click a star for dog with dog id "(.)"/ do |id|
-    click_link("star_#{id}")
+And /^I click a star for  "(.)"/ do |arg1|
+  dog = Dog.find_by_name(arg1)
+    click_link("star_#{dog.id}")
+end
+
+
+Then(/^I click a star for "([^"]*)"$/) do |arg1|
+  dog = Dog.find_by_name(arg1)
+  click_link("star_#{dog.id}")
 end
 
 When(/^I click book for "([^"]*)"$/) do |arg1|  
@@ -124,7 +131,9 @@ When(/^"([^"]*)" was confirmed for "([^"]*)"'s event$/) do |arg1, arg2|
   event.save!
 end
 
-And /^I should not see a star$/ do
+
+
+Then(/^I should not see a star$/) do
   all('div.stars').count.should == 0
   all('span.stars').count.should == 0
 end
