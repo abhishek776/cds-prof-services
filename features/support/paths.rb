@@ -19,6 +19,9 @@ module NavigationHelpers
     when /^the create events page$/
       '/events/new'
       
+    when /^the create dogs page$/
+      '/dogs/new'
+      
     when /^the events page$/
       '/events'
 

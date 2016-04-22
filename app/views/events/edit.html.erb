@@ -9,6 +9,6 @@
 
 <h2>Edit <%= @dog.name %>'s Event</h2>
 
-<%= button_to "Delete Event", event_path(@event.id), :id => "delete_event_button", :class => "ui button red transparent input", :method => :delete %>
+<%= button_to "Delete Event", event_path(@event.id), :id => "delete_event_button", data: { disable_with: "Please wait..." }, :class => "ui button red transparent input", :method => :delete %>
 
 <%= render 'event_form' %>

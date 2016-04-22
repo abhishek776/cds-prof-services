@@ -7,11 +7,9 @@ Feature: Facebook OAuth is used for signing into accounts
   
   Background:
     Given I am on the home page
+    And I am logged in
 	
   Scenario: As a logged in user I should be abble to add dog
-    When I follow "FACEBOOK LOGIN"
-    Then I should be on Clark's home feed
-    And I should see "Feed!"
     When I follow "My Profile"
     Then I should see "Dogs"
     And I should see "Add Dog"
@@ -40,3 +38,9 @@ Feature: Facebook OAuth is used for signing into accounts
     Then I should be on Clark's profile page
     When I follow "To All Dogs"
     Then I should not see "Cat"
+    
+Scenario: I should be able to cancel dog creation
+    When I go to the create dogs page
+    When I fill in "Dog Name" with "Moon"
+    When I press "Cancel"
+    Then I should not see "Moon"

@@ -12,22 +12,23 @@ Scenario: I should be able to create an event to sit my dog
   And I have created an event for "Cat" today
   When I am on the events page
   And  should see "Cat"
-  
+
 Scenario: I should be able to create an event to sit my dog
   When I go to the create events page
+  And I check "Cat"
   And I fill in "date_timepicker_start" with "1/3/2017"
   And I fill in "date_timepicker_end" with "1/4/2017"
   And I check "times_Morning"
   And I choose "my_location_My_House"
   And I fill in "description" with "junk"
-  And I press "update_event_button"
-
+  And I press "Submit"
+  
 Scenario: I should choose dates for my events
   When I go to the create events page
   And I check "Cat"
   And I check "times_Morning"
   And I choose "my_location_My_House"
-  And I press "update_event_button"
+  And I press "Submit"
   And I should see "Please enter a valid start date"
 
 Scenario: I should choose dog for my event
@@ -35,7 +36,7 @@ Scenario: I should choose dog for my event
   And I uncheck "Cat"
   And I choose "my_location_My_House"
   And I fill in "description" with "junk"
-  And I press "update_event_button"
+  And I press "Submit"
   And I should see "Please select a dog to share"
   
 Scenario: I should be able to change my mind and cancel creating event

@@ -39,7 +39,7 @@ Background: user has been added to the database and logged in
     And I should see "Edit Cat's Event"
     And I check "times_Afternoon"
     And I choose "my_location_Your_House"
-    And I press "Schedule"
+    And I press "Submit"
     And I should see "Time: Morning, Afternoon"
     And I should see "Location: Your House"
     
