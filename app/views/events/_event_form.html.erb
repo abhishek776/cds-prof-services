@@ -81,8 +81,9 @@
   <% end %>
 
   <div class="field">
-    <div class="ui primary button transparent input"><input id='update_event_button' type="submit" value="Schedule" name="update_dog_button" class='btn info'  style="text-align:center"/></div>
+    <!--<div class="ui primary button transparent input"><input id='update_event_button' type="submit" value="Schedule" name="update_dog_button" class='btn info'  style="text-align:center"/></div>-->
 
+   <%= submit_tag "Submit", data: { disable_with: "Please wait..." }, :id => 'modal-submit', :class => "btn btn-primary" %>
 
     <%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>
     </div>
