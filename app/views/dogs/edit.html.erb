@@ -1,5 +1,4 @@
 
-<%= link_to 'To all Dogs', dogs_path %>
 <h1> Edit information about <%= @dog.name %> </h1>
   
 <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
@@ -8,11 +7,11 @@
 <%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
 
-  <div class="field"><label>Dog Name</label>
+  <div class="field"><label for="dog_name">Dog Name</label>
     <%= text_field(:dog, :name, :value => @dog.name) %>
   </div>
  
-  <div class="field"><label>Motto</label>
+  <div class="field"><label for="dog_motto">Motto</label>
     <%= text_field(:dog, :motto, :value => @dog.motto) %>
   </div>
   
@@ -53,27 +52,27 @@
   :multiple => true, :size => 8 %>
   </div>
 
-  <div class="field"><label>Mix</label>
+  <div class="field"><label for="mixes">Mix</label>
     Mix:          <td><%= @dog.mix_caption %></td> <br>
     <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}, @dog.readable_mixes),
   :multiple => true, :size => 11 %>
   </div>
   
-  <div class="field"><label>Likes</label>
+  <div class="field"><label for="likes">Likes</label>
     <%= select_tag :likes, options_for_select(@like_list.collect{|s| s.value}, @dog.readable_likes),
   :multiple => true, :size => 6, :selected => @dog.readable_likes %>
   </div>
 
-  <div class="field"><label>Energy Level</label>
+  <div class="field"><label for="dog_energy_level_id">Energy Level</label>
   <% energy_options = options_from_collection_for_select(EnergyLevel.all, 'id', 'value', @energy.collect {|s| s.value}) %>
   <%= select :dog, :energy_level_id, energy_options %> 
   </div>
   
-  <div class="field"><label>Description</label>
+  <div class="field"><label for="dog_description">Description</label>
     <%= text_area(:dog, :description, rows: 2, :value => @dog.description) %>
   </div>
 
-  <div class="field"><label>Health Notes</label>
+  <div class="field"><label for="dog_health">Health Notes</label>
     <%= text_area(:dog, :health, rows: 2, :value => @dog.health ) %>
   </div>
 
@@ -84,25 +83,23 @@
     <%= radio_button :dog, :fixed, false, :checked => true if not @dog.fixed%>
   </div>
 
-  <div class="field"><label>General Availability</label>
+  <div class="field"><label for="dog_availability" >General Availability</label>
     <%=text_area(:dog, :availability, :value => @dog.availability) %>
   </div>
 
 
  <!--IMAGE UPLOADING -->
 
-
+<% end %>
 
 <div class="field"><label>
-  <button class="ui button" type="submit">Submit</button>
+  <button class="ui button green" type="submit">Submit</button>
   <!--<div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
-  <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
+  <%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button", :method => :get %>
   </div>
 </div>
 
-<% end %>
 
-<%= link_to 'Back', dogs_path %>
 
 
 

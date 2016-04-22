@@ -40,4 +40,7 @@ Feature: Facebook OAuth is used for signing into accounts
     Then I should not see "Cat"
     
 Scenario: I should be able to cancel dog creation
-  
+    When I go to the create dogs page
+    When I fill in "Dog Name" with "Moon"
+    When I press "Cancel"
+    Then I should not see "Moon"

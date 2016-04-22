@@ -17,7 +17,6 @@ class DogsController < ApplicationController
   def show
     @dog = Dog.find(params[:id])
     @parent = User.find(@dog.user_id)
-    
   end
 
   # GET /dogs/new

@@ -20,9 +20,20 @@ Scenario: Owner can edit his or her dog
   # When I am logged in as "Bruce Wayne"
   # And I am on "The Joker"'s dog page
   Then I follow "Edit Dog"
-  #And I edit the name to "Bane"
-  And I fill in "dog_name" with "Bane" 
+  And I fill in "Motto" with "Solo-Yolo"
+  And I fill in "Availability" with "Never"
+  And I fill in "Description" with "Solo-Yolo"
+  And I fill in "Dog Name" with "Bane" 
   And I press "Submit"
+  And I should see "Bane"
+  
+
+Scenario: I should be able to cancel dog editing
+  Then I follow "Edit Dog"
+  When I fill in "Dog Name" with "Moon"
+  When I press "Cancel"
+  Then I should not see "Moon"
+
 
   
   

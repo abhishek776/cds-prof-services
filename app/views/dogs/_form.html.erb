@@ -2,17 +2,14 @@
 
 <%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
-
     
-  <label>Dog Name</label>
-  <input id="Dog Name" type="text_field" <%= text_field(:dog, :name) %></input>
+  <div class="field"><label for="dog_name">Dog Name</label>
+    <%= text_field(:dog, :name) %>
+  </div>
   
-  
-  </br>
-  <label> Motto </label>
-  <input id="Motto" type="text_field" <%= text_field(:dog, :motto) %></input>
- 
-  
+ <div class="field"><label for="dog_motto">Motto</label>
+    <%= text_field(:dog, :motto) %>
+  </div>
   
   <div class="field"><label>Birthdate</label>
   <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>
@@ -35,18 +32,18 @@
 
   
  
-  <div class="field"><label>Mix</label>
+  <div class="field"><label for="mixes">Mix</label>
   <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}),
   :multiple => true, :size => 11 %>
   </div>
   
-  <div class="field"><label>Likes</label>
+  <div class="field"><label for="likes">Likes</label>
   <%= select_tag :likes, options_for_select(@like_list.collect{|s| s.value}),
   :multiple => true, :size => 6 %>
   </div>
 
     
-  <div class="field"><label>Energy Level</label>
+  <div class="field"><label for="dog_energy_level_id">Energy Level</label>
   <% energy_options = options_from_collection_for_select(EnergyLevel.all, 'id', 'value', @energy.collect {|s| s.value}) %>
   <%= select :dog, :energy_level_id, energy_options %> 
   </div>
@@ -67,17 +64,18 @@
      <%= text_field(:dog, :youtube_id) %>
   </div>
   
-  <label>Description</label>
-  <input id="Description" type="text_field" <%= text_field(:dog, :description) %></input>
+   <div class="field"><label for="dog_description">Description</label>
+    <%= text_area(:dog, :description) %>
+  </div>
+
+  <div class="field"><label for="dog_health">Health Notes</label>
+    <%= text_area(:dog, :health) %>
+  </div>
   
-  </br>
-  <label> Health Notes</label>
-  <input id="Health Notes" type="text_field" <%= text_field(:dog, :health, :placeholder => "Is there anything sitters should know about your dog's health (allergies, recent surgeries, etc.)?") %></input>
- 
-  </br>
-  <label>General Availability</label>
-  <input id="General Availability" type="text_field" <%= text_field(:dog, :availability, :placeholder => "Tell us when you would like a sitter") %></input>
-  
+  <div class="field"><label for="dog_availability">General Availability</label>
+    <%=text_area(:dog, :availability) %>
+  </div>
+
 
  <!--IMAGE UPLOADING -->
 <% end %>
