@@ -30,18 +30,18 @@
 
 <div class="content">
   <div class="description">
-    <% unless dog.availability == "" %>
+    <% unless dog.description.nil? or  dog.description == "" %>
     Description: <%= dog.description %>
     <%end%>
   </div>
   <div class="description">
-    <% unless dog.availability == "" %>
+    <% unless dog.motto.nil? or dog.motto == "" %>
     Motto: <%= dog.motto %>
     <%end%>
   </div>
   
    <div class="description">
-   <% unless dog.availability == "" %>
+   <% unless dog.availability.nil? or  dog.availability == "" %>
    Availability: <%= dog.availability %>
    <% end %>
    </div>
