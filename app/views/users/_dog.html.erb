@@ -2,7 +2,7 @@
 <div class="ui divider"></div>
 <div id="dogs" class="ui relaxed divided list">
 
-    <% if dog.user_id.to_i != current_user.id and  dog.future_events? %>
+    <% if dog.user_id.to_i != @user.id and  dog.future_events? %>
     <div class="ui vertical segment" style="padding: 1em; border-style: solid; border-width: 1px; border-color: #5bbd72; border-radius: 3px" id = <%= dog.owner.zipcode %> >
     <div class="ui green bottom right attached right label" style="border-radius:0">Looking for a sitter!</div>
     <%end%>

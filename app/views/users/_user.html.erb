@@ -39,8 +39,8 @@
     <%end%>
     </div>
     <div class="extra content">
-    <a> <i class="heart icon"></i>4 Dogs</a>
-    <a><i class="calendar icon"></i>5 events</a>
+    <a> <i class="heart icon"></i><%=@user.dogs.count %> Dogs</a>
+    <a><i class="calendar icon"></i><%=@user.dogs.count %> Events</a>
     <a><i class="star icon"></i>Premium User</a>
     </div>
     <% if @own_profile  %>
