@@ -59,18 +59,14 @@
       <% end %>
       </h2>
 
-      <div class="ui divider"></div>
-      <div id="dogs" class="ui relaxed divided list">
       <!-- USERS DOGS ------------------------------------------------------------->  
         <%= render :partial => "dog", :collection => @user.dogs %>
       <!--END OF USERS DOGS------------------------------>
-      </div>
+  
       </div>
       <div class="ui segment">
       <h2><%= @user.first_name %>'s Starred Dogs</h2>
-      <div class="ui divider"></div>
-      <div id="dogs" class="ui relaxed divided list">
-        
+     
       <!--STARRED DOGS-->
       <% if not @staredDogs.nil? %>
       <%= render :partial => "dog", :collection => @staredDogs %>
@@ -78,9 +74,8 @@
       No starred dogs.
       <%end%>
       <!--END OF STARRED DOGS   -->
-      </div>
-      </div>
       
+      </div>
       </div>
       </div>
 
