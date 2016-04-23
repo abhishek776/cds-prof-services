@@ -1,3 +1,7 @@
+
+<div class="ui divider"></div>
+<div id="dogs" class="ui relaxed divided list">
+  
 <div class ="item">
 <div class="ui grid">
   <div class="six wide column">
@@ -21,11 +25,17 @@
 
 <div class="content">
   <div class="description">
-    <%= dog.description %>
+    Description: <%= dog.description %>
   </div>
   <div class="description">
-    <%= dog.motto %>
+    Motto: <%= dog.motto %>
   </div>
+  
+   <div class="description">
+   <% unless dog.availability == "" %>
+   Availability: <%= dog.availability %>
+   <% end %>
+   </div>
       
       <div class="extra content">
         <a>
@@ -62,13 +72,6 @@
           <span class="right floated" style="margin-right: 5%">
           <%= dog.owner.zipcode %>
           </span>
-          
-           <div class="extra content">
-           <% unless dog.availability == "" %>
-           <i class="wait icon"></i>
-           <%= dog.availability %>
-           <% end %>
-           </div>
            
         </div>
         </div>
@@ -76,4 +79,6 @@
         <div>
 </div>
 </div>
+</div>
+
 </div>
