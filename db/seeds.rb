@@ -589,8 +589,11 @@ end
 
 
 
-dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1},
-{:name => "Bear", :user_id => 3, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1}]
+# dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1},
+# {:name => "Bear", :user_id => 3, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1}]
+
+dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1}]
+
 
 dogs_list.each do |dog|
   dog = Dog.create(dog)
@@ -600,27 +603,20 @@ dogs_list.each do |dog|
   event.time_of_day = ["Overnight"]
   event.my_location = "My House"
   event.description = "Princess needs a walk"
-  if dog.name == "Bear"
-    event.confirmed_user_id = 1
-    event.description = "Bear needs a walk"
- else
-    event.description = "Princess needs a walk"
-  end
+  event.description = "Princess needs a walk"
   event.dog = dog
   event.save!
 end
 
 
 
-mix_linker_list = [{:dog_id => 1, :mix_id => 210},
-                   {:dog_id => 2, :mix_id => 280}]
+mix_linker_list = [{:dog_id => 1, :mix_id => 210}]
 
 mix_linker_list.each do |link|
   mix_link = DogMixLinker.create(link)
 end
 
-personality_linker_list = [{:dog_id => 1, :personality_id => 8},
-                          {:dog_id => 3, :personality_id => 8}]
+personality_linker_list = [{:dog_id => 1, :personality_id => 8}]
 
 personality_linker_list.each do |link|
   dog = DogPersonalityLinker.create(link)
