@@ -34,7 +34,8 @@ class EventsController < ApplicationController
     set_flash
 
     if flash[:notice]
-      render 'new'
+      redirect_to :back
+      # render 'new'
     else
       redirect_to events_path
     end

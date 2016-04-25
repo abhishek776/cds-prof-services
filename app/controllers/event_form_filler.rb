@@ -18,7 +18,6 @@ class EventViewHelper
   def event_info(info)
     # Set form fields with new event info
     @dogs = info['dogs'] ? info['dogs'].keys : []
-
     @values[:start_date] = get_date(info["date_timepicker"]["start"])
     @values[:end_date] = get_date(info["date_timepicker"]["end"])
     @values[:time_of_day] = info["times"] ? info["times"].keys : []
