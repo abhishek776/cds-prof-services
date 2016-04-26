@@ -149,8 +149,8 @@
               <% end %>
               </div>
           
-            <% if (Booking.exists?(event: event))%>
-          
+            <% if (not event.booking_users.nil?) %>
+            
             <h5> Candidates to walk your dog: </h5>
             
             <% end %>
