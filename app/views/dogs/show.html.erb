@@ -149,7 +149,7 @@
               <% end %>
               </div>
           
-            <% if (event.booking_users.count != 0 and @dog.user_id.to_i == current_user.id) %>
+            <% if (Booking.where(event: event).count != 0 and @dog.user_id.to_i == current_user.id) %>
             <h5> Candidates to walk your dog: </h5>
             
             <% end %>
