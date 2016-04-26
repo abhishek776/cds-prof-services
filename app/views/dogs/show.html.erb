@@ -122,7 +122,7 @@
             <% end %>
           </div>
  <!--BOOK EVENT          -->
-            <% if not current_user.nil? %>
+            <% if not current_user.nil? or 1 %>
               <%if current_user.id != @dog.user_id %>
               <div class="booking"><label for="book_<%=event.id%>" ></label>
               <%- unless current_user.booking_events.exists?(id: event.id) -%>
