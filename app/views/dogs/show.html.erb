@@ -149,7 +149,7 @@
               <% end %>
               </div>
           
-            <% if ( event.booking_users.exists?)%>
+            <% if (Booking.exists?(event: event))%>
           
             <h5> Candidates to walk your dog: </h5>
             
