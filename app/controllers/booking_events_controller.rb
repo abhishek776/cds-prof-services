@@ -16,7 +16,7 @@ class BookingEventsController < ApplicationController
       end
     end
     @event.confirmed_user_id = params[:user_id]
-    @event.save!
+    @event.save
     puts @event.confirmed_user_id
     puts @event.id
     redirect_to :back
@@ -25,8 +25,8 @@ class BookingEventsController < ApplicationController
   def destroy
     Booking.where(event_id: @event.id, user_id: params[:user_id]).first.destroy
     if @event.confirmed_user_id
-       @event.confirmed_user_id = nil
-      @event.save!
+      @event.confirmed_user_id = nil
+      @event.save
     end
     redirect_to :back
   end
