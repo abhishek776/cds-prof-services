@@ -149,7 +149,7 @@
               <% end %>
               </div>
           
-            <% if (not event.booking_users.?)  %>
+            <% if ( event.booking_users.exists?(id: event.id)) and (event.booking_users.count != 0 and @dog.user_id.to_i == current_user.id) %>
             <%=event.booking_users%>
             <h5> Candidates to walk your dog: </h5>
             
