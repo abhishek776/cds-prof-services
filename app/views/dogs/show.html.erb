@@ -84,7 +84,7 @@
       </div>
     </div>
         <div class="embed-container">
-        <%= embed(@dog.youtube_id) %>        
+        <%= if @dog.youtube_id != '' then embed(@dog.youtube_id) end %>        
         </div>
     
         <%= render :partial => "events/events", :dog => @dog %>

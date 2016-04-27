@@ -13,18 +13,15 @@ class Dog < ActiveRecord::Base
   has_many :events, :dependent => :destroy
   has_many :stars, :dependent => :destroy
   
-  YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
-
-  
-  has_attached_file :image,
-    :styles => {:large =>"500x500>",:medium => "300x300>",:thumb => "100x100>"},
-    :default_url => "default_dog.jpg",
-    :url => "/:class/:attachment/:id/:style_:basename.:extension"
+  # has_attached_file :image,
+  #   :styles => {:large =>"500x500>",:medium => "300x300>",:thumb => "100x100>"},
+  #   :default_url => "default_dog.jpg",
+  #   :url => "/:class/:attachment/:id/:style_:basename.:extension"
     
   
-  validates_attachment :image, 
-      content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
-      :size => { :in => 0..500.kilobytes } 
+  # validates_attachment :image, 
+  #     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
+  #     :size => { :in => 0..500.kilobytes } 
 
   def set_mix_like_personality(new_mixes, new_likes, new_pers)
     self.mixes = []

@@ -46,11 +46,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'omniauth-facebook', '~> 1.5.0'
 gem 'therubyracer', platforms: :ruby # or any other runtime
-gem 'less-rails'
+# gem 'less-rails'
 gem 'autoprefixer-rails'
 gem 'semantic-ui-rails'
 gem 'jquery-turbolinks'
-gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'aws-sdk', '~> 2'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

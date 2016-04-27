@@ -11,7 +11,7 @@
 <div class="ui grid">
   <div class="six wide column">
     <span class="image">
-      <% if dog.image.file? %>          
+      <% if dog.image? %>          
         <div class="ui bottom"> <%= link_to (image_tag dog.image, :class => "ui small image") , dog_path(dog.id) %> </div>
       <% else %>
         <%= image_tag "default_dog.jpg" %>

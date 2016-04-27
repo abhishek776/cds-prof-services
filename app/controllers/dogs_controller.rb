@@ -1,6 +1,7 @@
 class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show]
+  before_action :set_s3_direct_post, only: [:new, :edit, :create, :update]
   before_filter :current_user
   # GET /dogs
   def index
@@ -71,6 +72,10 @@ class DogsController < ApplicationController
   end
 
   private
+
+    def set_s3_direct_post
+      @s3_direct_post = S3_BUCKET.presigned_post(key: "uploads/#{SecureRandom.uuid}/${filename}", success_action_status: '201', acl: 'public-read-write')
+    end
 
     def set_dog
       @dog = Dog.find(params[:id])
