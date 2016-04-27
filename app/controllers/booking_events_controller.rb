@@ -11,10 +11,13 @@ class BookingEventsController < ApplicationController
     puts @event.confirmed_user_id
     bookings = Booking.where(event_id: @event.id)
     bookings.each do |b|
-      if b.user_id != params[:user_id]
-        b.destroy
-      end
+      b.destroy
+      # if b.user_id != params[:user_id]
+      #   b.destroy
+      # end
     end
+    @user = User.find(params[:user_id])
+    Booking.create(event: @event, user: @user)
     @event.confirmed_user_id = params[:user_id]
     @event.save
     puts @event.confirmed_user_id
