@@ -148,7 +148,7 @@
               </div>
               <% end %>
               </div>
-          
+      <%if not 1%>
             <% if not event.booking_users.nil? and event.booking_users.count != 0 and @dog.user_id.to_i == current_user.id %>
             <h5> Candidates to walk your dog: </h5>
             
@@ -179,6 +179,7 @@
                   <% end %>
                   </div>
             <% end %>
+     <% end %>
             <% end %>
             <%end%>
 <!--END BOOK EVENT          -->
