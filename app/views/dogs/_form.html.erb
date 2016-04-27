@@ -1,6 +1,8 @@
 <h1>New Dog</h1>
 
-<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
+<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true, :class => "directUpload",
+      data: { 'form-data' => (@s3_direct_post.fields), 'url' => @s3_direct_post.url, 'host' => URI.parse(@s3_direct_post.url).host } ) do %>
+      
 <div class="ui form">  
 
   <div class="field"><label  for="dog_name" >Dog Name</label>
@@ -58,7 +60,7 @@
   
   
   <label>You can add picture of your dog</label>
-  <input type="file" name="dog[image]" id="dog_image">
+    <%=file_field(:dog, :image) %>
   </br>
   
   <label>You can add youtube video of your dog</label>  
