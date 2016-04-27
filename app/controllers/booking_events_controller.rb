@@ -11,12 +11,15 @@ class BookingEventsController < ApplicationController
     puts @event.confirmed_user_id
     bookings = Booking.where(event_id: @event.id)
     bookings.each do |b|
-      if b.user_id != params[:user_id]
-        b.destroy
-      end
+      b.destroy
+      # if b.user_id != params[:user_id]
+      #   b.destroy
+      # end
     end
+    @user = User.find(params[:user_id])
+    Booking.create(event: @event, user: @user)
     @event.confirmed_user_id = params[:user_id]
-    @event.save!
+    @event.save
     puts @event.confirmed_user_id
     puts @event.id
     redirect_to :back
@@ -25,8 +28,8 @@ class BookingEventsController < ApplicationController
   def destroy
     Booking.where(event_id: @event.id, user_id: params[:user_id]).first.destroy
     if @event.confirmed_user_id
-       @event.confirmed_user_id = nil
-      @event.save!
+      @event.confirmed_user_id = nil
+      @event.save
     end
     redirect_to :back
   end
