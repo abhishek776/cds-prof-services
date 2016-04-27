@@ -123,7 +123,7 @@
           </div>
  <!--BOOK EVENT          -->
             <% if not current_user.nil? %>
-              <%if current_user.id != @dog.user_id %>
+              <%if current_user.id != @dog.user_id or 1 %>
               <div class="booking"><label for="book_<%=event.id%>" ></label>
               <%- unless current_user.booking_events.exists?(id: event.id) -%>
               <%= link_to booking_events_path(event_id: event), method: :post, id: "book_#{event.id}", :class => "ui button" do%>
