@@ -39,7 +39,6 @@ class EventsController < ApplicationController
     
     else
       redirect_to events_path
-      # redirect_to user_path(current_user.id)
     end
   end
 
