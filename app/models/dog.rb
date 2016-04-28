@@ -1,5 +1,12 @@
 class Dog < ActiveRecord::Base
 
+  scope :has_gender, lambda {|genders| filter_gender(genders)}
+  scope :has_likes, lambda {|likes| filter_like(likes)}
+  scope :has_mix, lambda {|mix| filter_mix(mix)}
+  scope :has_energy_level, lambda {|energy_levels| filter_energy_level(energy_levels)}
+  scope :has_size, lambda {|sizes| filter_size(sizes)}
+  scope :in_age_range, lambda {|age_query| filter_age(age_query)}
+
   belongs_to :user
   has_many :dog_mix_linkers
   has_many :dog_like_linkers
@@ -59,10 +66,6 @@ class Dog < ActiveRecord::Base
     mix_list.join(", ")
   end
   
-  def self.filter_mix(mix)
-    joins(:mixes).where("mixes.value" => mix) unless mix == "All Mixes"
-  end
-  
   def personality_caption
     personality_list = self.personalities.map {|m| m.value}
     personality_list.join(", ")
@@ -101,17 +104,49 @@ class Dog < ActiveRecord::Base
   def self.age_ranges
     ["0-2 years", "2-4 years", "5-8 years", "9+ years"]
   end
+
+  def self.filter_gender(genders)
+    where("gender" => genders) unless genders.empty?
+  end
+
+  def self.filter_mix(mix)
+    joins(:mixes).where("mixes.value" => mix) unless mix.empty?
+  end
+
+  def self.filter_energy_level(energy_levels)
+    joins(:energy_level).where("energy_levels.value" => energy_levels) unless energy_levels.empty?
+  end
+
+  def self.filter_size(sizes)
+    joins(:size).where("sizes.value" => sizes) unless sizes.empty?
+  end
   
-  # def self.filter_by(criteria)
-  #   dogs = Dog.near(criteria[:zipcode], criteria[:radius], order: :distance)
-  #             .has_mix(criteria[:mix])
-  #             .has_size(criteria[:size])
-  #             .has_likes(criteria[:like])
-  #             .has_personalities(criteria[:personality])
-  #             .has_gender(criteria[:gender])
-  #             .has_energy_level(criteria[:energy_level])
-  #             .in_age_range(convert_age_ranges_to_dob_query(criteria[:age]))
-  # end
+  def self.filter_age(age_query)
+    where(age_query) unless age_query == ""
+  end
+
+  def self.convert_age_ranges_to_dob_query(age_ranges_indices)
+    age_range_nums = [[0, 2], [2, 4], [5, 8], [9, 30]]
+    query_arr = []
+    age_ranges_indices.each do |age_range|
+        query_arr << get_base(age_ranges.index(age_range), age_range_nums)
+    end
+    query_arr.join(' OR ')
+  end
+
+  def self.get_base(i, ranges)
+    first = (Time.now.to_datetime - ranges[i][1].years).strftime "%Y-%m-%d %H:%M:%S"
+    second = (Time.now.to_datetime - ranges[i][0].years).strftime "%Y-%m-%d %H:%M:%S"
+    base = %Q[("dogs"."dob" BETWEEN '#{first}' AND '#{second}')]
+  end
+
+  def self.filter_by(criteria)
+    dogs = Dog.all.has_mix(criteria[:mix])
+              .has_size(criteria[:size])
+              .has_gender(criteria[:gender])
+              .has_energy_level(criteria[:energy_level])
+              .in_age_range(convert_age_ranges_to_dob_query(criteria[:age])).uniq
+  end
 
  
 end

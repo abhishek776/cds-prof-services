@@ -40,7 +40,7 @@ Scenario: I should be able to filter the dogs by gender
   
 Scenario: I should be able to filter the dogs by size
   When I am on the explore dogs page 
-  And I filter size "small, medium"
+  And I filter size "small"
   And I press "Go"
   Then I should see "Harley Quinn"
   And I should see "The Joker"
@@ -55,7 +55,7 @@ Scenario: I should be able to filter the dogs by mix
   
 Scenario: I should be able to filter the dogs by energy level
   When I am on the explore dogs page
-  And I filter energy "Active, High"
+  And I filter energy "Active"
   And I press "Go"
   Then I should see "Batman"
   And I should see "The Joker"
