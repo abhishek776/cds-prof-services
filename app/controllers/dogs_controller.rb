@@ -2,15 +2,25 @@ class DogsController < ApplicationController
   before_action :set_dog, only: [:show, :edit, :update, :destroy]
   before_action :require_login, except: [:index, :show]
   before_filter :current_user
+  
   # GET /dogs
   def index
-    @dogs = Dog.all
-    filter = params[:filter] || {}
-    gender = filter[:gender] || ["Male", "Female"]
-    @dogs = @dogs.where(gender: gender)
-    if filter[:has_event] and filter[:has_event] == "1"
+    set_dog_types
+    
+    values = {}
+    values[:mix] = params[:mix] ? params[:mix] : []
+    values[:gender] = params[:gender] ? params[:gender] : []
+    values[:size] = params[:size] ? params[:size] : []
+    values[:energy_level] = params[:energy_level] ? params[:energy_level] : [] 
+    values[:age] = params[:age] ? params[:age] : []
+
+    @dogs = Dog.filter_by values
+    
+    
+    if params[:has_event] and params[:has_event] == "1"
       @dogs = @dogs.select {|x| x.future_events?}
     end
+
   end
  
   # GET /dogs/1
@@ -82,6 +92,7 @@ class DogsController < ApplicationController
       @energy = EnergyLevel.all
       @like_list = Like.all
       @personality_list = Personality.all
+      @age_ranges = Dog.age_ranges
     end
 
     def dog_params

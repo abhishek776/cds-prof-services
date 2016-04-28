@@ -15,7 +15,7 @@ Feature: Facebook OAuth is used for signing into accounts
     And I should see "Add Dog"
     When I follow "Add Dog"
     Then I should see "Name"
-    When I fill in "Dog Name" with "Cat"
+    When I fill in "Dog Name" with "Catherine"
     And I fill in "Motto" with "Miay"
     And I fill in "Description" with "I am a cat"
     And I fill in "Health Notes" with "excelent"
@@ -23,8 +23,8 @@ Feature: Facebook OAuth is used for signing into accounts
     When I press "Submit" 
     Then I should be on Clark's profile page
     When I follow "To All Dogs"
-    Then I should see "Cat"
-    When I follow "Cat"
+    Then I should see "Catherine"
+    When I follow "Catherine"
     Then I should see "I am a cat"
     And I should see "Miay"
     And I should see "excelent"
@@ -32,12 +32,12 @@ Feature: Facebook OAuth is used for signing into accounts
     
     When I follow "My Profile"
     And I follow "To All Dogs"
-    And I follow "Cat"
+    And I follow "Catherine"
     Then I should see "Delete Dog"
     When I follow "Delete Dog"
     Then I should be on Clark's profile page
     When I follow "To All Dogs"
-    Then I should not see "Cat"
+    Then I should not see "Catherine"
     
 Scenario: I should be able to cancel dog creation
     When I go to the create dogs page
