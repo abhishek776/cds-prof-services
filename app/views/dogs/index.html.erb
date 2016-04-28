@@ -5,26 +5,27 @@
 <%= form_tag({controller: :dogs, action: :index}, method: :get, :multipart => true) do %>
 
   <div class="field"><label>Gender</label>
-    <%= select :filter, :gender, ["Male", "Female"] %>
+    <%= select_tag :gender, options_for_select(["Male", "Female"], params[:gender]),
+    :multiple => false, :size => 2 %>
   </div>
   
   <div class="field"><label>Size</label>
-  <%= select_tag :size, options_for_select(@size.collect{|s| s.value}),
-  :multiple => true, :size => 4 %>
+    <%= select_tag :size, options_for_select(@size.collect{|s| s.value}, params[:size]),
+    :multiple => true, :size => 4 %>
   </div>
   
   <div class="field"><label>Mix</label>
-  <%= select_tag :mix, options_for_select(@all_mixes.collect{|s| s.value}),
-  :multiple => true, :size => 11 %>
+    <%= select_tag :mix, options_for_select(@all_mixes.collect{|s| s.value}, params[:size]),
+    :multiple => true, :size => 11 %>
   </div>
   
   <div class="field"><label>Age</label>
-  <%= select_tag :age, options_for_select(@age_ranges),
-  :multiple => true, :size => 4 %>
+    <%= select_tag :age, options_for_select(@age_ranges, params[:size]),
+    :multiple => true, :size => 4 %>
   </div>
   
   <div class="field"><label>Has Event?</label>
-    <%= check_box :filter, :has_event %>
+    <%= check_box_tag :has_event, 1, (params[:has_event] == "1") %>
   </div>
 
   <div class="field"><label for='update_dog_button'>Submit</label>

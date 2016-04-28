@@ -8,14 +8,18 @@ class DogsController < ApplicationController
     set_dog_types
     
     values = {}
-    filter = params[:filter] || {}
     values[:mix] = params[:mix] ? params[:mix] : []
-    values[:gender] = filter[:gender] ? filter[:gender] : []
+    values[:gender] = params[:gender] ? params[:gender] : []
     values[:size] = params[:size] ? params[:size] : []
     values[:energy_level] = params[:energy_level] ? params[:energy_level] : [] 
     values[:age] = params[:age] ? params[:age] : []
 
     @dogs = Dog.filter_by values
+    
+    
+    if params[:has_event] and params[:has_event] == "1"
+      @dogs = @dogs.select {|x| x.future_events?}
+    end
 
   end
  
