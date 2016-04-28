@@ -22,18 +22,7 @@ class Dog < ActiveRecord::Base
   #paperclip dog multiple pictures
   has_many :photos, :dependent => :destroy
   
-  has_attached_file :image,
-    :styles => {:large =>"500x500>",
-                :medium => "300x300>",
-                :thumb => "100x100>"},
-    :default_url => "default_dog.jpg",
-    :url => "/:class/:attachment/:id/:style_:basename.:extension"
-    # :storage => :s3,
-    # :bucket => 'cds-prof'
 
-  validates_attachment :image, 
-      content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
-      :size => { :in => 0..500.kilobytes } 
 
 
 

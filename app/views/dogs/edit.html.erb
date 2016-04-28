@@ -13,15 +13,15 @@
     <%= text_field(:dog, :motto, :value => @dog.motto) %>
   </div>
   
-  <div class="image" style="padding:3em;">
-    <%= image_tag @dog.image.url(:medium) %>
-  </div>
+  <% if not @dog.photos.empty? %>          
+    <div class="ui bottom"> <%= link_to ( image_tag @dog.photos[0].image.url(:large) ) , dog_path(@dog.id) %> </div>
+  <% end %> 
  
      <label>You can add picture of your dog</label>
   <!--<input type="file" name="dog[image]" id="dog_image">-->
   </br>
 
-  <%= render @photos %>
+        <%= render partial: 'photo', collection: @photos, locals: {size: 30} %>
   
   <div class="field"><label>S3 Image</label>
     <%= file_field_tag "image", type: :file %>
