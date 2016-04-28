@@ -15,12 +15,17 @@
   </div>
   
   <div class="field"><label>Mix</label>
-    <%= select_tag :mix, options_for_select(@all_mixes.collect{|s| s.value}, params[:size]),
+    <%= select_tag :mix, options_for_select(@all_mixes.collect{|s| s.value}, params[:mix]),
     :multiple => true, :size => 11 %>
   </div>
   
   <div class="field"><label>Age</label>
-    <%= select_tag :age, options_for_select(@age_ranges, params[:size]),
+    <%= select_tag :age, options_for_select(@age_ranges, params[:age]),
+    :multiple => true, :size => 4 %>
+  </div>
+  
+  <div class="field"><label>Energy Level</label>
+    <%= select_tag :energy_level, options_for_select(@energy.collect{|s| s.value}, params[:energy_level]),
     :multiple => true, :size => 4 %>
   </div>
   
