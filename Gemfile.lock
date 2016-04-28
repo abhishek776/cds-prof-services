@@ -62,6 +62,9 @@ GEM
       ZenTest (~> 4.5)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap-sass (3.3.6)
+      autoprefixer-rails (>= 5.2.1)
+      sass (>= 3.3.4)
     builder (3.2.2)
     cane (2.6.2)
       parallel
@@ -381,6 +384,7 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   autotest-rails
+  bootstrap-sass
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   cucumber-rails

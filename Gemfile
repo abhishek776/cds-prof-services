@@ -51,6 +51,7 @@ gem 'autoprefixer-rails'
 gem 'semantic-ui-rails'
 gem 'jquery-turbolinks'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'bootstrap-sass'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -84,8 +84,11 @@
       </div>
     </div>
         <div class="embed-container">
-        <%= embed(@dog.youtube_id) %>        
+        <%= if @dog.youtube_id != '' then embed(@dog.youtube_id) end %> 
         </div>
+        
+        <%= render @photos %>
+        <%= render partial: 'photo', collection: @photos, locals: {size: 30} %>
     
                  <!-- THIS IS THE EVENTS LISTING -->
       <div class="ui secondary top attached segment">

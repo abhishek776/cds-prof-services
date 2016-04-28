@@ -51,6 +51,7 @@ class DogsController < ApplicationController
     @dog = Dog.new(dog_params)
     @dog.user_id = @user.id
     @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
+    Photo.create(photo_params)    
     if @dog.save
       redirect_to @user
     else
@@ -62,6 +63,10 @@ class DogsController < ApplicationController
   def update
     @dog.update_attributes(dog_params)
     @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
+    if params[:image] then
+      image = params[:image]
+      @dog.photos.create(image: image)
+    end
     if @dog.save
       flash[:notice] = "#{@dog.name} was succesfully updated."  
       puts show.nil?
@@ -84,6 +89,7 @@ class DogsController < ApplicationController
 
     def set_dog
       @dog = Dog.find(params[:id])
+      @photos = @dog.photos
     end
     
     def set_dog_types
@@ -99,6 +105,10 @@ class DogsController < ApplicationController
       params.require(:dog).permit(:dog, :image, :personalities, :mixes, :likes, :name, :dob, :energy_level_id, :description, :motto,
         :fixed, :health, :availability, :gender, :size_id, :user_id, :youtube_id)
     end
+    
+    # def photo_params
+    #   params.require(:photo).permit(:image, :title)
+    # end
     
     def require_login
       unless current_user
