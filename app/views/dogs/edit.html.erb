@@ -21,7 +21,7 @@
   <!--<input type="file" name="dog[image]" id="dog_image">-->
   </br>
 
-        <%= render partial: 'photo', collection: @photos, locals: {size: 30} %>
+        <%= render partial: 'photo', collection: @photos, locals: {edit: true} %>
   
   <div class="field"><label>S3 Image</label>
     <%= file_field_tag "image", type: :file %>
