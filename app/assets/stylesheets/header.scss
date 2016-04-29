@@ -27,13 +27,25 @@ $blue: #28b9f1;
         padding-bottom:0.7em;
         
     }
+    .browse-dogs{
+        height:3.3em;
+        display:block;
+        padding:0.8em;
+        padding-top: 1.2em;
+        padding-bottom:0.7em;
+        margin-right:1.5em;
+        
+    }
+    .fb-login{
+        font-size:0.85em;
+    }
     .login {
         font-size: 16px;
         color: $dark-gray;
         font-weight: 300;
         padding: 5px 3px;
         margin: 12px 0px;
-        margin-right: 80px;
+        margin-right: 50px;
         border-bottom: 1px solid white;
         text-decoration: none;
 
