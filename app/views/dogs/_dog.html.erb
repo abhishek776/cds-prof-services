@@ -1,7 +1,11 @@
 <div class="five wide column">
     <div class="ui fluid card">
         <div class="image">
-            <%= image_tag @dog.image %>
+            <% if not @dog.photos.empty?%>
+                <%= image_tag @dog.photos[0].image.url %>
+            <% else %>
+              <%= image_tag "default_dog.jpg"%>
+            <% end %>
         </div>
         <div class="content">
             <h3 class="no-margin">

@@ -1,9 +1,9 @@
 <div class="ui divider"></div>
 <div id="dogs" class="ui grid dog_partial">
   <div class="seven wide column">
-    <% if dog.image.file? %>
+    <% if not dog.photos.empty?%>
       <a href=<%=dog_path(dog.id)%>>
-        <%= image_tag dog.image, {:class => "ui image", :style => "width:100%;height:auto"} %>
+        <%= image_tag dog.photos[0].image.url, {:class => "ui image", :style => "width:100%;height:auto"} %>
       </a>
     <% else %>
       <%= image_tag "default_dog.jpg", {:class => "ui image", :style => "width:100%;height:auto"} %>

@@ -48,7 +48,6 @@ class DogsController < ApplicationController
   
   # POST /dogs/create
   def create
-    
     @user = current_user
     @dog = Dog.new(dog_params)
     @dog.user_id = @user.id
