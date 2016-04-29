@@ -11,8 +11,8 @@ class Photo < ActiveRecord::Base
    # :url => "/:class/:attachment/:id/:style_:basename.:extension"
                     storage: :s3,
                     s3_credentials: {
-                      access_key_id: "AKIAJDJY4V3QGDVGH2WQ", 
-                      secret_access_key: "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"},
+                      access_key_id: "AKIAIMHLKR7CSHFL4JLA", 
+                      secret_access_key: "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"},
                     bucket: "cds-prof",
                     s3_region: "us-east-1"
 

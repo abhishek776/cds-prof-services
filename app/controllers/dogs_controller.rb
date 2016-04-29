@@ -47,14 +47,16 @@ class DogsController < ApplicationController
   
   # POST /dogs/create
   def create
+    
     @user = current_user
     @dog = Dog.new(dog_params)
     @dog.user_id = @user.id
     @dog.set_mix_like_personality(params[:mixes], params[:likes], params[:personalities])
-    if params[:image] then @dog.photos.create(image: params[:image])     end
     if @dog.save
+      if params[:image] then @dog.photos.create(image: params[:image])     end
       redirect_to @user
     else
+      set_dog_types
       render 'new'
     end
   end
@@ -70,7 +72,7 @@ class DogsController < ApplicationController
       redirect_to show
     else
       flash[:notice] = "Update Error."
-      redirect_to index
+      redirect_to show
     end 
   end
 
