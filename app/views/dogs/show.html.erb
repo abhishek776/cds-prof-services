@@ -9,7 +9,7 @@
       <div class="description" style="margin-top:10px;font-weight:300">
         <%=@dog.description%>
       </div>
-      <div class="parent description" style="margin-top:10px;font-weight:400;font-size:18px">
+      <div class="parent description" style="margin-top:15px;font-weight:400;font-size:18px">
         <span style="font-weight:400">Parent:</span>
         <a href=<%=user_path(@parent.id)%> class="green-button">
           &nbsp;&nbsp;
@@ -17,96 +17,23 @@
           <%=@parent.first_name%>
         </a>
       </div>
-      
-      <div class="ui top attached tabular menu">
-          <a class="item active" data-tab="first">First</a>
-          <a class="item" data-tab="second">Second</a>
-          <a class="item" data-tab="third">Third</a>
+    </div>
+    <div class="ui segment">
+      <div class="ui pointing secondary menu">
+          <a class="item active" data-tab="first">Events</a>
+          <a class="item" data-tab="second">Video</a>
       </div>
-        <div class="ui bottom attached tab segment active" data-tab="first">
-          First
-        </div>
-        <div class="ui bottom attached tab segment" data-tab="second">
-          Second
-        </div>
-        <div class="ui bottom attached tab segment" data-tab="third">
-          Third
-        </div>
-
-    
-      <div class="embed-container">
-        <%= embed(@dog.youtube_id) %>
+      <div class="ui bottom tab active" data-tab="first">
+        <%= render :partial => "event", :collection => @dog.future_events %>
       </div>
-      
+      <div class="ui bottom tab" data-tab="second">
+        <div class="ui embed" style="margin-left:50px;margin-right:50px" data-source="youtube" data-id=<%=@dog.youtube_id.split("=")[1]%>>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-
-
-<!--      <div class="content">-->
-<!--        <p class="header"><%= @dog.name %></p>-->
-<!--        <div class="meta">-->
-<!--          Age:  <%= @dog.age_caption %>    -->
-<!--        </div>-->
-<!--        <div class="description">-->
-<!--          Motto:          <%=@dog.motto%>-->
-<!--        </div>-->
-<!--        <div class="description">-->
-<!--          Mix: <%= @dog.mix_caption %>-->
-<!--        </div>-->
-<!--        <div class="description">-->
-<!--          Gender: <%= @dog.gender %>-->
-<!--        </div>-->
-<!--        <div class="description">-->
-<!--          Size: <%= @dog.size.value %>-->
-<!--        </div>-->
-<!--        <div class="description">-->
-<!--          Personality:<%= @dog.personality_caption %>-->
-<!--        </div>-->
-<!--        <div class="description">-->
-<!--          Likes:  <%= @dog.readable_likes.join(", ") %>-->
-<!--        </div> -->
-<!--        <div class="description">-->
-<!--          Energy level: <%= @dog.energy_level %>-->
-<!--        </div>  -->
-<!--        <div class="description">-->
-<!--           <%= @dog.name %> is <%="not" if not @dog.fixed %> fixed -->
-<!--        </div>  -->
-<!--      </div>    -->
-      
-<!--      <div class="extra content">-->
-<!--        <i class="heart icon"></i><%= link_to "Parent", user_path(@parent.id) %>-->
-<!--        <a> <i class="calendar icon"></i> <%=@dog.events.count%> Events</a>-->
-<!--        <a> <i class="star icon"></i> Premium User </a>-->
-<!--      </div>-->
-<!--        <% if not @current_user.nil? and @current_user.id == @dog.user_id %>-->
-<!--        <%= link_to "Add event", new_event_path(), :id => "add_event_button", :class => "ui secondary button", :method => :get %> -->
-<!--        <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui  button", :method => :get %>-->
-<!--        <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :data => { disable_with: "Please wait..." }, :class => "ui  button", :method => :delete %>    -->
-<!--        <% end %>-->
-<!--    </div>-->
-<!--  </div>-->
-
-<!--  <div class="eleven wide column">-->
- <!-- -->
-<!--    <div class="ui segment">-->
-<!--      <div id="dogs">-->
-<!--         <div class="description">-->
-<!--          Description: <%=@dog.description %> -->
-<!--          <br>-->
-<!--          Health: <%=@dog.health %>-->
-<!--          <br>-->
-<!--          Availability: <%=@dog.availability %>-->
-<!--          <br>-->
-<!--          <div class="ui bottom">My parent is <%= link_to @parent.first_name, user_path(@parent.id) %> -->
-<!--          <%=link_to (image_tag @parent.image, :class => "ui avatar image"), user_path(@parent.id)%></div>-->
-<!--      </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--        <div class="embed-container">-->
-<!--        <%= embed(@dog.youtube_id) %>        -->
-<!--        </div>-->
     
                  <!-- THIS IS THE EVENTS LISTING -->
 <!--      <div class="ui secondary top attached segment">-->
