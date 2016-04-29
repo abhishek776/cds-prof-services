@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Explore Dogs</h1>
+<%= image_tag("browse-dogs-header.png", :alt => "subtext", id: "browse-dogs-header") %>
+
 
 <%= form_tag({controller: :dogs, action: :index}, method: :get, :multipart => true) do %>
 
