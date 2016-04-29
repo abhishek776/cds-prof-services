@@ -1,3 +1,19 @@
+<div class="ui one column grid">
+  <div class="eight wide column">
+    <div class="ui fluid card" style="padding: 10px 20px">
+        <h2 class="no-margin">Edit Dog</h2>
+        <div class="ui divider"></div>
+        <%= render 'form' %>
+    </div>
+  </div>
+  <div class="eight wide column">
+    <div class="ui fluid card">
+       <%=image_tag("dogvert.png", {:style => "width:100%;height:auto"})%>
+    </div>
+  </div>
+</div>
+
+
 <h1> Edit information about <%= @dog.name %> </h1>
 <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :data => { disable_with: "Please wait..." }, :class => "ui  button", :method => :delete %>    
 

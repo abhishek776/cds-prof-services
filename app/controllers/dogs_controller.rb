@@ -34,6 +34,7 @@ class DogsController < ApplicationController
     @user = current_user
     @action = :create
     @method = :post
+    @dog = Dog.new
     set_dog_types
     render 'new'
   end
