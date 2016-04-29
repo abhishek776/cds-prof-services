@@ -6,9 +6,18 @@
         <div class="content">
             <h3 class="no-margin">
                 <%= @dog.name %>
-                <div class="right floated" style="font-weight:400">
-                    <i class="star icon"></i>
-                    <%=@dog.stars.count%>
+                <div class="right floated">
+                    <% if @current_user and not @current_user.starred_dogs.exists?(id: @dog.id) %>
+                        <%=link_to '/star_dog?'+{dog_id: @dog.id}.to_param, {:id => "star_#{@dog.id}"} do %>
+                            <i class="empty star icon"></i>
+                            <%=@dog.stars.count%>
+                        <% end %>
+                    <% else %>
+                        <%=link_to '/unstar_dog?'+{dog_id: @dog.id}.to_param, {:id => "star_#{@dog.id}"} do %>
+                            <i class="star icon"></i>
+                            <%=@dog.stars.count%>
+                        <%end%>
+                    <% end %>
                 </div>
             </h3>
             <div class="description"><%= @dog.motto %></div>

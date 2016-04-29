@@ -48,6 +48,9 @@ Rails.application.routes.draw do
     end
   end
   
+  get 'star_dog', to: 'starred_dogs#create'
+  get 'unstar_dog', to: 'starred_dogs#destroy'
+  
   resources :events do
     member do
       get 'bookings'
