@@ -592,8 +592,8 @@ end
 # dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1},
 # {:name => "Bear", :user_id => 3, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1}]
 
-dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1}]
-
+#dogs_list = [{:name => "Batman", :user_id => 1, :gender => "Male", :size_id => 2, :dob => DateTime.new(2012, 12, 21), :energy_level_id => 1}]
+dogs_list = []
 
 dogs_list.each do |dog|
   dog = Dog.create(dog)

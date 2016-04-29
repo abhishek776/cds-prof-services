@@ -55,6 +55,8 @@ class DogsController < ApplicationController
     if @dog.save
       redirect_to @user
     else
+      set_dog_types
+      
       render 'new'
     end
   end
