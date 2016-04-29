@@ -29,12 +29,18 @@ h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a, div, input{
     .masthead {
         background-image: url('/dogbanner.png') !important;
         background-size: cover !important;
-        
+        padding-bottom:0px !important;
+        background-position: center; 
         .middle {
-            height:100px;
-            width:800px;
+            height:100%;
+            width:100%;
             margin: auto;
-            color: white;
+            background-color: rgba(255, 255, 255, 0.5);
+            .homepage-logo{
+                width:20em;
+                display:block;
+                margin:auto;
+            }
             h1 {
                 font-weight: 600;
                 text-align: center;
