@@ -30,7 +30,7 @@
         <%end%>
       <% end %>
       <% if @current_user and @current_user.id == dog.user_id %>
-        <a class="right floated green-button" href=<%=edit_dog_path(dog.id)%> id="add_dog_button">
+        <a class="right floated green-button" href=<%=edit_dog_path(dog.id)%> id="edit_dog_button">
             <i class="edit icon large"></i>
         </a>
       <% end %>
