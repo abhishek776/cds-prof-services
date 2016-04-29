@@ -1,10 +1,8 @@
 <div class="ui one column grid">
   <%= render :partial => "users/user", :user => @user %>
-  
   <div class="eleven wide column">
     <div class="ui segment">
-    <h2>Here's the Feed!</h2>
-
+    <h2>Your Favorite Dogs</h2>
       <%= render :partial => "users/dog", :collection => @staredDogs %>
     </div>
   </div>

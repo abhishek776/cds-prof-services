@@ -4,5 +4,6 @@
         $('.ui.embed').embed();
         $('.ui.dropdown.selection').dropdown();
         $('.ui.fluid.search.dropdown').dropdown('restore defaults');
+        $('.ui.checkbox').checkbox();
     })
   ;

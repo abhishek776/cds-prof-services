@@ -3,10 +3,10 @@
   <div class="seven wide column">
     <% if dog.image.file? %>
       <a href=<%=dog_path(dog.id)%>>
-        <%= image_tag dog.image, :class => "ui image" %>
+        <%= image_tag dog.image, {:class => "ui image", :style => "width:100%;height:auto"} %>
       </a>
     <% else %>
-      <%= image_tag "default_dog.jpg", :class => "ui image" %>
+      <%= image_tag "default_dog.jpg", {:class => "ui image", :style => "width:100%;height:auto"} %>
     <% end %>
   </div>
   <div class="nine wide column">
