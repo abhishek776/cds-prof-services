@@ -1,8 +1,6 @@
 <h1> Edit information about <%= @dog.name %> </h1>
 <%= link_to "Delete Dog", dog_path(@dog.id), :id => "delete_dog_button", :data => { disable_with: "Please wait..." }, :class => "ui  button", :method => :delete %>    
 
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
-<% javascript_include_tag 'tags.js' %>
 
 <%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
 <div class="ui form">  
@@ -15,16 +13,22 @@
     <%= text_field(:dog, :motto, :value => @dog.motto) %>
   </div>
   
-  <div class="image" style="padding:3em;">
-    <%= image_tag @dog.image.url(:medium) %>
-  </div>
+  <% if not @dog.photos.empty? %>          
+    <div class="ui bottom"> <%= link_to ( image_tag @dog.photos[0].image.url(:large) ) , dog_path(@dog.id) %> </div>
+  <% end %> 
  
      <label>You can add picture of your dog</label>
-  <input type="file" name="dog[image]" id="dog_image">
+  <!--<input type="file" name="dog[image]" id="dog_image">-->
   </br>
 
+        <%= render partial: 'photo', collection: @photos, locals: {edit: true} %>
+  
+  <div class="field"><label>S3 Image</label>
+    <%= file_field_tag "image", type: :file %>
+  </div>
+
   <div class="embed-container">
-    <%= embed(@dog.youtube_id) %> 
+    <%= if @dog.youtube_id != '' then embed(@dog.youtube_id) end %> 
   </div> 
   
   <label>You can add youtube video of your dog</label>  

@@ -58,8 +58,9 @@
   
   
   <label>You can add picture of your dog</label>
-  <input type="file" name="dog[image]" id="dog_image">
-  </br>
+  <div class="field"><label>S3 Image</label>
+    <%= file_field_tag "image", type: :file %>
+  </div>
   
   <label>You can add youtube video of your dog</label>  
   <div class="field"> 

@@ -51,6 +51,8 @@ gem 'autoprefixer-rails'
 gem 'semantic-ui-rails'
 gem 'jquery-turbolinks'
 gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
+gem 'bootstrap-sass'
+gem 'aws-sdk', '~> 2.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -60,7 +62,7 @@ gem 'paperclip', :git => "git://github.com/thoughtbot/paperclip.git"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-# gem 'aws-sdk', '< 2.0'
+
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
