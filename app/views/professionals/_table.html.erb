@@ -13,7 +13,7 @@
     <% @professionals.each do |prof| %>
       <tr>
         <td><%= link_to prof.name, professional_path(prof) %></td>
-        <td><%= prof.attributes.values %></td>
+        <td><%= prof.description %></td>
         <td><%= prof.motto %></td>
       </tr>
     <% end %>

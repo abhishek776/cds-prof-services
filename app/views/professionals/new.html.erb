@@ -15,20 +15,11 @@
     </div>
 
     
-<%= form_tag(controller: "professionals", action: "new", method: "post") do %>
+<%= form_tag(controller: "professionals", action: "create", method: "post") do %>
     
 <div class="ui form">  
   <div class="field"><label>Name</label>
   <%= text_field(:professional, :name, :placeholder => 'Enter the name of the business here') %>
-  
-
-  <div class="field"><label>Description</label>
-  <% if current_user.description != nil && current_user.description != ""%>
-    <%= text_field(:professional,:description, :value => current_user.description) %>
-  <% else %>
-    <%= text_field(:professional,:description, :placeholder => 'Tell City Dog Share more about yourself.') %>
-  <%end%>
-  </div>
   
   <div class="field"><label>Motto</label>
   <%= text_field(:professional,:motto, :placeholder => 'What\'s your motto?') %>
@@ -43,5 +34,5 @@
 <div class="field"><label>Submit</label>
   <button class="ui button" type="submit">Submit</button>
   <!--<div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
-  <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
+  <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_professional_button", :class => "ui button transparent input", :method => :get %>-->
   </div>
