@@ -1,71 +1,67 @@
-<h1>New Dog</h1>
-
-<%= form_tag({controller: :dogs, action: @action}, method: @method, :multipart => true) do %>
-<div class="ui form">  
-
-  <div class="field"><label  for="dog_name" >Dog Name</label>
+<%= form_tag({controller: :dogs, action: @action}, class: "ui small form add_dog", style: "margin-top:10px;margin-bottom:10px;", method: @method, :multipart => true) do %>
+  <div class="field">
+    <label  for="dog_name">Dog Name</label>
     <%= text_field(:dog, :name) %>
   </div>
- 
-  <div class="field"><label  for="dog_motto">Motto</label>
+  <div class="field">
+    <label  for="dog_motto">Motto</label>
     <%= text_field(:dog, :motto) %>
   </div>
-
-  
-  <div class="field"><label>Birthdate</label>
-  <%= date_select :dog, :dob, {:start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)} %>
+  <div class="field">
+    <label>Birthdate</label>
+    <%= date_select :dog, :dob, {:order => [:day, :month, :year], :start_year => Date.today.year - 30, :end_year => Date.today.year, :default => DateTime.new(Date.today.year, 1, 1)}, {:class => "ui dropdown selection datedog"}%>
   </div>
-  
   <div class="field"><label>Gender</label>
-    <%= select :dog, :gender, ["Male", "Female"] %>
+    <%= select :dog, :gender, ["Male", "Female"], {}, {:class => "ui dropdown selection"}%>
   </div>
-  
   <div class="field"><label>Size</label>
-  <% size_options = options_from_collection_for_select(Size.all, 'id', 'value', @size.collect {|s| s.value}) %>
-  <%= select :dog, :size_id, size_options %> 
+    <% size_options = options_from_collection_for_select(Size.all, 'id', 'value', @size.collect {|s| s.value}) %>
+    <%= select :dog, :size_id, size_options,{}, {:class => "ui dropdown selection"} %> 
   </div>
-
-
-  <div class="field"><label>Personality</label>
-  <%= select_tag :personalities, options_for_select(@personality_list.collect{|s| s.value}),
-  :multiple => true, :size => 8 %>
-  </div>
-
   
- 
+  <div class="field"><label>Personality</label>
+    <%= select_tag :personalities, options_for_select(@personality_list.collect{|s| s.value}, @dog.readable_personalities),
+    {:multiple => true, :size => 8 , :class=>"ui fluid search dropdown"} %>
+  </div>
+  
   <div class="field"><label>Mix</label>
-  <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}),
-  :multiple => true, :size => 11 %>
+  <%= select_tag :mixes, options_for_select(@all_mixes.collect{|s| s.value}, @dog.readable_mixes),
+  {:multiple => true, :size => 11, :class=>"ui fluid search dropdown"} %>
   </div>
   
   <div class="field"><label>Likes</label>
-  <%= select_tag :likes, options_for_select(@like_list.collect{|s| s.value}),
-  :multiple => true, :size => 6 %>
+  <%= select_tag :likes, options_for_select(@like_list.collect{|s| s.value}, @dog.readable_likes),
+  {:multiple => true, :size => 6, :class=>"ui fluid search dropdown"} %>
   </div>
-
-    
+  
   <div class="field"><label>Energy Level</label>
   <% energy_options = options_from_collection_for_select(EnergyLevel.all, 'id', 'value', @energy.collect {|s| s.value}) %>
-  <%= select :dog, :energy_level_id, energy_options %> 
+  <%= select :dog, :energy_level_id, energy_options,{}, {:class => "ui dropdown selection"} %> 
+  </div>
+
+  <div class="inline fields">
+    <label>Is Your Dog Spayed/Neutered?</label>
+    <div class="field">
+      <%= label :fixed, "Yes", :value => "true"  %>
+      <%= radio_button :dog, :fixed, true, {class: "ui radio checkbox"}%>
+    </div>
+    <div class="field">
+      <%= label :fixed, "No", :value => "false" %>
+      <%= radio_button :dog, :fixed, false, {class: "ui radio checkbox"}%>
+    </div>
   </div>
   
-  <div class="field"><label>Is Your Dog Spayed/Neutered?</label>
-  <%= label :fixed, "Yes", :value => "true"  %>
-  <%= radio_button :dog, :fixed, true, :checked => true %>
-  <%= label :fixed, "No", :value => "false" %>
-  <%= radio_button :dog, :fixed, false  %>
+  <div class="field">
+    <label>Upload a Picture of your Dog</label>
+    <input type="file" name="dog[image]" id="dog_image">
   </div>
   
-  
-  <label>You can add picture of your dog</label>
-  <input type="file" name="dog[image]" id="dog_image">
-  </br>
-  
-  <label>You can add youtube video of your dog</label>  
-  <div class="field"> 
-     <%= text_field(:dog, :youtube_id) %>
+  <div class="field">
+    <label>Youtube Video</label>
+    <%= text_field(:dog, :youtube_id) %>
   </div>
- <div class="field"><label for="dog_description">Description</label>
+  
+  <div class="field"><label for="dog_description">Description</label>
     <%= text_area(:dog, :description) %>
   </div>
 
@@ -76,17 +72,37 @@
   <div class="field"><label for="dog_availability">General Availability</label>
     <%=text_area(:dog, :availability) %>
   </div>
-
-<% end %>
   
+  <div class="field">
+    <%= submit_tag "Submit", data: { disable_with: "Please wait..." }, :id => 'modal-submit', :class => "ui button dark-green", :style => "color: white" %>
+    <a class="ui button red" href=<%=user_path(@current_user)%>>Cancel</a>
+
+  </div>
+  
+<% end %>
+
+
+
+
+    
+
+
+
+
+
   <!--<button class="ui button" type="submit">Submit</button>-->
-<div class="field"><label>Submit</label>
-   <%= submit_tag "Submit", data: { disable_with: "Please wait..." }, :id => 'modal-submit', :class => "btn btn-primary" %>
+<!--<div class="field"><label>Submit</label>-->
+<!--   <%= submit_tag "Submit", data: { disable_with: "Please wait..." }, :id => 'modal-submit', :class => "btn btn-primary" %>-->
   <!--<button class="ui button" type="submit">Submit</button>-->
   <!--<div class="ui primary button transparent input"><input id='update_dog_button' type="submit" value="Save Changes" name="update_dog_button" class='btn info' style="text-align:center" /></div>-->
   <!--<%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button transparent input", :method => :get %>-->
-  <%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button", :method => :get %>
-  </div>
-</div>
+<!--  <%= button_to "Cancel", root_path(:notice => ""), :id => "cancel_dog_button", :class => "ui button", :method => :get %>-->
+<!--  </div>-->
+<!--</div>-->
 
                 
+
+
+
+
+
