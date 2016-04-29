@@ -27,7 +27,6 @@ class Dog < ActiveRecord::Base
 
 
   validates :name, :presence => {:message => "Name can't be blank"}
-  validates :mixes, :presence => {:message => "Mix can't be blank"}
   validate :validate_dob
 
   ## Attribute Access Functions

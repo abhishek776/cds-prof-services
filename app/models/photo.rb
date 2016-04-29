@@ -7,12 +7,9 @@ class Photo < ActiveRecord::Base
                             :medium => "300x300>",
                             thumb: ["64x64#", :jpg] },
                     #default_url: "default_dog.jpg",
-    
-   # :url => "/:class/:attachment/:id/:style_:basename.:extension"
+
                     storage: :s3,
-                    s3_credentials: {
-                      access_key_id: "AKIAIMHLKR7CSHFL4JLA", 
-                      secret_access_key: "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"},
+                    s3_credentials: "keys.yml", 
                     bucket: "cds-prof",
                     s3_region: "us-east-1"
 
