@@ -37,4 +37,25 @@ Scenario: I should be able to make a new professional service
   When I follow "My Profile"
   And I press "Sign Up As A Professional"
   And I follow "Make a New Professional Service"
+  And I fill in "professional_name" with "Batman"
+  And I fill in "professional_motto" with "I'm Batman"
+  And I fill in "professional_description" with "I am the night. I am vengeance."
+  And I press "Submit"
+  Then I should see "Batman"
+  
+Scenario: I should be able to edit a professional service that I'm part of
+  When I follow "My Profile"
+  And I press "Sign Up As A Professional"
+  And I follow "Make a New Professional Service"
+  And I fill in "professional_name" with "Batman"
+  And I fill in "professional_motto" with "I'm Batman"
+  And I fill in "professional_description" with "I am the night. I am vengeance."
+  And I press "Submit"
+  Then I should see "Batman"
+  
+Scenario: I should be able to join a professional service that I'm part of
+  When I follow "My Profile"
+  And I press "Sign Up As A Professional"
+  And I follow "Frodo"
+  And I follow "Join Service"
   

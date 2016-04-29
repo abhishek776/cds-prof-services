@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   #post 'register_as_professional', to: 'user#upgrade'
   post 'register_professional', to: 'professionals#upgrade'
   post 'professionals/new', to: 'professionals#create'
+  #post 'join_professional', to: 'professionals#join'
   
   #resources :professionals
   
