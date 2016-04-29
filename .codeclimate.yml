@@ -42,5 +42,6 @@ exclude_paths:
 - spec/
 - vendor/
 - "app/assets/stylesheets/semantic_modules/*"
+- "app/assets/stylesheets/semanticcss/*"
 - "app/assets/javascripts/semantic_modules/*"
-
+- "app/assets/javascripts/semanticjs/*"
