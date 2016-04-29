@@ -61,6 +61,9 @@ Rails.application.routes.draw do
     end
   end
   
+  #dog multiple pictures
+  resources :photos , :only => [:index, :new, :create, :show, :destroy]
+  
   # #Dog Routes
   # resources :dogs
 

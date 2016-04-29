@@ -19,20 +19,21 @@ class Dog < ActiveRecord::Base
   
   has_many :events, :dependent => :destroy
   has_many :stars, :dependent => :destroy
+  #paperclip dog multiple pictures
+  has_many :photos, :dependent => :destroy
   
-  YT_LINK_FORMAT = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/i
 
-  
-  has_attached_file :image,
-    :styles => {:large =>"500x500>",:medium => "300x300>",:thumb => "100x100>"},
-    :default_url => "default_dog.jpg",
-    :url => "/:class/:attachment/:id/:style_:basename.:extension"
-    
-  
-  validates_attachment :image, 
-      content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] },
-      :size => { :in => 0..500.kilobytes } 
 
+
+
+  validates :name, :presence => {:message => "Name can't be blank"}
+  validate :validate_dob
+
+  ## Attribute Access Functions
+  def validate_dob
+    errors.add(:dob, "Dog's birthday can't be in the future.") if (!dob.nil? and dob > Date.today)
+  end
+  
   def set_mix_like_personality(new_mixes, new_likes, new_pers)
     self.mixes = []
     self.likes = []
