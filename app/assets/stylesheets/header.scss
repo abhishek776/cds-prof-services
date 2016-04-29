@@ -6,7 +6,7 @@ $teal: #1dc499;
 $blue: #28b9f1;
 
 .wrapper {
-    padding-top:54px;
+    padding-top:3em;
     margin-right:1em;
     margin-left:1em;
 }
@@ -19,14 +19,14 @@ $blue: #28b9f1;
     // padding: 15px 150px;
 
     .header-logo{
-        height:25px;
-        display:inline-block;
-        padding-top: 15px;
-        padding-bottom: 15px;
-        padding-left: 20px;
+        height:3.5em;
+        display:block;
+        padding:0.8em;
+        margin-left: 0.5em;
+        padding-top: 1em;
+        padding-bottom:0.7em;
         
     }
-
     .login {
         font-size: 16px;
         color: $dark-gray;
