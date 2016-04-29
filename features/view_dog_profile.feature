@@ -9,11 +9,7 @@ Background: dogs have been added to the database
   Given I am exploring dogs
     
 Scenario: I'm able to see dog information
-
   When I follow "Cat"
   Then I should see "Cat"
   Then I should see "Miay"
   Then I should see "I am a cat"
-  Then I should see "anytime"
-  Then I should see "exelent"
-

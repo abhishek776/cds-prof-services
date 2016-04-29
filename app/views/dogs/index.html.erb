@@ -1,71 +1,57 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Explore Dogs</h1>
+<%= image_tag("browse-dogs-header.png", :alt => "subtext", id: "browse-dogs-header") %>
 
-<%= form_tag({controller: :dogs, action: :index}, method: :get, :multipart => true) do %>
-
-  <div class="field"><label>Gender</label>
+<div class="ui fluid card" style="width:75%;margin-left:auto;margin-right:auto;padding:20px">
+<h3>Filter Dogs</h3>
+<%= form_tag({controller: :dogs, action: :index}, class: "ui small form filter_form", method: :get, :multipart => true) do %>
+<div class="fields">
+  <div class="five wide field">
+    <label>Gender</label>
     <%= select_tag :gender, options_for_select(["Male", "Female"], params[:gender]),
-    :multiple => false, :size => 2 %>
+    {:multiple => false, :size => 2, :class => "ui dropdown selection"}%> 
   </div>
-  
-  <div class="field"><label>Size</label>
+  <div class="five wide field">
+    <label>Size</label>
     <%= select_tag :size, options_for_select(@size.collect{|s| s.value}, params[:size]),
-    :multiple => true, :size => 4 %>
+    {:multiple => false, :size => 4, :class => "ui dropdown selection"}%> 
   </div>
-  
-  <div class="field"><label>Mix</label>
+  <div class="six wide field">
+    <label>Mix</label>
     <%= select_tag :mix, options_for_select(@all_mixes.collect{|s| s.value}, params[:mix]),
-    :multiple => true, :size => 11 %>
+    {:multiple => true, :size => 11, :class => "ui fluid search dropdown"}%> 
   </div>
-  
-  <div class="field"><label>Age</label>
+</div>
+
+<div class="fields">
+  <div class="seven wide field">
+    <label>Age</label>
     <%= select_tag :age, options_for_select(@age_ranges, params[:age]),
-    :multiple => true, :size => 4 %>
+    {:multiple => true, :size => 4, :class => "ui fluid search dropdown"}%> 
   </div>
-  
-  <div class="field"><label>Energy Level</label>
+  <div class="seven wide field">
+    <label>Energy Level</label>
     <%= select_tag :energy_level, options_for_select(@energy.collect{|s| s.value}, params[:energy_level]),
-    :multiple => true, :size => 4 %>
+    {:multiple => true, :size => 4, :class => "ui fluid search dropdown"}%> 
   </div>
-  
-  <div class="field"><label>Has Event?</label>
-    <%= check_box_tag :has_event, 1, (params[:has_event] == "1") %>
+  <div class="two wide field">
+    <label>Has Event?</label>
+    <div class="ui toggle checkbox">
+      <%= check_box_tag :has_event, 1, (params[:has_event] == "1") %>
+    </div>
   </div>
-
-  <div class="field"><label for='update_dog_button'>Submit</label>
-    <div class="ui primary button transparent input"><input id='filter_button' type="submit" value="Filter" name="filter_button" class='btn info' style="text-align:center" /></div>
-  </div>
-  
+</div>
+<div class="field" style="text-align:right">
+  <%= submit_tag "Filter", :id => 'filter_button', :class => "ui button dark-green", :style => "color: white" %>
+  <a class="ui button" href="/dogs">Clear</a>
+</div>
 <% end %>
+</div>
 
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Gender</th>
-      <th>Age</th>
-      <th>Mix</th>
-      <th>Energy Level</th>
-      <th>Personality</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @dogs.each do |dog| %>
-      <tr>
-        <td><%= link_to dog.name, dog_path(dog) %></td>
-        <td><%= dog.gender %></td>
-        <td><%= dog.age_caption %></td>
-        <td><%= dog.mix_caption %></td>
-        <td><%= dog.energy_level %></td>
-        <td><%= dog.personality_caption %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Dog', new_dog_path %>
+<div class="ui one column grid">
+  <div class="eleven wide column">
+    <div class="ui segment">
+      <%= render :partial => "users/dog", :collection => @dogs %>
+    </div>
+  </div>
+</div>

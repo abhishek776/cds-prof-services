@@ -1,0 +1,57 @@
+<div class="five wide column">
+    <div class="ui fluid card">
+        <div class="image">
+            <% if not @dog.photos.empty?%>
+                <%= image_tag @dog.photos[0].image.url %>
+            <% else %>
+              <%= image_tag "default_dog.jpg"%>
+            <% end %>
+        </div>
+        <div class="content">
+            <h3 class="no-margin">
+                <%= @dog.name %>
+                <div class="right floated">
+                    <% if @current_user and not @current_user.starred_dogs.exists?(id: @dog.id) %>
+                        <%=link_to '/star_dog?'+{dog_id: @dog.id}.to_param, {:id => "star_#{@dog.id}"} do %>
+                            <i class="empty star icon"></i>
+                            <%=@dog.stars.count%>
+                        <% end %>
+                    <% else %>
+                        <%=link_to '/unstar_dog?'+{dog_id: @dog.id}.to_param, {:id => "star_#{@dog.id}"} do %>
+                            <i class="star icon"></i>
+                            <%=@dog.stars.count%>
+                        <%end%>
+                    <% end %>
+                </div>
+            </h3>
+            <div class="description"><%= @dog.motto %></div>
+            
+            <div class="description gray-text" style="font-size:14px;margin-top:10px">
+                
+                <span class="green-text">Gender:</span>
+                <%= @dog.gender %>
+                <br>
+                
+                <span class="green-text">Likes:</span>
+                <%= @dog.readable_likes.join(", ") %>
+                <br>
+                
+                <span class="green-text">Energy Level:</span>
+                <%= @dog.energy_level %>
+                <br>
+                
+                <span class="green-text">Mix:</span>
+                <%= @dog.mix_caption %>
+                <br>
+                
+                <span class="green-text">Fixed:</span>
+                <%="No" if not @dog.fixed %>
+                <%="Yes" if @dog.fixed %>
+                <br>
+            </div>
+        </div>
+        <% if @current_user.id == @dog.user_id  %>
+          <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui secondary button my-green", :method => :get %>
+        <% end %>
+    </div>
+</div>

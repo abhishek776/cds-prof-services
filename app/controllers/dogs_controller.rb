@@ -34,6 +34,7 @@ class DogsController < ApplicationController
     @user = current_user
     @action = :create
     @method = :post
+    @dog = Dog.new
     set_dog_types
     render 'new'
   end
@@ -47,7 +48,6 @@ class DogsController < ApplicationController
   
   # POST /dogs/create
   def create
-    
     @user = current_user
     @dog = Dog.new(dog_params)
     @dog.user_id = @user.id

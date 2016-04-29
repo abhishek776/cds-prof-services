@@ -1,3 +1,5 @@
+@facebook_test
+
 Feature: Users should be able to request to fulfill events by other users
   
   As a user that wants to take care of other people's dogs
@@ -15,10 +17,9 @@ Background: user has been added to the database and logged in
     | Princess | Labrador         | 1   | small (0-15)    | Female | cats       | High    | whatever    | 5       |
     | Spock    | Aidi             | 3   | medium (16-40)  | Male   | dogs (all) | Some    | lover       | 6       |
      
+  And I am logged in
 
 Scenario: I can request the event
   When I go to "Batman"'s dog page
-  And I follow the "Request Event" link
-  And I follow "Log Out"
-  And I log in as "Bruce Wayne"
-  Then I should see that someone requested "Batman"'s event
+  And I follow "Book Event"
+  Then I should see "Unbook Event"

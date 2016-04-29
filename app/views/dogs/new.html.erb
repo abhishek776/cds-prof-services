@@ -1,2 +1,15 @@
-<h2>Create Your Dog's Profile</h2>
-<%= render 'form' %>
+<div class="ui one column grid">
+  <div class="eight wide column">
+    <div class="ui fluid card" style="padding: 10px 20px">
+        <h2 class="no-margin">New Dog</h2>
+        <div class="ui divider"></div>
+        <%= render 'form' %>
+    </div>
+  </div>
+  <div class="eight wide column">
+    <div class="ui fluid card">
+       <%=image_tag("dogvert.png", {:style => "width:100%;height:auto"})%>
+    </div>
+  </div>
+</div>
+

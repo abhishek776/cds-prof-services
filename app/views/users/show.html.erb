@@ -1,32 +1,14 @@
-  <div class="ui one column grid">
+<div class="ui one column grid">
   <%= render :partial => "users/user", :user => @user %>
-
-   <div class="eleven wide column">
-    <!--<button class="ui button">-->
+  <div class="eleven wide column">
     <div class="ui segment">
-      <h2><%= @user.first_name %>'s Dogs
-      <% if @own_profile %>
-      <%= link_to "Add Dog", new_dog_path(), :id => "add_dog_button", :class => "ui secondary button right floated", :method => :get %>
-      <% end %>
+      <h2 style="margin-bottom:5px">
+        <%= @user.first_name %>'s Dogs
+        <a class="right floated green-button" href=<%=new_dog_path()%> id="add_dog_button">
+          <i class="plus icon"></i>
+        </a>
       </h2>
-
-      <!-- USERS DOGS ------------------------------------------------------------->  
-        <%= render :partial => "dog", :collection => @user.dogs %>
-      <!--END OF USERS DOGS------------------------------>
-  
-      </div>
-      <div class="ui segment">
-      <h2><%= @user.first_name %>'s Starred Dogs</h2>
-     
-      <!--STARRED DOGS-->
-      <% if not @staredDogs.nil? %>
-      <%= render :partial => "dog", :collection => @staredDogs %>
-      <% else %>
-      No starred dogs.
-      <%end%>
-      <!--END OF STARRED DOGS   -->
-      
-      </div>
-      </div>
-      </div>
-
+      <%= render :partial => "dog", :collection => @user.dogs %>
+    </div>
+  </div>
+</div>

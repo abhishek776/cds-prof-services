@@ -6,5 +6,4 @@ Feature: Users should be able to view a splash page with information
   
   Scenario: User is not logged in
     When I am on the home page
-    Then I should see "CITY DOG SHARE"
-    And I should see "FACEBOOK LOGIN"
+    And I should see "Login"

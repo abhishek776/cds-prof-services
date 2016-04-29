@@ -14,6 +14,9 @@ body {
     margin: 0px;
 }
 
+#landing-subtext{
+    width:100%;
+}
 
 h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a, div, input{
    font-family: 'Source Sans Pro', sans-serif !important; 
@@ -27,14 +30,21 @@ h1, h2, h3, h4, h5, h6, p, blockquote, footer, ul li, a, div, input{
 .wrapper {
 
     .masthead {
+        margin-top:-1em !important;
         background-image: url('/dogbanner.png') !important;
         background-size: cover !important;
-        
+        padding-bottom:0px !important;
+        background-position: center !important; 
         .middle {
-            height:100px;
-            width:800px;
+            height:100%;
+            width:100%;
             margin: auto;
-            color: white;
+            background-color: rgba(255, 255, 255, 0.5);
+            .homepage-logo{
+                width:20em;
+                display:block;
+                margin:auto;
+            }
             h1 {
                 font-weight: 600;
                 text-align: center;

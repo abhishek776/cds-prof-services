@@ -47,4 +47,5 @@ Scenario: I should be able to change my mind and cancel creating event
   And I choose "my_location_My_House"
   And I fill in "description" with "junk"
   And I press "Cancel"
+  Then I should be on the Clark's home feed
   
