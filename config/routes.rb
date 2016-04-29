@@ -50,6 +50,10 @@ Rails.application.routes.draw do
   
   get 'star_dog', to: 'starred_dogs#create'
   get 'unstar_dog', to: 'starred_dogs#destroy'
+
+  get 'book_event', to: 'booking_events#create'
+  get 'unbook_event', to: 'booking_events#destroy'
+  get 'confirm_event', to: 'booking_events#confirm'
   
   resources :events do
     member do

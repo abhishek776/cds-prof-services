@@ -11,9 +11,51 @@
         <a class="right floated green-button" href=<%=edit_event_path(event.id)%> id="edit_event_button">
             <i class="edit icon large"></i>
         </a>
+      <% elsif @current_user and @current_user.id != @dog.user_id %>
+        <% if @current_user.booking_events.exists?(id: event.id)%>
+          <%=link_to '/unbook_event?'+{event_id: event.id, user_id: @current_user.id}.to_param, {:id => "book_#{event.id}", :class => "ui button small yellow right floated"} do %>
+              <span style="color:white">Unbook Event</span>
+          <%end%>
+        <% elsif not event.confirmed_user_id  %>
+          <%=link_to '/book_event?'+{event_id: event.id}.to_param, {:id => "book_#{event.id}", :class => "ui button small my-green right floated"} do %>
+              <span style="color:white">Book Event</span>
+          <%end%>
+        <% else %>
+          <a class="ui button right floated small">Unavailable</a>
+        <% end %>
       <% end %>
     </h3>
     <div class="content">
+      <% if event.confirmed_user_id and event.confirmed_user_id.to_i == current_user.id %>
+        <div class="description confirmation gray-text" style="font-size:14px;margin-bottom:10px">
+          <span class="green-text" style="font-size:16px;font-weight:600">You are confirmed for this event!</span>
+          <br>
+          <span class="green-text">Parent:</span>
+          <%= link_to @parent.first_name, user_path(@parent.id) %>
+          <% if not @parent.phone_number.nil? %>
+            <br>
+            <span class="green-text">Phone Number:</span>
+            <%= @parent.phone_number %>
+          <% end %>
+        </div>
+      <% end %>
+
+      <% if event.confirmed_user_id and @dog.user_id == current_user.id %>
+        <div class="description confirmation gray-text" style="font-size:14px;margin-bottom:10px">
+          <span class="green-text" style="font-size:16px;font-weight:600">You have confirmed this event.</span>
+          <br>
+          <span class="green-text">Booker:</span>
+          <%= link_to event.booking_users[0].first_name, user_path(event.booking_users[0].id) %>
+          <% if not event.booking_users[0].phone_number.nil? %>
+            <br>
+            <span class="green-text">Phone Number:</span>
+            <%= event.booking_users[0].phone_number %>
+          <% end %>
+        </div>
+      <% end %>
+      
+      
+      
       <div class="description gray-text" style="font-size:14px">
         <span class="green-text">Time:</span>
         <%= event.time_of_day.join(", ") %>
@@ -22,70 +64,27 @@
         <span class="green-text">Description:</span>
         <%= event.description %>
       </div>
+      
+      <% if not event.confirmed_user_id and @current_user and @current_user.id == @dog.user_id and event.booking_users and event.booking_users.count > 0 %>
+        <div class="description confirmation gray-text" style="font-size:14px;margin-bottom:10px">
+          <span class="green-text" style="font-size:16px;font-weight:600">Candidates to Walk Your Dog</span>
+          <% event.booking_users.each do |candidate| %>
+            <br>
+            <a href=<%=user_path(candidate.id)%> class="green-button">
+              &nbsp;&nbsp;
+              <%=image_tag candidate.image, :class => "ui avatar image"%>
+              <%=candidate.first_name%>
+            </a>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <%=link_to '/confirm_event?'+{event_id: event.id, user_id: candidate.id}.to_param, {:id => "book_#{event.id}", :class => "ui button small my-green"} do %>
+              Confirm
+            <% end %>
+            <%=link_to '/unbook_event?'+{event_id: event.id, user_id: candidate.id}.to_param, {:id => "book_#{event.id}", :class => "ui button small red"} do %>
+              Reject
+            <% end %>
+          <% end %>
+        </div>      
+      <% end %>
     </div>
   </div>
 </div>
-    
-<!-- BOOK EVENT          -->
-<!--            <% if not current_user.nil? %>-->
-<!--              <%if current_user.id != @dog.user_id %>-->
-<!--              <div class="booking"><label for="book_<%=event.id%>" ></label>-->
-<!--              <%- unless current_user.booking_events.exists?(id: event.id) or  event.confirmed_user_id  -%>-->
-<!--              <%= link_to booking_events_path(event_id: event), method: :post, id: "book_#{event.id}", :class => "ui button" do%>-->
-<!--              Book-->
-<!--              <%end%>-->
-              
-<!--              <%end%>-->
-<!--              <% if not event.confirmed_user_id and current_user.booking_events.exists?(id: event.id) %>-->
-<!--              <%= link_to booking_events_path(event_id: event, user_id: current_user), method: :delete, id: "unbook_#{event.id}", :class => "ui button"  do%>-->
-<!--              Unbook-->
-          
-<!--              <%end%>-->
-<!--             <% end %>-->
-<!--             <%end%>-->
-
-<!--            <div>-->
-<!--             <% if  event.confirmed_user_id and event.confirmed_user_id.to_i == current_user.id%>-->
-<!--              <div class= "ui positive button"><label>Confirmed</label></div>-->
-<!--              <div> -->
-<!--              <% if not @parent.phone_number.nil? %><%=@parent.first_name %>'2 phone number: -->
-<!--              <%= link_to @parent.phone_number, user_path(@parent.id)%> -->
-<!--              <% end %>-->
-<!--              </div>-->
-<!--              <% end %>-->
-<!--              </div>-->
-                           
-<!--            <% if event.booking_users and event.booking_users.count != 0 and @dog.user_id.to_i == current_user.id %>-->
-<!--            <h5> Candidates to walk your dog: </h5>-->
-            
-<!--            <% event.booking_users.each do |candidate| %>-->
-
-<!--                  <div class="ui buttons">  -->
-<!--                  <%= link_to candidate.first_name, user_path(candidate.id)%> -->
-<!--                  <%=link_to (image_tag candidate.image, :class => "ui avatar image"), user_path(candidate.id)  %>-->
-                  
-<!--                  <% if event.confirmed_user_id and event.confirmed_user_id.to_i == candidate.id %>-->
-<!--                  <%=candidate.first_name%>'s phone number: -->
-<!--                  <%= candidate.phone_number%> -->
-<!--                  <%end%>-->
-                  
-<!--                  <%= link_to booking_events_path(event_id: event,  user_id: candidate), method: :delete, id: "book_#{event.id}", :class => "ui button" do%>-->
-<!--                  REJECT-->
-<!--                  <% end %>-->
-                
-<!--                  <% if event.confirmed_user_id.nil? %>-->
-<!--                  <div class="or"></div>-->
-<!--                  <%= link_to confirm_booking_event_path(event_id: event, user_id: candidate), method: :post, id: "book_#{event.id}", :class => "ui positive button" do%>-->
-<!--                  CONFIRM-->
-<!--                  <%end%>-->
-<!--                  <%else%>-->
-<!--                  <% if not event.confirmed_user_id.nil? %>-->
-<!--                  <div class= "ui positive button"><label>Confirmed</label>-->
-<!--                  <%end%>-->
-<!--                  <% end %>-->
-<!--                  </div>-->
-<!--            <% end %>-->
-<!--            <% end %>-->
-<!--            <%end%>-->
-    
-<!--</div>-->

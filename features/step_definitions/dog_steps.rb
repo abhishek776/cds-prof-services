@@ -121,13 +121,11 @@ end
 
 When(/^"([^"]*)" was confirmed for "([^"]*)"'s event$/) do |arg1, arg2|
   dog = Dog.find_by_name(arg2)
-  user = User.find_by_first_name(arg1)
   event = Event.find(dog.id)
+  user = User.find_by_first_name(arg1)
   event.confirmed_user_id = user.id
   event.save!
 end
-
-
 
 Then(/^I should not see a star$/) do
   all('div.stars').count.should == 0
