@@ -24,6 +24,10 @@
           <a class="item" data-tab="second">Video</a>
       </div>
       <div class="ui bottom tab active" data-tab="first">
+        <a class="ui button dark-green" href="<%=new_event_path()%>" style="margin-bottom:5px">
+          <i class="plus icon"></i>
+          Add Event
+        </a>
         <%= render :partial => "event", :collection => @dog.future_events %>
       </div>
       <div class="ui bottom tab" data-tab="second">
