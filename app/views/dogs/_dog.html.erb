@@ -38,7 +38,7 @@
             </div>
         </div>
         <% if @current_user.id == @dog.user_id  %>
-          <%= link_to "Edit Profile", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui secondary button my-green", :method => :get %>
+          <%= link_to "Edit Dog", edit_dog_path(@dog.id), :id => "edit_dog_button", :class => "ui secondary button my-green", :method => :get %>
         <% end %>
     </div>
 </div>
