@@ -1,4 +1,4 @@
-<h1>Dog-Care Professionals</h1>
+ <h1>Dog-Care Professionals</h1>
 
 <table>
   <thead>
@@ -12,7 +12,7 @@
   <tbody>
     <% @professionals.each do |prof| %>
       <tr>
-        <td><%= link_to prof.name, professional_path(prof) %></td>
+        <td><%= link_to prof.attributes.keys, professional_path(prof) %></td>
         <td><%= prof.description %></td>
         <td><%= prof.motto %></td>
       </tr>

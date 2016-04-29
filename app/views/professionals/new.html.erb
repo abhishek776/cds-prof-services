@@ -19,11 +19,7 @@
     
 <div class="ui form">  
   <div class="field"><label>Name</label>
-  <% if current_user.first_name != nil && current_user.first_name != "" && current_user.last_name != nil && current_user.last_name != ""%>
-  <%= text_field(:professional, :name, :value => current_user.first_name + " " + current_user.last_name) %>
-  <%else%>
   <%= text_field(:professional, :name, :placeholder => 'Enter the name of the business here') %>
-  <%end %>
   
 
   <div class="field"><label>Description</label>

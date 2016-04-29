@@ -49,23 +49,23 @@ class ProfessionalsController < ApplicationController
   def create
     @user = User.find(session[:user_id])
     @professional = Professional.new(professionals_params) 
-    @professional.save
     if @professional.save
-      redirect_to @user
+      redirect_to '/professionals#index'
     else
-      render 'new'
+      flash[:notice] = "Create Error."
+      redirect_to '/professionals#index'
     end
   end  
   
   # POST /professionals/:id/update
   def update
-    @professional.update_attributes(dog_params)
+    @professional.update_attributes(professionals_params)
     if @professional.save
       flash[:notice] = "#{@professional.name} was succesfully updated."  
-      redirect_to index
+      redirect_to '/professionals#index'
     else
       flash[:notice] = "Update Error."
-      redirect_to index
+      redirect_to '/professionals#index'
     end 
   end
 
@@ -73,7 +73,7 @@ class ProfessionalsController < ApplicationController
     @user = User.find(session[:user_id])
     @professional = Professional.find(params[:id])
     @professional.destroy
-    redirect_to @user
+    redirect_to '/professionals#index'
   end  
     
 
