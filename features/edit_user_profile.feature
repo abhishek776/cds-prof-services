@@ -26,8 +26,7 @@ Scenario: Edit user profile
   And I fill in "user_description" with "I think I should make City Cat Share."
   And I press "Save Changes"
   Then I should be on the Clark's profile page
-  And I should see "2222 Blake str, apt 333"
-  And I should see "94704"
+  And I should see "I think I should make City Cat Share."
 
   When I follow "Edit Profile"
   When I fill in "user_address" with "2128 Oxford St"
@@ -38,5 +37,4 @@ Scenario: Edit user profile
   And I fill in "user_description" with "I think I should make City Bat Share."
   And I press "Cancel Changes"
   Then I should be on the Clark's profile page
-  And I should see "2222 Blake str, apt 333"
-  And I should see "94704"
+  And I should not see "I think I should make City Bat Share."

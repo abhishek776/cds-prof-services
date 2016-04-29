@@ -18,13 +18,18 @@
               <i class="empty star icon no-margin"></i>
               <%=dog.stars.count%>
           <% end %>
-      <% else %>
+      <% elsif @current_user %>
           <%=link_to '/unstar_dog?'+{dog_id: dog.id}.to_param, {:id => "star_#{dog.id}"} do %>
               <i class="star icon no-margin"></i>
               <%=dog.stars.count%>
           <%end%>
+      <% else %>
+        <%=link_to do %>
+          <i class="star icon no-margin"></i>
+          <%=dog.stars.count%>
+        <%end%>
       <% end %>
-      <% if @current_user.id == dog.user_id %>
+      <% if @current_user and @current_user.id == dog.user_id %>
         <a class="right floated green-button" href=<%=edit_dog_path(dog.id)%> id="add_dog_button">
             <i class="edit icon large"></i>
         </a>

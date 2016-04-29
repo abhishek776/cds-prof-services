@@ -31,8 +31,10 @@
         <%= render :partial => "event", :collection => @dog.future_events %>
       </div>
       <div class="ui bottom tab" data-tab="second">
-        <div class="ui embed" style="margin-left:50px;margin-right:50px" data-source="youtube" data-id=<%=@dog.youtube_id.split("=")[1]%>>
-        </div>
+        <% if @dog.youtube_id %>
+          <div class="ui embed" style="margin-left:50px;margin-right:50px" data-source="youtube" data-id=<%=@dog.youtube_id.split("=")[1]%>>
+          </div>
+        <% end %>
       </div>
     </div>
   </div>

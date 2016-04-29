@@ -21,8 +21,7 @@ Background: user has been added to the database and logged in
   
   Scenario: User should be able to delete their dog's event
     When I follow "My Profile"
-    
-    When I follow "Add Dog"
+    When I follow "add_dog_button"
     Then I should see "Name"
     When I fill in "Dog Name" with "Cat"
     And I fill in "Motto" with "Miay"
@@ -34,8 +33,7 @@ Background: user has been added to the database and logged in
     And I should see "Cat"
     When I follow "Cat"
     
-    And I should see "Edit Event"
-    When I follow "edit_event_button"
+    And I follow "edit_event_button"
     And I should see "Edit Cat's Event"
     And I check "times_Afternoon"
     And I choose "my_location_Your_House"
@@ -43,9 +41,7 @@ Background: user has been added to the database and logged in
     And I should see "Time: Morning, Afternoon"
     And I should see "Location: Your House"
     
-    When I follow "Edit Event"
+    When I follow "edit_event_button"
     And I press "Delete Event"
-    Then I should see "Your event has been deleted."
-
-
+    Then I should not see "edit_event_button"
  

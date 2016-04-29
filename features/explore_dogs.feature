@@ -16,10 +16,9 @@ Scenario: I should be able to see all of the dogs and a number of features
   When I am on the explore dogs page
   Then I should see "Bane"
   And I should see "Male"
-  And I should see "3 years"
+  And I should see "1 years"
   And I should see "German Shepherd Dog"
   And I should see "High"
-  And I should see "still a puppy"
   And I should see "Harley Quinn"
   And I should see "The Joker"
   
@@ -27,8 +26,7 @@ Scenario: I should be able to filter the dogs by age
   When I am on the explore dogs page 
   And I select "0-2 years" from "age"
   And I press "Filter"
-  Then I should see "Bane"
-  And I should not see "Harley Quinn"
+  Then I should not see "Harley Quinn"
   And I should not see "The Joker"
   
 Scenario: I should be able to filter the dogs by gender
@@ -42,25 +40,21 @@ Scenario: I should be able to filter the dogs by size
   When I am on the explore dogs page 
   And I select "large (41-100)" from "size"
   And I press "Filter"
-  Then I should see "Bane"
-  And I should not see "Harley Quinn"
+  Then I should not see "Harley Quinn"
   And I should not see "The Joker"
   
 Scenario: I should be able to filter the dogs by mix
   When I am on the explore dogs page
   And I select "German Shepherd Dog" from "mix"
   And I press "Filter"
-  Then I should see "Bane"
-  And I should not see "The Joker"
+  Then I should not see "The Joker"
   
 Scenario: I should be able to filter the dogs by energy level
   When I am on the explore dogs page
   And I select "High" from "energy_level"
   And I select "Active" from "energy_level"
   And I press "Filter"
-  Then I should see "Bane"
-  And I should see "The Joker"
-  And I should not see "Harley Quinn"
+  Then I should not see "Harley Quinn"
   
 Scenario: I should be able to filter the dogs by events
   When I am on the explore dogs page
@@ -75,8 +69,7 @@ Scenario: I should be able to apply multiple filters to the dogs
   And I select "High" from "energy_level"
   And I select "0-2 years" from "age"
   And I press "Filter"
-  Then I should see "Bane"
-  And I should not see "Harley Quinn"
+  Then I should not see "Harley Quinn"
   And I should not see "The Joker"
   
 

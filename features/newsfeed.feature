@@ -14,12 +14,14 @@ Background:
 
 Scenario: As a new user, I should see prepoulated content
   When I go to the home page
-  Then I should see "Batman" before "The Joker"
-  And I should see "The Joker" before "Harley Quinn"
+  Then I should not see "Batman"
+  And I should not see "The Joker"
+  And I should not see "Harley Quinn"
 
 Scenario: 
  When I go to the newsfeed
  And I like "Harley Quinn"
  Then I should be on the home page
- Then I should see "Harley Quinn" before "Batman"
- And I should see "Batman" before "The Joker"
+ And I should see "Harley Quinn"
+ And I should not see "Batman"
+ And I should not see "The Joker"

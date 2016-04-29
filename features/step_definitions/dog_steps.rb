@@ -45,13 +45,11 @@ end
 Given /I am exploring dogs/ do
   steps %Q{
     Given I am on the home page
-    When I follow "FACEBOOK LOGIN"
+    When I follow "Login"
     Then I should be on Clark's home feed
-    And I should see "Feed!"
     When I follow "My Profile"
     Then I should see "Dogs"
-    And I should see "Add Dog"
-    When I follow "Add Dog"
+    When I follow "add_dog_button"
     Then I should see "Dog Name"
     When I fill in "Dog Name" with "Cat"
     And I fill in "Motto" with "Miay"
@@ -60,8 +58,6 @@ Given /I am exploring dogs/ do
     And I fill in "General Availability" with "anytime"
     When I press "Submit" 
     Then I should be on Clark's profile page
-    When I follow "Explore"
-    Then I should see "Explore Dogs"
   }
 end
 
