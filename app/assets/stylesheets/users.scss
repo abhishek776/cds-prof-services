@@ -1,3 +1,45 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$my-green: #BFE07E;
+$dark-green: #91af54;
+$light-gray: #BFBFBF;
+$dark-gray: #404040;
+
+
+.no-margin {
+    margin: 0px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+}
+
+.my-green {
+    background-color: $my-green !important;
+}
+
+.green-button {
+    &:hover {
+        color: $dark-green !important;
+    }
+}
+
+.green-text {
+   color: $dark-green; 
+}
+
+.gray-text {
+    color: $dark-gray;
+}
+
+.divider {
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+}
+
+.dog_partial {
+    margin-top: 3px !important;
+    margin-bottom: 3px !important;
+}
