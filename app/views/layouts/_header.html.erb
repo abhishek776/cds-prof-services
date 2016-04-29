@@ -1,7 +1,7 @@
 <div class="ui medium top menu fixed" id="my-menu">
   <%=link_to image_tag("header-logo.png", border: 0, class:"header-logo"), home_path %>
   <div class="right menu" style="margin-right: 0px">
-  <div class="ui item right_item explore-link"><%= link_to 'Explore', dogs_path, :id => "To All Dogs" %></div>
+    <%=link_to image_tag("browse-dogs.png", class:"browse-dogs"), dogs_path, :id => "To All Dogs"  %>
   
     <% if current_user %>
       <div class="ui dropdown item right_item">
@@ -13,7 +13,12 @@
         </div>
       </div>    
     <% else %>
-      <%= link_to "FACEBOOK LOGIN", "/auth/facebook", id: "log_in", class: "item login" %>
+      <%= link_to "/auth/facebook", id: "log_in", class: "item login" do %>
+          <button class="ui facebook small button fb-login">
+          <i class="facebook icon"></i>
+          Login
+          </button>
+      <% end %>
     <% end %>
   </div>
 </div>
